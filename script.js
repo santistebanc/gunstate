@@ -3177,7 +3177,7 @@
   // client.js
   var gun = (0, import_gun.default)([
     "http://localhost:3000/gun",
-    "https://santistebanc.github.io/gunstate/"
+    "https://santistebanc.github.io/gunstate"
   ]);
   gun.get("views").get("termsList").put({ row: { 0: gun.get("terms") } });
   var index = new FlexSearch.Worker("performance");
@@ -3216,4 +3216,5 @@
     });
   };
   gun.get("terms").open((terms) => view(terms));
+  gun.get("terms").once((terms) => console.log("terms: ", terms));
 })();
