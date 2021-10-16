@@ -3058,6 +3058,121 @@
 
   // component.js
   var listeners = new WeakMap();
+  function setListeners(props) {
+    listeners.get(props.el)?.forEach(({ trigger, listener }) => {
+      props.el.removeEventListener(trigger, listener);
+      listeners.get(props.el).delete(listener);
+    });
+    Object.entries(props).filter(([k]) => k.startsWith("on_")).forEach(([name, action]) => {
+      const trigger = name.slice(3);
+      const listener = (event) => action.call(props, props, event);
+      props.el.addEventListener(trigger, listener);
+      listeners.set(props.el, listeners.get(props.el) ?? new Map());
+      listeners.get(props.el).set(action, { trigger, listener });
+    });
+  }
+  function render(passedProps = {}, prevProps = {}) {
+    const props = {
+      ...passedProps,
+      ...passedProps.init?.({ ...passedProps }, prevProps) ?? {}
+    };
+    props.render = (passedProps2 = {}) => {
+      const inheritedProps = passedProps2.parent ? Object.fromEntries(Object.entries(passedProps2.parent).filter(([key]) => key.startsWith("_"))) : {};
+      const newProps = { ...props, ...inheritedProps, ...passedProps2 };
+      if (!passedProps2.parent && props.parent?.children?.[props.key]) {
+        const inheritedPropsUpdated = Object.fromEntries(Object.entries(passedProps2).filter(([key]) => key.startsWith("_")));
+        return props.parent.render({
+          ...inheritedPropsUpdated,
+          children: {
+            ...props.parent.children,
+            [props.key]: {
+              ...props,
+              render: (passedProps3 = {}) => render({ ...newProps, ...passedProps3 }, props)
+            }
+          }
+        }).children[props.key];
+      }
+      return render(newProps, props);
+    };
+    props.tag = props.tag ?? (props.text ? "span" : "div");
+    if (!props.el) {
+      if (props.parent?.el && props.parent.el.childNodes[props.index]?.tagName?.toLowerCase() === props.tag) {
+        props.el = props.parent.el.childNodes[props.index];
+      } else {
+        props.el = document.createElement(props.tag);
+      }
+    }
+    const { el, text, children, style, onChange, atts, value, parent } = props;
+    if (children) {
+      props.children = Object.fromEntries(Object.values(children).map((it, index2) => [
+        index2,
+        it.render({ parent: props, key: it.key ?? index2, index: index2 })
+      ]));
+      if (el) {
+        for (let childEl of el.childNodes) {
+          if (!Object.values(props.children).some((ch) => ch.el === childEl)) {
+            childEl.parentElement.removeChild(childEl);
+          }
+        }
+      }
+    }
+    if (el) {
+      if (atts) {
+        Object.entries(atts).forEach(([key, val]) => el.setAttribute(key, val));
+      }
+      if (value != null)
+        el.value = value;
+      if (text != null)
+        el.textContent = text;
+      if (style)
+        Object.entries(style).forEach(([key, val]) => el.style[key] = val);
+      setListeners(props);
+      if (parent?.el?.parentElement && !parent?.el.contains(el)) {
+        parent.el.appendChild(el);
+      }
+    }
+    if (onChange) {
+      onChange(props, prevProps);
+    }
+    return props;
+  }
+  var Component = (initial) => {
+    const props = typeof initial === "function" ? { init: initial } : initial;
+    return {
+      render: (passedProps = {}) => render({ ...props, ...passedProps }, props),
+      reset: (passedProps = {}) => Component({ ...props, ...passedProps }),
+      ...props
+    };
+  };
+
+  // ui.js
+  var Row = (args) => {
+    const props = Array.isArray(args) ? { children: args } : args;
+    return Component({ style: { display: "flex" }, ...props });
+  };
+  var Column = (args) => {
+    const props = Array.isArray(args) ? { children: args } : args;
+    return Component({
+      style: { display: "flex", flexDirection: "column" },
+      ...props
+    });
+  };
+  var Text = (args) => {
+    const props = typeof args === "string" || typeof args === "number" ? { text: String(args) } : args;
+    return Component(props);
+  };
+  var Input = (args) => {
+    const props = typeof args === "string" || typeof args === "number" ? { value: String(args) } : args;
+    return Component({
+      tag: "input",
+      atts: { type: "text" },
+      ...props
+    });
+  };
+  var Button = (args) => {
+    const props = typeof args === "string" || typeof args === "number" ? { text: String(args) } : args;
+    return Component({ tag: "button", ...props });
+  };
 
   // client.js
   var gun = (0, import_gun.default)({
@@ -3072,5 +3187,35 @@
     console.log("indexing ", term["_"]["#"]);
     index.add(term["_"]["#"], term.text);
   });
-  gun.get("terms").once((terms) => console.log("terms: ", terms));
+  var view = (terms = {}) => {
+    Column({
+      _inputVal: "",
+      children: [
+        Row([
+          Text("search:"),
+          Input({
+            on_input: async (_, e) => console.log(e.target.value, await index.search(e.target.value))
+          })
+        ]),
+        Column(Object.values(terms).filter((term) => !term.deleted).map((term) => Text({
+          text: term.text,
+          on_dblclick: () => gun.get("terms/" + term.text).put({ deleted: true })
+        }))),
+        Input({
+          init: ({ _inputVal }) => ({ value: _inputVal }),
+          on_input: ({ render: render2 }, e) => render2({ _inputVal: e.target.value })
+        }),
+        Button({
+          text: "add term",
+          on_click: ({ _inputVal, render: render2 }) => {
+            gun.get("terms").get(_inputVal).put({ text: _inputVal, lang: "eng", deleted: false });
+            render2({ _inputVal: "" });
+          }
+        })
+      ]
+    }).render({
+      el: document.querySelector("#root")
+    });
+  };
+  gun.get("terms").open((terms) => view(terms));
 })();
