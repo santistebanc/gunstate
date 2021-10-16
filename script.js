@@ -3177,6 +3177,7 @@
   // client.js
   var gun = (0, import_gun.default)({
     peers: [
+      "https://gunstate.herokuapp.com",
       "http://localhost:3000/gun",
       "https://santistebanc.github.io/gunstate"
     ]
