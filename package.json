@@ -1,0 +1,32 @@
+{
+  "name": "gunstate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "npm build && node server.js",
+    "dev": "concurrently --kill-others \"npm run build:dev\" \"node server.js\"",
+    "build": "node esbuild.config.prod.js",
+    "build:dev": "node esbuild.config.js",
+    "deploy": "npm run build && gh-pages -d dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "flexsearch": "^0.7.21",
+    "gun": "^0.2020.1235"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.8",
+    "@babel/eslint-parser": "^7.15.8",
+    "@babel/plugin-proposal-pipeline-operator": "^7.15.0",
+    "babel-eslint": "^10.1.0",
+    "concurrently": "^6.3.0",
+    "esbuild": "^0.13.6",
+    "esbuild-plugin-babel": "^0.2.3",
+    "eslint": "^8.0.1",
+    "gh-pages": "^3.2.3"
+  }
+}

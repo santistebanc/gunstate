@@ -1,0 +1,10 @@
+{
+  "parser": "eslint-parser",
+  "parserOptions": {
+    "sourceType": "module",
+    "allowImportExportEverywhere": false,
+    "ecmaFeatures": {
+      "globalReturn": false
+    }
+  }
+}
