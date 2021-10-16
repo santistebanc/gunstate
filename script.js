@@ -3175,7 +3175,6 @@
   };
 
   // client.js
-  window.Gun = import_gun.default;
   var gun = (0, import_gun.default)({
     peers: [
       "http://localhost:3000/gun",
