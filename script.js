@@ -3191,7 +3191,6 @@
   });
   var view = (terms = {}) => {
     Column({
-      _inputVal: "",
       children: [
         Row([
           Text("search:"),
@@ -3199,10 +3198,13 @@
             on_input: async (_, e) => console.log(e.target.value, await index.search(e.target.value))
           })
         ]),
-        Column(Object.values(terms).filter((term) => !term.deleted).map((term) => Text({
-          text: term.text,
-          on_dblclick: () => gun.get("terms/" + term.text).put({ deleted: true })
-        }))),
+        Column({
+          _inputVal: "",
+          children: Object.values(terms).filter((term) => !term.deleted).map((term) => Text({
+            text: term.text,
+            on_dblclick: () => gun.get("terms/" + term.text).put({ deleted: true })
+          }))
+        }),
         Input({
           init: ({ _inputVal }) => ({ value: _inputVal }),
           on_input: ({ render: render2 }, e) => render2({ _inputVal: e.target.value })
