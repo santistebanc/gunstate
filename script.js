@@ -6,31 +6,31 @@
   var __getProtoOf = Object.getPrototypeOf;
   var __hasOwnProp = Object.prototype.hasOwnProperty;
   var __markAsModule = (target) => __defProp(target, "__esModule", { value: true });
-  var __require = /* @__PURE__ */ ((x) => typeof require !== "undefined" ? require : typeof Proxy !== "undefined" ? new Proxy(x, {
-    get: (a, b) => (typeof require !== "undefined" ? require : a)[b]
-  }) : x)(function(x) {
+  var __require = /* @__PURE__ */ ((x2) => typeof require !== "undefined" ? require : typeof Proxy !== "undefined" ? new Proxy(x2, {
+    get: (a2, b2) => (typeof require !== "undefined" ? require : a2)[b2]
+  }) : x2)(function(x2) {
     if (typeof require !== "undefined")
       return require.apply(this, arguments);
-    throw new Error('Dynamic require of "' + x + '" is not supported');
+    throw new Error('Dynamic require of "' + x2 + '" is not supported');
   });
   var __commonJS = (cb, mod) => function __require2() {
     return mod || (0, cb[Object.keys(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
   };
-  var __reExport = (target, module, desc) => {
-    if (module && typeof module === "object" || typeof module === "function") {
-      for (let key of __getOwnPropNames(module))
+  var __reExport = (target, module2, desc) => {
+    if (module2 && typeof module2 === "object" || typeof module2 === "function") {
+      for (let key of __getOwnPropNames(module2))
         if (!__hasOwnProp.call(target, key) && key !== "default")
-          __defProp(target, key, { get: () => module[key], enumerable: !(desc = __getOwnPropDesc(module, key)) || desc.enumerable });
+          __defProp(target, key, { get: () => module2[key], enumerable: !(desc = __getOwnPropDesc(module2, key)) || desc.enumerable });
     }
     return target;
   };
-  var __toModule = (module) => {
-    return __reExport(__markAsModule(__defProp(module != null ? __create(__getProtoOf(module)) : {}, "default", module && module.__esModule && "default" in module ? { get: () => module.default, enumerable: true } : { value: module, enumerable: true })), module);
+  var __toModule = (module2) => {
+    return __reExport(__markAsModule(__defProp(module2 != null ? __create(__getProtoOf(module2)) : {}, "default", module2 && module2.__esModule && "default" in module2 ? { get: () => module2.default, enumerable: true } : { value: module2, enumerable: true })), module2);
   };
 
   // node_modules/gun/gun.js
   var require_gun = __commonJS({
-    "node_modules/gun/gun.js"(exports, module) {
+    "node_modules/gun/gun.js"(exports2, module2) {
       (function() {
         function USE(arg, req) {
           return req ? __require(arg) : arg.slice ? USE[R(arg)] : function(mod, path) {
@@ -43,23 +43,23 @@
             return p.split("/").slice(-1).toString().replace(".js", "");
           }
         }
-        if (typeof module !== "undefined") {
-          var MODULE = module;
+        if (typeof module2 !== "undefined") {
+          var MODULE = module2;
         }
         ;
-        USE(function(module2) {
-          String.random = function(l, c) {
+        USE(function(module3) {
+          String.random = function(l, c2) {
             var s = "";
             l = l || 24;
-            c = c || "0123456789ABCDEFGHIJKLMNOPQRSTUVWXZabcdefghijklmnopqrstuvwxyz";
+            c2 = c2 || "0123456789ABCDEFGHIJKLMNOPQRSTUVWXZabcdefghijklmnopqrstuvwxyz";
             while (l-- > 0) {
-              s += c.charAt(Math.floor(Math.random() * c.length));
+              s += c2.charAt(Math.floor(Math.random() * c2.length));
             }
             return s;
           };
-          String.match = function(t, o) {
-            var tmp, u;
-            if (typeof t !== "string") {
+          String.match = function(t2, o) {
+            var tmp, u2;
+            if (typeof t2 !== "string") {
               return false;
             }
             if (typeof o == "string") {
@@ -69,44 +69,44 @@
             }
             o = o || {};
             tmp = o["="] || o["*"] || o[">"] || o["<"];
-            if (t === tmp) {
+            if (t2 === tmp) {
               return true;
             }
-            if (u !== o["="]) {
+            if (u2 !== o["="]) {
               return false;
             }
             tmp = o["*"] || o[">"];
-            if (t.slice(0, (tmp || "").length) === tmp) {
+            if (t2.slice(0, (tmp || "").length) === tmp) {
               return true;
             }
-            if (u !== o["*"]) {
+            if (u2 !== o["*"]) {
               return false;
             }
-            if (u !== o[">"] && u !== o["<"]) {
-              return t >= o[">"] && t <= o["<"] ? true : false;
+            if (u2 !== o[">"] && u2 !== o["<"]) {
+              return t2 >= o[">"] && t2 <= o["<"] ? true : false;
             }
-            if (u !== o[">"] && t >= o[">"]) {
+            if (u2 !== o[">"] && t2 >= o[">"]) {
               return true;
             }
-            if (u !== o["<"] && t <= o["<"]) {
+            if (u2 !== o["<"] && t2 <= o["<"]) {
               return true;
             }
             return false;
           };
-          String.hash = function(s, c) {
+          String.hash = function(s, c2) {
             if (typeof s !== "string") {
               return;
             }
-            c = c || 0;
+            c2 = c2 || 0;
             if (!s.length) {
-              return c;
+              return c2;
             }
             for (var i = 0, l = s.length, n; i < l; ++i) {
               n = s.charCodeAt(i);
-              c = (c << 5) - c + n;
-              c |= 0;
+              c2 = (c2 << 5) - c2 + n;
+              c2 |= 0;
             }
-            return c;
+            return c2;
           };
           var has = Object.prototype.hasOwnProperty;
           Object.plain = function(o) {
@@ -130,49 +130,49 @@
             return l;
           };
           (function() {
-            var u, sT = setTimeout, l = 0, c = 0, sI = typeof setImmediate !== "" + u && setImmediate || sT;
+            var u2, sT = setTimeout, l = 0, c2 = 0, sI = typeof setImmediate !== "" + u2 && setImmediate || sT;
             sT.poll = sT.poll || function(f) {
-              if (1 >= +new Date() - l && c++ < 3333) {
+              if (1 >= +new Date() - l && c2++ < 3333) {
                 f();
                 return;
               }
               sI(function() {
                 l = +new Date();
                 f();
-              }, c = 0);
+              }, c2 = 0);
             };
           })();
           ;
           (function() {
-            var sT = setTimeout, t = sT.turn = sT.turn || function(f2) {
-              s.push(f2) == 1 && p(T);
-            }, s = t.s = [], p = sT.poll, i = 0, f, T = function() {
+            var sT = setTimeout, t2 = sT.turn = sT.turn || function(f2) {
+              s.push(f2) == 1 && p(T2);
+            }, s = t2.s = [], p = sT.poll, i = 0, f, T2 = function() {
               if (f = s[i++]) {
                 f();
               }
               if (i == s.length || i == 99) {
-                s = t.s = s.slice(i);
+                s = t2.s = s.slice(i);
                 i = 0;
               }
               if (s.length) {
-                p(T);
+                p(T2);
               }
             };
           })();
           ;
           (function() {
-            var u, sT = setTimeout, T = sT.turn;
-            (sT.each = sT.each || function(l, f, e, S) {
-              S = S || 9;
-              (function t(s, L, r) {
-                if (L = (s = (l || []).splice(0, S)).length) {
-                  for (var i = 0; i < L; i++) {
-                    if (u !== (r = f(s[i]))) {
+            var u2, sT = setTimeout, T2 = sT.turn;
+            (sT.each = sT.each || function(l, f, e, S2) {
+              S2 = S2 || 9;
+              (function t2(s, L2, r) {
+                if (L2 = (s = (l || []).splice(0, S2)).length) {
+                  for (var i = 0; i < L2; i++) {
+                    if (u2 !== (r = f(s[i]))) {
                       break;
                     }
                   }
-                  if (u === r) {
-                    T(t);
+                  if (u2 === r) {
+                    T2(t2);
                     return;
                   }
                 }
@@ -182,14 +182,14 @@
           })();
         })(USE, "./shim");
         ;
-        USE(function(module2) {
-          module2.exports = function onto(tag, arg, as) {
+        USE(function(module3) {
+          module3.exports = function onto(tag, arg, as) {
             if (!tag) {
               return {
                 to: onto
               };
             }
-            var u, f = typeof arg == "function", tag = (this.tag || (this.tag = {}))[tag] || f && (this.tag[tag] = {
+            var u2, f = typeof arg == "function", tag = (this.tag || (this.tag = {}))[tag] || f && (this.tag[tag] = {
               tag,
               to: onto._ = {
                 next: function(arg2) {
@@ -225,49 +225,49 @@
               (be.back = tag.last || tag).to = be;
               return tag.last = be;
             }
-            if ((tag = tag.to) && u !== arg) {
+            if ((tag = tag.to) && u2 !== arg) {
               tag.next(arg);
             }
             return tag;
           };
         })(USE, "./onto");
         ;
-        USE(function(module2) {
+        USE(function(module3) {
           USE("./shim");
-          module2.exports = function(v) {
-            if (v === void 0) {
+          module3.exports = function(v2) {
+            if (v2 === void 0) {
               return false;
             }
-            if (v === null) {
+            if (v2 === null) {
               return true;
             }
-            if (v === Infinity) {
+            if (v2 === Infinity) {
               return false;
             }
-            if (v !== v) {
+            if (v2 !== v2) {
               return false;
             }
-            if (typeof v == "string" || typeof v == "boolean" || typeof v == "number") {
+            if (typeof v2 == "string" || typeof v2 == "boolean" || typeof v2 == "number") {
               return true;
             }
-            if (v && typeof (v["#"] || 0) == "string" && Object.empty(v, ["#"])) {
-              return v["#"];
+            if (v2 && typeof (v2["#"] || 0) == "string" && Object.empty(v2, ["#"])) {
+              return v2["#"];
             }
             return false;
           };
         })(USE, "./valid");
         ;
-        USE(function(module2) {
+        USE(function(module3) {
           USE("./shim");
           function State() {
-            var t = +new Date();
-            if (last < t) {
-              return N = 0, last = t + State.drift;
+            var t2 = +new Date();
+            if (last < t2) {
+              return N2 = 0, last = t2 + State.drift;
             }
-            return last = t + (N += 1) / D + State.drift;
+            return last = t2 + (N2 += 1) / D2 + State.drift;
           }
           State.drift = 0;
-          var NI = -Infinity, N = 0, D = 999, last = NI, u;
+          var NI = -Infinity, N2 = 0, D2 = 999, last = NI, u2;
           State.is = function(n, k, o) {
             var tmp = k && n && n._ && n._[">"] || o;
             if (!tmp) {
@@ -275,26 +275,26 @@
             }
             return typeof (tmp = tmp[k]) == "number" ? tmp : NI;
           };
-          State.ify = function(n, k, s, v, soul) {
+          State.ify = function(n, k, s, v2, soul) {
             (n = n || {})._ = n._ || {};
             if (soul) {
               n._["#"] = soul;
             }
             var tmp = n._[">"] || (n._[">"] = {});
-            if (u !== k && k !== "_") {
+            if (u2 !== k && k !== "_") {
               if (typeof s == "number") {
                 tmp[k] = s;
               }
-              if (u !== v) {
-                n[k] = v;
+              if (u2 !== v2) {
+                n[k] = v2;
               }
             }
             return n;
           };
-          module2.exports = State;
+          module3.exports = State;
         })(USE, "./state");
         ;
-        USE(function(module2) {
+        USE(function(module3) {
           USE("./shim");
           function Dup(opt) {
             var dup = {
@@ -333,12 +333,12 @@
             };
             return dup;
           }
-          module2.exports = Dup;
+          module3.exports = Dup;
         })(USE, "./dup");
         ;
-        USE(function(module2) {
+        USE(function(module3) {
           USE("./onto");
-          module2.exports = function ask(cb, as) {
+          module3.exports = function ask(cb, as) {
             if (!this.on) {
               return;
             }
@@ -379,7 +379,7 @@
           };
         })(USE, "./ask");
         ;
-        USE(function(module2) {
+        USE(function(module3) {
           function Gun4(o) {
             if (o instanceof Gun4) {
               return (this._ = {
@@ -479,23 +479,23 @@
               ctx.latch = root.hatch;
               ctx.match = root.hatch = [];
               var put2 = msg.put;
-              var DBG = ctx.DBG = msg.DBG, S = +new Date();
+              var DBG = ctx.DBG = msg.DBG, S2 = +new Date();
               if (put2["#"] && put2["."]) {
                 return;
               }
-              DBG && (DBG.p = S);
+              DBG && (DBG.p = S2);
               ctx["#"] = msg["#"];
               ctx.msg = msg;
               ctx.all = 0;
               ctx.stun = 1;
               var nl = Object.keys(put2);
-              console.STAT && console.STAT(S, ((DBG || ctx).pk = +new Date()) - S, "put sort");
+              console.STAT && console.STAT(S2, ((DBG || ctx).pk = +new Date()) - S2, "put sort");
               var ni = 0, nj, kl, soul, node, states, err, tmp;
               (function pop(o) {
                 if (nj != ni) {
                   nj = ni;
                   if (!(soul = nl[ni])) {
-                    console.STAT && console.STAT(S, ((DBG || ctx).pd = +new Date()) - S, "put");
+                    console.STAT && console.STAT(S2, ((DBG || ctx).pd = +new Date()) - S2, "put");
                     fire(ctx);
                     return;
                   }
@@ -522,7 +522,7 @@
                     continue;
                   }
                   var val = node[key], state = states[key];
-                  if (u === state) {
+                  if (u2 === state) {
                     err = ERR + cut(key) + "on" + cut(soul) + "no state.";
                     break;
                   }
@@ -551,7 +551,7 @@
                   tmp.has = (tmp.has || 0) + 1;
                 }
               }
-              var now = State(), u2;
+              var now = State(), u3;
               if (state > now) {
                 setTimeout(function() {
                   ham(val, key, soul, state, msg);
@@ -565,7 +565,7 @@
                 }
               }
               if (!ctx.faith) {
-                if (state === was && (val === known || L(val) <= L(known))) {
+                if (state === was && (val === known || L2(val) <= L2(known))) {
                   if (!ctx.miss) {
                     return;
                   }
@@ -667,7 +667,7 @@
               ctx.root.on("in", {
                 "@": ctx["#"],
                 err: ctx.err,
-                ok: ctx.err ? u : {
+                ok: ctx.err ? u2 : {
                   "": 1
                 }
               });
@@ -676,7 +676,7 @@
             var cut = function(s) {
               return " '" + ("" + s).slice(0, 9) + "...' ";
             };
-            var L = JSON.stringify, MD = 2147483647, State = Gun4.state;
+            var L2 = JSON.stringify, MD = 2147483647, State = Gun4.state;
           })();
           ;
           (function() {
@@ -689,7 +689,7 @@
                 return root.on("get", msg);
               }
               if (has) {
-                if (typeof has != "string" || u === node[has]) {
+                if (typeof has != "string" || u2 === node[has]) {
                   return root.on("get", msg);
                 }
                 node = state_ify({}, has, state_is(node, has), node[has], soul);
@@ -698,11 +698,11 @@
               root.on("get", msg);
             };
             function ack(msg, node) {
-              var S = +new Date(), ctx = msg._ || {}, DBG = ctx.DBG = msg.DBG;
-              var to = msg["#"], id = text_rand(9), keys = Object.keys(node || "").sort(), soul = ((node || "")._ || "")["#"], kl = keys.length, j = 0, root = msg.$._.root, F = node === root.graph[soul];
-              console.STAT && console.STAT(S, ((DBG || ctx).gk = +new Date()) - S, "got keys");
+              var S2 = +new Date(), ctx = msg._ || {}, DBG = ctx.DBG = msg.DBG;
+              var to = msg["#"], id = text_rand(9), keys = Object.keys(node || "").sort(), soul = ((node || "")._ || "")["#"], kl = keys.length, j = 0, root = msg.$._.root, F2 = node === root.graph[soul];
+              console.STAT && console.STAT(S2, ((DBG || ctx).gk = +new Date()) - S2, "got keys");
               node && function go() {
-                S = +new Date();
+                S2 = +new Date();
                 var i = 0, k, put = {}, tmp;
                 while (i < 9 && (k = keys[i++])) {
                   state_ify(put, k, state_is(node, k), node[k], soul);
@@ -711,24 +711,24 @@
                 (tmp = {})[soul] = put;
                 put = tmp;
                 var faith;
-                if (F) {
+                if (F2) {
                   faith = function() {
                   };
                   faith.ram = faith.faith = true;
                 }
                 tmp = keys.length;
-                console.STAT && console.STAT(S, -(S - (S = +new Date())), "got copied some");
+                console.STAT && console.STAT(S2, -(S2 - (S2 = +new Date())), "got copied some");
                 DBG && (DBG.ga = +new Date());
                 root.on("in", {
                   "@": to,
                   "#": id,
                   put,
-                  "%": tmp ? id = text_rand(9) : u,
+                  "%": tmp ? id = text_rand(9) : u2,
                   $: root.$,
                   _: faith,
                   DBG
                 });
-                console.STAT && console.STAT(S, +new Date() - S, "got in");
+                console.STAT && console.STAT(S2, +new Date() - S2, "got in");
                 if (!tmp) {
                   return;
                 }
@@ -768,15 +768,15 @@
               }
               at.opt.peers = at.opt.peers || {};
               obj_each(opt, function each(k) {
-                var v = this[k];
-                if (this && this.hasOwnProperty(k) || typeof v == "string" || Object.empty(v)) {
-                  this[k] = v;
+                var v2 = this[k];
+                if (this && this.hasOwnProperty(k) || typeof v2 == "string" || Object.empty(v2)) {
+                  this[k] = v2;
                   return;
                 }
-                if (v && v.constructor !== Object && !(v instanceof Array)) {
+                if (v2 && v2.constructor !== Object && !(v2 instanceof Array)) {
                   return;
                 }
-                obj_each(v, each);
+                obj_each(v2, each);
               });
               Gun4.on("opt", at);
               at.opt.uuid = at.opt.uuid || function uuid(l) {
@@ -787,9 +787,9 @@
           })();
           var obj_each = function(o, f) {
             Object.keys(o).forEach(f, o);
-          }, text_rand = String.random, turn = setTimeout.turn, valid = Gun4.valid, state_is = Gun4.state.is, state_ify = Gun4.state.ify, u, empty = {}, C;
+          }, text_rand = String.random, turn = setTimeout.turn, valid = Gun4.valid, state_is = Gun4.state.is, state_ify = Gun4.state.ify, u2, empty = {}, C2;
           Gun4.log = function() {
-            return !Gun4.log.off && C.log.apply(C, arguments), [].slice.call(arguments).join(" ");
+            return !Gun4.log.off && C2.log.apply(C2, arguments), [].slice.call(arguments).join(" ");
           };
           Gun4.log.once = function(w, s, o) {
             return (o = Gun4.log.once)[w] = o[w] || 0, o[w]++ || Gun4.log(s);
@@ -803,20 +803,20 @@
             }
           } catch (e) {
           }
-          module2.exports = Gun4;
+          module3.exports = Gun4;
           (Gun4.window || {}).console = (Gun4.window || {}).console || {
             log: function() {
             }
           };
-          (C = console).only = function(i, s) {
-            return C.only.i && i === C.only.i && C.only.i++ && (C.log.apply(C, arguments) || s);
+          (C2 = console).only = function(i, s) {
+            return C2.only.i && i === C2.only.i && C2.only.i++ && (C2.log.apply(C2, arguments) || s);
           };
           ;
           "Please do not remove welcome log unless you are paying for a monthly sponsorship, thanks!";
           Gun4.log.once("welcome", "Hello wonderful person! :) Thanks for using GUN, please ask for help on http://chat.gun.eco if anything takes you longer than 5min to figure out!");
         })(USE, "./root");
         ;
-        USE(function(module2) {
+        USE(function(module3) {
           var Gun4 = USE("./root");
           Gun4.chain.back = function(n, opt) {
             var tmp;
@@ -835,7 +835,7 @@
               for (i; i < l; i++) {
                 tmp = (tmp || empty)[n[i]];
               }
-              if (u !== tmp) {
+              if (u2 !== tmp) {
                 return opt ? gun2 : tmp;
               } else if (tmp = at.back) {
                 return tmp.$.back(n, opt);
@@ -846,7 +846,7 @@
               var yes, tmp = {
                 back: at
               };
-              while ((tmp = tmp.back) && u === (yes = n(tmp, opt))) {
+              while ((tmp = tmp.back) && u2 === (yes = n(tmp, opt))) {
               }
               return yes;
             }
@@ -855,10 +855,10 @@
             }
             return this;
           };
-          var empty = {}, u;
+          var empty = {}, u2;
         })(USE, "./back");
         ;
-        USE(function(module2) {
+        USE(function(module3) {
           var Gun4 = USE("./root");
           Gun4.chain.chain = function(sub) {
             var gun2 = this, at = gun2._, chain = new (sub || gun2).constructor(gun2), cat = chain._, root;
@@ -878,7 +878,7 @@
             this.to.next(msg);
             if (at.err) {
               at.on("in", {
-                put: at.put = u,
+                put: at.put = u2,
                 $: at.$
               });
               return;
@@ -899,7 +899,7 @@
                 if (!(get = get["."])) {
                   tmp = back.ask && back.ask[""];
                   (back.ask || (back.ask = {}))[""] = back;
-                  if (u !== back.put) {
+                  if (u2 !== back.put) {
                     back.on("in", back);
                     if (tmp) {
                       return;
@@ -955,8 +955,8 @@
           Gun4.on.out = output;
           function input(msg, cat) {
             cat = cat || this.as;
-            var root = cat.root, gun2 = msg.$ || (msg.$ = cat.$), at = (gun2 || "")._ || empty, tmp = msg.put || "", soul = tmp["#"], key = tmp["."], change = u !== tmp["="] ? tmp["="] : tmp[":"], state2 = tmp[">"] || -Infinity, sat;
-            if (u !== msg.put && (u === tmp["#"] || u === tmp["."] || u === tmp[":"] && u === tmp["="] || u === tmp[">"])) {
+            var root = cat.root, gun2 = msg.$ || (msg.$ = cat.$), at = (gun2 || "")._ || empty, tmp = msg.put || "", soul = tmp["#"], key = tmp["."], change = u2 !== tmp["="] ? tmp["="] : tmp[":"], state2 = tmp[">"] || -Infinity, sat;
+            if (u2 !== msg.put && (u2 === tmp["#"] || u2 === tmp["."] || u2 === tmp[":"] && u2 === tmp["="] || u2 === tmp[">"])) {
               if (!valid(tmp)) {
                 if (!(soul = ((tmp || "")._ || "")["#"])) {
                   console.log("chain not yet supported for", tmp, "...", msg, cat);
@@ -964,7 +964,7 @@
                 }
                 gun2 = cat.root.$.get(soul);
                 return setTimeout.each(Object.keys(tmp).sort(), function(k) {
-                  if (k == "_" || u === (state2 = state_is(tmp, k))) {
+                  if (k == "_" || u2 === (state2 = state_is(tmp, k))) {
                     return;
                   }
                   cat.on("in", {
@@ -1096,13 +1096,13 @@
           ;
           Gun4.on.link = link;
           function unlink(msg, cat) {
-            var put = msg.put || "", change = u !== put["="] ? put["="] : put[":"], root = cat.root, link2, tmp;
-            if (u === change) {
-              if (cat.soul && u !== cat.put) {
+            var put = msg.put || "", change = u2 !== put["="] ? put["="] : put[":"], root = cat.root, link2, tmp;
+            if (u2 === change) {
+              if (cat.soul && u2 !== cat.put) {
                 return;
               }
               tmp = (msg.$$ || msg.$ || "")._ || "";
-              if (msg["@"] && (u !== tmp.put || u !== cat.put)) {
+              if (msg["@"] && (u2 !== tmp.put || u2 !== cat.put)) {
                 return;
               }
               if (link2 = cat.link || msg.linked) {
@@ -1111,7 +1111,7 @@
               if (cat.has) {
                 cat.link = null;
               }
-              cat.put = u;
+              cat.put = u2;
               setTimeout.each(Object.keys(cat.next || ""), function(get, sat) {
                 if (!(sat = cat.next[get])) {
                   return;
@@ -1121,7 +1121,7 @@
                 }
                 sat.on("in", {
                   get,
-                  put: u,
+                  put: u2,
                   $: sat.$
                 });
               }, 0, 99);
@@ -1144,7 +1144,7 @@
             delete (tmp.echo || "")[cat.id];
             unlink({
               get: cat.get,
-              put: u,
+              put: u2,
               $: msg.$,
               linked: msg.linked = msg.linked || tmp.link
             }, cat);
@@ -1153,8 +1153,8 @@
           Gun4.on.unlink = unlink;
           function ack(msg, ev) {
             var as = this.as, at = as.$._, root = at.root, get = as.get || "", tmp = (msg.put || "")[get["#"]] || "";
-            if (!msg.put || typeof get["."] == "string" && u === tmp[get["."]]) {
-              if (u !== at.put) {
+            if (!msg.put || typeof get["."] == "string" && u2 === tmp[get["."]]) {
+              if (u2 !== at.put) {
                 return;
               }
               if (!at.soul && !at.has) {
@@ -1163,7 +1163,7 @@
               at.ack = (at.ack || 0) + 1;
               at.on("in", {
                 get: at.get,
-                put: at.put = u,
+                put: at.put = u2,
                 $: at.$,
                 "@": msg["@"]
               });
@@ -1173,12 +1173,12 @@
             Gun4.on.put(msg);
             return;
           }
-          var empty = {}, u, text_rand = String.random, valid = Gun4.valid, obj_has = function(o, k) {
+          var empty = {}, u2, text_rand = String.random, valid = Gun4.valid, obj_has = function(o, k) {
             return o && Object.prototype.hasOwnProperty.call(o, k);
           }, state = Gun4.state, state_is = state.is, state_ify = state.ify;
         })(USE, "./chain");
         ;
-        USE(function(module2) {
+        USE(function(module3) {
           var Gun4 = USE("./root");
           Gun4.chain.get = function(key, cb, as) {
             var gun2, tmp;
@@ -1207,19 +1207,19 @@
                   return;
                 }
                 var at = msg.$._, sat = (msg.$$ || "")._, data = (sat || at).put, odd = !at.has && !at.soul, test = {}, link, tmp2;
-                if (odd || u === data) {
-                  data = u === ((tmp2 = msg.put) || "")["="] ? u === (tmp2 || "")[":"] ? tmp2 : tmp2[":"] : tmp2["="];
+                if (odd || u2 === data) {
+                  data = u2 === ((tmp2 = msg.put) || "")["="] ? u2 === (tmp2 || "")[":"] ? tmp2 : tmp2[":"] : tmp2["="];
                 }
                 if (link = typeof (tmp2 = Gun4.valid(data)) == "string") {
-                  data = u === (tmp2 = root.$.get(tmp2)._.put) ? opt.not ? u : data : tmp2;
+                  data = u2 === (tmp2 = root.$.get(tmp2)._.put) ? opt.not ? u2 : data : tmp2;
                 }
-                if (opt.not && u === data) {
+                if (opt.not && u2 === data) {
                   return;
                 }
-                if (u === opt.stun) {
+                if (u2 === opt.stun) {
                   if ((tmp2 = root.stun) && tmp2.on) {
-                    cat.$.back(function(a) {
-                      tmp2.on("" + a.id, test = {});
+                    cat.$.back(function(a2) {
+                      tmp2.on("" + a2.id, test = {});
                       if ((test.run || 0) < any2.id) {
                         return test;
                       }
@@ -1239,10 +1239,10 @@
                       }
                     }
                   }
-                  if (u === data) {
+                  if (u2 === data) {
                     f = 0;
                   }
-                  if ((tmp2 = root.hatch) && !tmp2.end && u === opt.hatch && !f) {
+                  if ((tmp2 = root.hatch) && !tmp2.end && u2 === opt.hatch && !f) {
                     if (wait[at.$._.id]) {
                       return;
                     }
@@ -1349,7 +1349,7 @@
             }
             cat.jam = [[cb, as]];
             gun2.get(function go(msg, eve) {
-              if (u === msg.put && !cat.root.opt.super && (tmp = Object.keys(cat.root.opt.peers).length) && ++acks <= tmp) {
+              if (u2 === msg.put && !cat.root.opt.super && (tmp = Object.keys(cat.root.opt.peers).length) && ++acks <= tmp) {
                 return;
               }
               eve.rid(msg);
@@ -1386,10 +1386,10 @@
             return;
             return;
           }
-          var empty = {}, valid = Gun4.valid, u;
+          var empty = {}, valid = Gun4.valid, u2;
         })(USE, "./get");
         ;
-        USE(function(module2) {
+        USE(function(module3) {
           var Gun4 = USE("./root");
           Gun4.chain.put = function(data, cb, as) {
             var gun2 = this, at = gun2._, root = at.root;
@@ -1403,9 +1403,9 @@
             as.soul || (as.soul = at.soul || typeof cb == "string" && cb);
             var s = as.state = as.state || Gun4.state();
             if (typeof data == "function") {
-              data(function(d) {
-                as.data = d;
-                gun2.put(u, u, as);
+              data(function(d2) {
+                as.data = d2;
+                gun2.put(u2, u2, as);
               });
               return gun2;
             }
@@ -1420,20 +1420,20 @@
             as.turn = as.turn || turn;
             as.ran = as.ran || ran;
             (function walk() {
-              var to = as.todo, at2 = to.pop(), d = at2.it, cid = at2.ref && at2.ref._.id, v, k, cat, tmp, g;
+              var to = as.todo, at2 = to.pop(), d2 = at2.it, cid = at2.ref && at2.ref._.id, v2, k, cat, tmp, g;
               stun(as, at2.ref);
               if (tmp = at2.todo) {
                 k = tmp.pop();
-                d = d[k];
+                d2 = d2[k];
                 if (tmp.length) {
                   to.push(at2);
                 }
               }
               k && (to.path || (to.path = [])).push(k);
-              if (!(v = valid(d)) && !(g = Gun4.is(d))) {
-                if (!Object.plain(d)) {
+              if (!(v2 = valid(d2)) && !(g = Gun4.is(d2))) {
+                if (!Object.plain(d2)) {
                   (as.ack || noop).call(as, as.out = {
-                    err: as.err = Gun4.log("Invalid data: " + (d && (tmp = d.constructor) && tmp.name || typeof d) + " at " + (as.via.back(function(at3) {
+                    err: as.err = Gun4.log("Invalid data: " + (d2 && (tmp = d2.constructor) && tmp.name || typeof d2) + " at " + (as.via.back(function(at3) {
                       at3.get && tmp.push(at3.get);
                     }, tmp = []) || tmp.join(".")) + "." + (to.path || []).join("."))
                   });
@@ -1442,14 +1442,14 @@
                 }
                 var seen = as.seen || (as.seen = []), i = seen.length;
                 while (i--) {
-                  if (d === (tmp = seen[i]).it) {
-                    v = d = tmp.link;
+                  if (d2 === (tmp = seen[i]).it) {
+                    v2 = d2 = tmp.link;
                     break;
                   }
                 }
               }
-              if (k && v) {
-                at2.node = state_ify(at2.node, k, s, d);
+              if (k && v2) {
+                at2.node = state_ify(at2.node, k, s, d2);
               } else {
                 let resolve2 = function(msg, eve) {
                   var end = cat.link["#"];
@@ -1487,9 +1487,9 @@
                 };
                 var resolve = resolve2;
                 as.seen.push(cat = {
-                  it: d,
+                  it: d2,
                   link: {},
-                  todo: g ? [] : Object.keys(d).sort().reverse(),
+                  todo: g ? [] : Object.keys(d2).sort().reverse(),
                   path: (to.path || []).slice(),
                   up: at2
                 });
@@ -1497,8 +1497,8 @@
                 !g && cat.todo.length && to.push(cat);
                 var id = as.seen.length;
                 (as.wait || (as.wait = {}))[id] = "";
-                tmp = (cat.ref = g ? d : k ? at2.ref.get(k) : at2.ref)._;
-                (tmp = d && (d._ || "")["#"] || tmp.soul || tmp.link) ? resolve2({
+                tmp = (cat.ref = g ? d2 : k ? at2.ref.get(k) : at2.ref)._;
+                (tmp = d2 && (d2._ || "")["#"] || tmp.soul || tmp.link) ? resolve2({
                   soul: tmp
                 }) : cat.ref.get(resolve2, {
                   run: as.run,
@@ -1620,23 +1620,23 @@
               return;
             }
           }
-          var u, empty = {}, noop = function() {
+          var u2, empty = {}, noop = function() {
           }, turn = setTimeout.turn, valid = Gun4.valid, state_ify = Gun4.state.ify;
           var iife = function(fn, as) {
             fn.call(as || empty);
           };
         })(USE, "./put");
         ;
-        USE(function(module2) {
+        USE(function(module3) {
           var Gun4 = USE("./root");
           USE("./chain");
           USE("./back");
           USE("./put");
           USE("./get");
-          module2.exports = Gun4;
+          module3.exports = Gun4;
         })(USE, "./index");
         ;
-        USE(function(module2) {
+        USE(function(module3) {
           var Gun4 = USE("./index");
           Gun4.chain.on = function(tag, arg, eas, as) {
             var gun2 = this, cat = gun2._, root = cat.root, act, off, id, tmp;
@@ -1690,12 +1690,12 @@
                     get: key
                   };
                 }
-                if (u === (tmp = at.put)) {
+                if (u2 === (tmp = at.put)) {
                   tmp = ((msg.$$ || "")._ || "").put;
                 }
                 if (typeof Gun4.valid(tmp) == "string") {
                   tmp = root.$.get(tmp)._.put;
-                  if (tmp === u) {
+                  if (tmp === u2) {
                     return;
                   }
                 }
@@ -1765,10 +1765,10 @@
             return gun2;
           };
           var empty = {}, noop = function() {
-          }, u;
+          }, u2;
         })(USE, "./on");
         ;
-        USE(function(module2) {
+        USE(function(module3) {
           var Gun4 = USE("./index"), next = Gun4.chain.get.next;
           Gun4.chain.get.next = function(gun2, lex) {
             var tmp;
@@ -1787,13 +1787,13 @@
             });
             return tmp.$;
           };
-          Gun4.chain.map = function(cb, opt, t) {
+          Gun4.chain.map = function(cb, opt, t2) {
             var gun2 = this, cat = gun2._, lex, chain;
             if (Object.plain(cb)) {
               lex = cb["."] ? cb : {
                 ".": cb
               };
-              cb = u;
+              cb = u2;
             }
             if (!cb) {
               if (chain = cat.each) {
@@ -1808,7 +1808,7 @@
             chain = gun2.chain();
             gun2.map().on(function(data, key, msg, eve) {
               var next2 = (cb || noop).call(this, data, key, msg, eve);
-              if (u === next2) {
+              if (u2 === next2) {
                 return;
               }
               if (data === next2) {
@@ -1844,10 +1844,10 @@
           }, event = {
             stun: noop,
             off: noop
-          }, u;
+          }, u2;
         })(USE, "./map");
         ;
-        USE(function(module2) {
+        USE(function(module3) {
           var Gun4 = USE("./index");
           Gun4.chain.set = function(item, cb, opt) {
             var gun2 = this, root = gun2.back(-1), soul, tmp;
@@ -1884,7 +1884,7 @@
           };
         })(USE, "./set");
         ;
-        USE(function(module2) {
+        USE(function(module3) {
           USE("./shim");
           function Mesh(root) {
             var mesh = function() {
@@ -1896,18 +1896,18 @@
             opt.pack = opt.pack || opt.max * 0.01 * 0.01;
             opt.puff = opt.puff || 9;
             var puff = setTimeout.turn || setTimeout;
-            var parse = JSON.parseAsync || function(t, cb, r) {
-              var u2;
+            var parse = JSON.parseAsync || function(t2, cb, r) {
+              var u3;
               try {
-                cb(u2, JSON.parse(t, r));
+                cb(u3, JSON.parse(t2, r));
               } catch (e) {
                 cb(e);
               }
             };
-            var json = JSON.stringifyAsync || function(v, cb, r, s) {
-              var u2;
+            var json = JSON.stringifyAsync || function(v2, cb, r, s) {
+              var u3;
               try {
-                cb(u2, JSON.stringify(v, r, s));
+                cb(u3, JSON.stringify(v2, r, s));
               } catch (e) {
                 cb(e);
               }
@@ -1928,7 +1928,7 @@
                 hear.d += raw.length || 0;
                 ++hear.c;
               }
-              var S = peer.SH = +new Date();
+              var S2 = peer.SH = +new Date();
               var tmp = raw[0], msg;
               if (tmp === "[") {
                 parse(raw, function(err, msg2) {
@@ -1939,15 +1939,15 @@
                     }, peer);
                   }
                   console.STAT && console.STAT(+new Date(), msg2.length, "# on hear batch");
-                  var P = opt.puff;
+                  var P2 = opt.puff;
                   (function go() {
-                    var S2 = +new Date();
+                    var S3 = +new Date();
                     var i = 0, m;
-                    while (i < P && (m = msg2[i++])) {
+                    while (i < P2 && (m = msg2[i++])) {
                       hear(m, peer);
                     }
                     msg2 = msg2.slice(i);
-                    console.STAT && console.STAT(S2, +new Date() - S2, "hear loop");
+                    console.STAT && console.STAT(S3, +new Date() - S3, "hear loop");
                     flush(peer);
                     if (!msg2.length) {
                       return;
@@ -1960,7 +1960,7 @@
               }
               if (tmp === "{" || (raw["#"] || Object.plain(raw)) && (msg = raw)) {
                 if (msg) {
-                  return hear.one(msg, peer, S);
+                  return hear.one(msg, peer, S2);
                 }
                 parse(raw, function(err, msg2) {
                   if (err || !msg2) {
@@ -1969,19 +1969,19 @@
                       err: "DAM JSON parse error."
                     }, peer);
                   }
-                  hear.one(msg2, peer, S);
+                  hear.one(msg2, peer, S2);
                 });
                 return;
               }
             };
-            hear.one = function(msg, peer, S) {
+            hear.one = function(msg, peer, S2) {
               var id, hash, tmp, ash, DBG;
               if (msg.DBG) {
                 msg.DBG = DBG = {
                   DBG: msg.DBG
                 };
               }
-              DBG && (DBG.h = S);
+              DBG && (DBG.h = S2);
               DBG && (DBG.hp = +new Date());
               if (!(id = msg["#"])) {
                 id = msg["#"] = String.random(9);
@@ -2008,12 +2008,12 @@
                 dup_track(id);
                 return;
               }
-              var S = +new Date();
-              DBG && (DBG.is = S);
+              var S2 = +new Date();
+              DBG && (DBG.is = S2);
               peer.SI = id;
               root.on("in", mesh.last = msg);
               DBG && (DBG.hd = +new Date());
-              console.STAT && console.STAT(S, +new Date() - S, msg.get ? "msg get" : msg.put ? "msg put" : "msg");
+              console.STAT && console.STAT(S2, +new Date() - S2, msg.get ? "msg get" : msg.put ? "msg put" : "msg");
               (tmp = dup_track(id)).via = peer;
               if (msg.get) {
                 tmp.it = msg;
@@ -2034,31 +2034,31 @@
               var SMIA = 0;
               var loop;
               mesh.hash = function(msg, peer) {
-                var h, s, t;
-                var S = +new Date();
+                var h, s, t2;
+                var S2 = +new Date();
                 json(msg.put, function hash(err, text) {
-                  var ss = (s || (s = t = text || "")).slice(0, 32768);
+                  var ss = (s || (s = t2 = text || "")).slice(0, 32768);
                   h = String.hash(ss, h);
                   s = s.slice(32768);
                   if (s) {
                     puff(hash, 0);
                     return;
                   }
-                  console.STAT && console.STAT(S, +new Date() - S, "say json+hash");
-                  msg._.$put = t;
+                  console.STAT && console.STAT(S2, +new Date() - S2, "say json+hash");
+                  msg._.$put = t2;
                   msg["##"] = h;
                   say(msg, peer);
                   delete msg._.$put;
                 }, sort);
               };
-              function sort(k, v) {
+              function sort(k, v2) {
                 var tmp;
-                if (!(v instanceof Object)) {
-                  return v;
+                if (!(v2 instanceof Object)) {
+                  return v2;
                 }
-                Object.keys(v).sort().forEach(sorta, {
+                Object.keys(v2).sort().forEach(sorta, {
                   to: tmp = {},
-                  on: v
+                  on: v2
                 });
                 return tmp;
               }
@@ -2076,10 +2076,10 @@
                 var id, hash, raw, ack = msg["@"];
                 var meta = msg._ || (msg._ = function() {
                 });
-                var DBG = msg.DBG, S = +new Date();
-                meta.y = meta.y || S;
+                var DBG = msg.DBG, S2 = +new Date();
+                meta.y = meta.y || S2;
                 if (!peer) {
-                  DBG && (DBG.y = S);
+                  DBG && (DBG.y = S2);
                 }
                 if (!(id = msg["#"])) {
                   id = msg["#"] = String.random(9);
@@ -2088,7 +2088,7 @@
                 if (msg.put && (msg.err || (dup.s[id] || "").err)) {
                   return false;
                 }
-                if (!(hash = msg["##"]) && u !== msg.put && !meta.via && ack) {
+                if (!(hash = msg["##"]) && u2 !== msg.put && !meta.via && ack) {
                   mesh.hash(msg, peer);
                   return;
                 }
@@ -2115,12 +2115,12 @@
                   if (!Object.plain(peer || opt.peers)) {
                     return false;
                   }
-                  var S = +new Date();
-                  var P = opt.puff, ps = opt.peers, pl = Object.keys(peer || opt.peers || {});
-                  console.STAT && console.STAT(S, +new Date() - S, "peer keys");
+                  var S2 = +new Date();
+                  var P2 = opt.puff, ps = opt.peers, pl = Object.keys(peer || opt.peers || {});
+                  console.STAT && console.STAT(S2, +new Date() - S2, "peer keys");
                   ;
                   (function go() {
-                    var S2 = +new Date();
+                    var S3 = +new Date();
                     loop = 1;
                     var wr = meta.raw;
                     meta.raw = raw;
@@ -2134,7 +2134,7 @@
                     meta.raw = wr;
                     loop = 0;
                     pl = pl.slice(i);
-                    console.STAT && console.STAT(S2, +new Date() - S2, "say loop");
+                    console.STAT && console.STAT(S3, +new Date() - S3, "say loop");
                     if (!pl.length) {
                       return;
                     }
@@ -2156,7 +2156,7 @@
                 if ((tmp = meta.yo) && (tmp[peer.url] || tmp[peer.pid] || tmp[peer.id])) {
                   return false;
                 }
-                console.STAT && console.STAT(S, ((DBG || meta).yp = +new Date()) - (meta.y || S), "say prep");
+                console.STAT && console.STAT(S2, ((DBG || meta).yp = +new Date()) - (meta.y || S2), "say prep");
                 !loop && ack && dup_track(ack);
                 if (peer.batch) {
                   peer.tail = (tmp = peer.tail || 0) + raw.length;
@@ -2173,7 +2173,7 @@
                   flush(peer);
                 }, opt.gap);
                 send(raw, peer);
-                console.STAT && ack === peer.SI && console.STAT(S, +new Date() - peer.SH, "say ack");
+                console.STAT && ack === peer.SI && console.STAT(S2, +new Date() - peer.SH, "say ack");
               };
               mesh.say.c = mesh.say.d = 0;
               mesh.raw = function(msg, peer) {
@@ -2225,10 +2225,10 @@
                     if (err) {
                       return;
                     }
-                    var S = +new Date();
+                    var S2 = +new Date();
                     tmp = raw.indexOf('"put":":])([:"');
-                    res(u, raw = raw.slice(0, tmp + 6) + put + raw.slice(tmp + 14));
-                    console.STAT && console.STAT(S, +new Date() - S, "say slice");
+                    res(u2, raw = raw.slice(0, tmp + 6) + put + raw.slice(tmp + 14));
+                    console.STAT && console.STAT(S2, +new Date() - S2, "say slice");
                   });
                   return;
                 }
@@ -2243,18 +2243,18 @@
               };
             })();
             function flush(peer) {
-              var tmp = peer.batch, t = typeof tmp == "string", l;
-              if (t) {
+              var tmp = peer.batch, t2 = typeof tmp == "string", l;
+              if (t2) {
                 tmp += "]";
               }
               peer.batch = peer.tail = null;
               if (!tmp) {
                 return;
               }
-              if (t ? 3 > tmp.length : !tmp.length) {
+              if (t2 ? 3 > tmp.length : !tmp.length) {
                 return;
               }
-              if (!t) {
+              if (!t2) {
                 try {
                   tmp = tmp.length === 1 ? tmp[0] : JSON.stringify(tmp);
                 } catch (e) {
@@ -2380,14 +2380,14 @@
             });
             return mesh;
           }
-          var empty = {}, ok = true, u;
+          var empty = {}, ok = true, u2;
           try {
-            module2.exports = Mesh;
+            module3.exports = Mesh;
           } catch (e) {
           }
         })(USE, "./mesh");
         ;
-        USE(function(module2) {
+        USE(function(module3) {
           var Gun4 = USE("../index");
           Gun4.Mesh = USE("./mesh");
           Gun4.on("opt", function(root) {
@@ -2454,18 +2454,18 @@
                 open(peer);
               }, wait);
             }
-            var doc = "" + u !== typeof document && document;
+            var doc = "" + u2 !== typeof document && document;
           });
           var noop = function() {
-          }, u;
+          }, u2;
         })(USE, "./websocket");
         ;
-        USE(function(module2) {
+        USE(function(module3) {
           if (typeof Gun === "undefined") {
             return;
           }
           var noop = function() {
-          }, store, u;
+          }, store, u2;
           try {
             store = (Gun.window || noop).localStorage;
           } catch (e) {
@@ -2473,8 +2473,8 @@
           if (!store) {
             Gun.log("Warning: No localStorage exists to persist data to!");
             store = {
-              setItem: function(k, v) {
-                this[k] = v;
+              setItem: function(k, v2) {
+                this[k] = v2;
               },
               removeItem: function(k) {
                 delete this[k];
@@ -2498,11 +2498,11 @@
             }
             root.on("get", function(msg) {
               this.to.next(msg);
-              var lex = msg.get, soul, data, tmp, u2;
+              var lex = msg.get, soul, data, tmp, u3;
               if (!lex || !(soul = lex["#"])) {
                 return;
               }
-              data = disk[soul] || u2;
+              data = disk[soul] || u3;
               if (data && (tmp = lex["."]) && !Object.plain(tmp)) {
                 data = Gun.state.ify({}, tmp, Gun.state.is(data, tmp), data[tmp], soul);
               }
@@ -2550,8 +2550,8 @@
         })(USE, "./localStorage");
       })();
       (function() {
-        var u;
-        if ("" + u == typeof Gun) {
+        var u2;
+        if ("" + u2 == typeof Gun) {
           return;
         }
         var DEP = function(n) {
@@ -2565,9 +2565,9 @@
           }
         };
         Type.bi = Type.bi || {
-          is: function(b) {
+          is: function(b2) {
             DEP("bi");
-            return b instanceof Boolean || typeof b == "boolean";
+            return b2 instanceof Boolean || typeof b2 == "boolean";
           }
         };
         Type.num = Type.num || {
@@ -2577,36 +2577,36 @@
           }
         };
         Type.text = Type.text || {
-          is: function(t) {
+          is: function(t2) {
             DEP("text");
-            return typeof t == "string";
+            return typeof t2 == "string";
           }
         };
-        Type.text.ify = Type.text.ify || function(t) {
+        Type.text.ify = Type.text.ify || function(t2) {
           DEP("text.ify");
-          if (Type.text.is(t)) {
-            return t;
+          if (Type.text.is(t2)) {
+            return t2;
           }
           if (typeof JSON !== "undefined") {
-            return JSON.stringify(t);
+            return JSON.stringify(t2);
           }
-          return t && t.toString ? t.toString() : t;
+          return t2 && t2.toString ? t2.toString() : t2;
         };
-        Type.text.random = Type.text.random || function(l, c) {
+        Type.text.random = Type.text.random || function(l, c2) {
           DEP("text.random");
           var s = "";
           l = l || 24;
-          c = c || "0123456789ABCDEFGHIJKLMNOPQRSTUVWXZabcdefghijklmnopqrstuvwxyz";
+          c2 = c2 || "0123456789ABCDEFGHIJKLMNOPQRSTUVWXZabcdefghijklmnopqrstuvwxyz";
           while (l > 0) {
-            s += c.charAt(Math.floor(Math.random() * c.length));
+            s += c2.charAt(Math.floor(Math.random() * c2.length));
             l--;
           }
           return s;
         };
-        Type.text.match = Type.text.match || function(t, o) {
-          var tmp, u2;
+        Type.text.match = Type.text.match || function(t2, o) {
+          var tmp, u3;
           DEP("text.match");
-          if (typeof t !== "string") {
+          if (typeof t2 !== "string") {
             return false;
           }
           if (typeof o == "string") {
@@ -2616,45 +2616,45 @@
           }
           o = o || {};
           tmp = o["="] || o["*"] || o[">"] || o["<"];
-          if (t === tmp) {
+          if (t2 === tmp) {
             return true;
           }
-          if (u2 !== o["="]) {
+          if (u3 !== o["="]) {
             return false;
           }
           tmp = o["*"] || o[">"] || o["<"];
-          if (t.slice(0, (tmp || "").length) === tmp) {
+          if (t2.slice(0, (tmp || "").length) === tmp) {
             return true;
           }
-          if (u2 !== o["*"]) {
+          if (u3 !== o["*"]) {
             return false;
           }
-          if (u2 !== o[">"] && u2 !== o["<"]) {
-            return t >= o[">"] && t <= o["<"] ? true : false;
+          if (u3 !== o[">"] && u3 !== o["<"]) {
+            return t2 >= o[">"] && t2 <= o["<"] ? true : false;
           }
-          if (u2 !== o[">"] && t >= o[">"]) {
+          if (u3 !== o[">"] && t2 >= o[">"]) {
             return true;
           }
-          if (u2 !== o["<"] && t <= o["<"]) {
+          if (u3 !== o["<"] && t2 <= o["<"]) {
             return true;
           }
           return false;
         };
-        Type.text.hash = Type.text.hash || function(s, c) {
+        Type.text.hash = Type.text.hash || function(s, c2) {
           DEP("text.hash");
           if (typeof s !== "string") {
             return;
           }
-          c = c || 0;
+          c2 = c2 || 0;
           if (!s.length) {
-            return c;
+            return c2;
           }
           for (var i = 0, l = s.length, n; i < l; ++i) {
             n = s.charCodeAt(i);
-            c = (c << 5) - c + n;
-            c |= 0;
+            c2 = (c2 << 5) - c2 + n;
+            c2 |= 0;
           }
-          return c;
+          return c2;
         };
         Type.list = Type.list || {
           is: function(l) {
@@ -2680,9 +2680,9 @@
             }
           };
         };
-        Type.list.map = Type.list.map || function(l, c, _) {
+        Type.list.map = Type.list.map || function(l, c2, _) {
           DEP("list.map");
-          return obj_map(l, c, _);
+          return obj_map(l, c2, _);
         };
         Type.list.index = 1;
         Type.obj = Type.boj || {
@@ -2691,9 +2691,9 @@
             return o ? o instanceof Object && o.constructor === Object || Object.prototype.toString.call(o).match(/^\[object (\w+)\]$/)[1] === "Object" : false;
           }
         };
-        Type.obj.put = Type.obj.put || function(o, k, v) {
+        Type.obj.put = Type.obj.put || function(o, k, v2) {
           DEP("obj.put");
-          return (o || {})[k] = v, o;
+          return (o || {})[k] = v2, o;
         };
         Type.obj.has = Type.obj.has || function(o, k) {
           DEP("obj.has");
@@ -2708,9 +2708,9 @@
           delete o[k];
           return o;
         };
-        Type.obj.as = Type.obj.as || function(o, k, v, u2) {
+        Type.obj.as = Type.obj.as || function(o, k, v2, u3) {
           DEP("obj.as");
-          return o[k] = o[k] || (u2 === v ? {} : v);
+          return o[k] = o[k] || (u3 === v2 ? {} : v2);
         };
         Type.obj.ify = Type.obj.ify || function(o) {
           DEP("obj.ify");
@@ -2726,12 +2726,12 @@
           return o;
         };
         (function() {
-          var u2;
-          function map(v, k) {
-            if (obj_has(this, k) && u2 !== this[k]) {
+          var u3;
+          function map(v2, k) {
+            if (obj_has(this, k) && u3 !== this[k]) {
               return;
             }
-            this[k] = v;
+            this[k] = v2;
           }
           Type.obj.to = Type.obj.to || function(from, to) {
             DEP("obj.to");
@@ -2745,12 +2745,12 @@
           return !o ? o : JSON.parse(JSON.stringify(o));
         };
         (function() {
-          function empty(v, i) {
-            var n = this.n, u2;
+          function empty(v2, i) {
+            var n = this.n, u3;
             if (n && (i === n || obj_is(n) && obj_has(n, i))) {
               return;
             }
-            if (u2 !== i) {
+            if (u3 !== i) {
               return true;
             }
           }
@@ -2766,42 +2766,42 @@
         })();
         ;
         (function() {
-          function t(k, v) {
+          function t2(k, v2) {
             if (arguments.length === 2) {
-              t.r = t.r || {};
-              t.r[k] = v;
+              t2.r = t2.r || {};
+              t2.r[k] = v2;
               return;
             }
-            t.r = t.r || [];
-            t.r.push(k);
+            t2.r = t2.r || [];
+            t2.r.push(k);
           }
           ;
-          var keys = Object.keys, map, u2;
+          var keys = Object.keys, map, u3;
           Object.keys = Object.keys || function(o) {
-            return map(o, function(v, k, t2) {
-              t2(k);
+            return map(o, function(v2, k, t3) {
+              t3(k);
             });
           };
-          Type.obj.map = map = Type.obj.map || function(l, c, _) {
+          Type.obj.map = map = Type.obj.map || function(l, c2, _) {
             DEP("obj.map");
-            var u3, i = 0, x, r, ll, lle, f = typeof c == "function";
-            t.r = u3;
+            var u4, i = 0, x2, r, ll, lle, f = typeof c2 == "function";
+            t2.r = u4;
             if (keys && obj_is(l)) {
               ll = keys(l);
               lle = true;
             }
             _ = _ || {};
             if (list_is(l) || ll) {
-              x = (ll || l).length;
-              for (; i < x; i++) {
+              x2 = (ll || l).length;
+              for (; i < x2; i++) {
                 var ii = i + Type.list.index;
                 if (f) {
-                  r = lle ? c.call(_, l[ll[i]], ll[i], t) : c.call(_, l[i], ii, t);
-                  if (r !== u3) {
+                  r = lle ? c2.call(_, l[ll[i]], ll[i], t2) : c2.call(_, l[i], ii, t2);
+                  if (r !== u4) {
                     return r;
                   }
                 } else {
-                  if (c === l[lle ? ll[i] : i]) {
+                  if (c2 === l[lle ? ll[i] : i]) {
                     return ll ? ll[i] : ii;
                   }
                 }
@@ -2810,56 +2810,56 @@
               for (i in l) {
                 if (f) {
                   if (obj_has(l, i)) {
-                    r = _ ? c.call(_, l[i], i, t) : c(l[i], i, t);
-                    if (r !== u3) {
+                    r = _ ? c2.call(_, l[i], i, t2) : c2(l[i], i, t2);
+                    if (r !== u4) {
                       return r;
                     }
                   }
                 } else {
-                  if (c === l[i]) {
+                  if (c2 === l[i]) {
                     return i;
                   }
                 }
               }
             }
-            return f ? t.r : Type.list.index ? 0 : -1;
+            return f ? t2.r : Type.list.index ? 0 : -1;
           };
         })();
         Type.time = Type.time || {};
-        Type.time.is = Type.time.is || function(t) {
+        Type.time.is = Type.time.is || function(t2) {
           DEP("time");
-          return t ? t instanceof Date : +new Date().getTime();
+          return t2 ? t2 instanceof Date : +new Date().getTime();
         };
         var fn_is = Type.fn.is;
         var list_is = Type.list.is;
         var obj = Type.obj, obj_is = obj.is, obj_has = obj.has, obj_map = obj.map;
         var Val = {};
-        Val.is = function(v) {
+        Val.is = function(v2) {
           DEP("val.is");
-          if (v === u) {
+          if (v2 === u2) {
             return false;
           }
-          if (v === null) {
+          if (v2 === null) {
             return true;
           }
-          if (v === Infinity) {
+          if (v2 === Infinity) {
             return false;
           }
-          if (text_is(v) || bi_is(v) || num_is(v)) {
+          if (text_is(v2) || bi_is(v2) || num_is(v2)) {
             return true;
           }
-          return Val.link.is(v) || false;
+          return Val.link.is(v2) || false;
         };
         Val.link = Val.rel = {
           _: "#"
         };
         ;
         (function() {
-          Val.link.is = function(v) {
+          Val.link.is = function(v2) {
             DEP("val.link.is");
-            if (v && v[rel_] && !v._ && obj_is(v)) {
+            if (v2 && v2[rel_] && !v2._ && obj_is(v2)) {
               var o = {};
-              obj_map(v, map, o);
+              obj_map(v2, map, o);
               if (o.id) {
                 return o.id;
               }
@@ -2878,12 +2878,12 @@
             }
           }
         })();
-        Val.link.ify = function(t) {
+        Val.link.ify = function(t2) {
           DEP("val.link.ify");
-          return obj_put({}, rel_, t);
+          return obj_put({}, rel_, t2);
         };
         Type.obj.has._ = ".";
-        var rel_ = Val.link._, u;
+        var rel_ = Val.link._, u2;
         var bi_is = Type.bi.is;
         var num_is = Type.num.is;
         var text_is = Type.text.is;
@@ -2925,15 +2925,15 @@
             }
             return false;
           };
-          function map(v, k) {
+          function map(v2, k) {
             if (k === Node._) {
               return;
             }
-            if (!Val.is(v)) {
+            if (!Val.is(v2)) {
               return true;
             }
             if (this.cb) {
-              this.cb.call(this.as, v, k, this.n, this.s);
+              this.cb.call(this.as, v2, k, this.n, this.s);
             }
           }
         })();
@@ -2953,7 +2953,7 @@
               };
             }
             if (o.map) {
-              o.node = o.map.call(as, obj2, u, o.node || {});
+              o.node = o.map.call(as, obj2, u2, o.node || {});
             }
             if (o.node = Node.soul.ify(o.node || {}, o)) {
               obj_map(obj2, map, {
@@ -2963,26 +2963,26 @@
             }
             return o.node;
           };
-          function map(v, k) {
-            var o = this.o, tmp, u2;
+          function map(v2, k) {
+            var o = this.o, tmp, u3;
             if (o.map) {
-              tmp = o.map.call(this.as, v, "" + k, o.node);
-              if (u2 === tmp) {
+              tmp = o.map.call(this.as, v2, "" + k, o.node);
+              if (u3 === tmp) {
                 obj_del(o.node, k);
               } else if (o.node) {
                 o.node[k] = tmp;
               }
               return;
             }
-            if (Val.is(v)) {
-              o.node[k] = v;
+            if (Val.is(v2)) {
+              o.node[k] = v2;
             }
           }
         })();
         var obj = Type.obj, obj_is = obj.is, obj_del = obj.del, obj_map = obj.map;
         var text = Type.text, text_random = text.random;
         var soul_ = Node.soul._;
-        var u;
+        var u2;
         Type.node = Type.node || Node;
         var State = Type.state;
         State.lex = function() {
@@ -3000,7 +3000,7 @@
         (function() {
           State.map = function(cb, s, as) {
             DEP("state.map");
-            var u2;
+            var u3;
             var o = obj_is(o = cb || s) ? o : null;
             cb = fn_is(cb = cb || s) ? cb : null;
             if (o && !cb) {
@@ -3012,27 +3012,27 @@
               });
               return o;
             }
-            as = as || obj_is(s) ? s : u2;
+            as = as || obj_is(s) ? s : u3;
             s = num_is(s) ? s : State();
-            return function(v, k, o2, opt) {
+            return function(v2, k, o2, opt) {
               if (!cb) {
                 map.call({
                   o: o2,
                   s
-                }, v, k);
-                return v;
+                }, v2, k);
+                return v2;
               }
-              cb.call(as || this || {}, v, k, o2, opt);
-              if (obj_has(o2, k) && u2 === o2[k]) {
+              cb.call(as || this || {}, v2, k, o2, opt);
+              if (obj_has(o2, k) && u3 === o2[k]) {
                 return;
               }
               map.call({
                 o: o2,
                 s
-              }, v, k);
+              }, v2, k);
             };
           };
-          function map(v, k) {
+          function map(v2, k) {
             if (N_ === k) {
               return;
             }
@@ -3042,7 +3042,7 @@
         var obj = Type.obj, obj_as = obj.as, obj_has = obj.has, obj_is = obj.is, obj_map = obj.map, obj_copy = obj.copy;
         var num = Type.num, num_is = num.is;
         var fn = Type.fn, fn_is = fn.is;
-        var N_ = Node._, u;
+        var N_ = Node._, u2;
         var Graph = {};
         ;
         (function() {
@@ -3093,7 +3093,7 @@
             }
             if (typeof as === "string") {
               env.soul = env.soul || as;
-              as = u;
+              as = u2;
             }
             if (env.soul) {
               at.link = Val.link.ify(env.soul);
@@ -3121,31 +3121,31 @@
             }
             return at;
           }
-          function map(v, k, n) {
+          function map(v2, k, n) {
             var at = this, env = at.env, is, tmp;
-            if (Node._ === k && obj_has(v, Val.link._)) {
+            if (Node._ === k && obj_has(v2, Val.link._)) {
               return n._;
             }
-            if (!(is = valid(v, k, n, at, env))) {
+            if (!(is = valid(v2, k, n, at, env))) {
               return;
             }
             if (!k) {
               at.node = at.node || n || {};
-              if (obj_has(v, Node._) && Node.soul(v)) {
-                at.node._ = obj_copy(v._);
+              if (obj_has(v2, Node._) && Node.soul(v2)) {
+                at.node._ = obj_copy(v2._);
               }
               at.node = Node.soul.ify(at.node, Val.link.is(at.link));
               at.link = at.link || Val.link.ify(Node.soul(at.node));
             }
             if (tmp = env.map) {
-              tmp.call(env.as || {}, v, k, n, at);
+              tmp.call(env.as || {}, v2, k, n, at);
               if (obj_has(n, k)) {
-                v = n[k];
-                if (u === v) {
+                v2 = n[k];
+                if (u2 === v2) {
                   obj_del(n, k);
                   return;
                 }
-                if (!(is = valid(v, k, n, at, env))) {
+                if (!(is = valid(v2, k, n, at, env))) {
                   return;
                 }
               }
@@ -3154,10 +3154,10 @@
               return at.node;
             }
             if (is === true) {
-              return v;
+              return v2;
             }
             tmp = node(env, {
-              obj: v,
+              obj: v2,
               path: at.path.concat(k)
             });
             if (!tmp.node) {
@@ -3178,20 +3178,20 @@
               obj_del(graph, prev);
             }
           }
-          function valid(v, k, n, at, env) {
+          function valid(v2, k, n, at, env) {
             var tmp;
-            if (Val.is(v)) {
+            if (Val.is(v2)) {
               return true;
             }
-            if (obj_is(v)) {
+            if (obj_is(v2)) {
               return 1;
             }
             if (tmp = env.invalid) {
-              v = tmp.call(env.as || {}, v, k, n);
-              return valid(v, k, n, at, env);
+              v2 = tmp.call(env.as || {}, v2, k, n);
+              return valid(v2, k, n, at, env);
             }
             env.err = "Invalid value at '" + at.path.concat(k).join(".") + "'!";
-            if (Type.list.is(v)) {
+            if (Type.list.is(v2)) {
               env.err += " Use `.set(item)` instead of an Array.";
             }
           }
@@ -3231,17 +3231,17 @@
             });
             return obj2;
           };
-          function map(v, k) {
+          function map(v2, k) {
             var tmp, obj2;
             if (Node._ === k) {
-              if (obj_empty(v, Val.link._)) {
+              if (obj_empty(v2, Val.link._)) {
                 return;
               }
-              this.obj[k] = obj_copy(v);
+              this.obj[k] = obj_copy(v2);
               return;
             }
-            if (!(tmp = Val.link.is(v))) {
-              this.obj[k] = v;
+            if (!(tmp = Val.link.is(v2))) {
+              this.obj[k] = v2;
               return;
             }
             if (obj2 = this.opt.seen[tmp]) {
@@ -3253,7 +3253,7 @@
         })();
         var fn_is = Type.fn.is;
         var obj = Type.obj, obj_is = obj.is, obj_del = obj.del, obj_has = obj.has, obj_empty = obj.empty, obj_put = obj.put, obj_map = obj.map, obj_copy = obj.copy;
-        var u;
+        var u2;
         Type.graph = Type.graph || Graph;
       })();
     }
@@ -3261,13 +3261,1004 @@
 
   // node_modules/gun/browser.js
   var require_browser = __commonJS({
-    "node_modules/gun/browser.js"(exports, module) {
-      module.exports = require_gun();
+    "node_modules/gun/browser.js"(exports2, module2) {
+      module2.exports = require_gun();
+    }
+  });
+
+  // node_modules/flexsearch/dist/flexsearch.bundle.js
+  var require_flexsearch_bundle = __commonJS({
+    "node_modules/flexsearch/dist/flexsearch.bundle.js"(exports, module) {
+      (function _f(self) {
+        "use strict";
+        try {
+          if (module)
+            self = module;
+        } catch (e) {
+        }
+        self._factory = _f;
+        var t;
+        function u(a2) {
+          return typeof a2 !== "undefined" ? a2 : true;
+        }
+        function aa(a2) {
+          const b2 = Array(a2);
+          for (let c2 = 0; c2 < a2; c2++)
+            b2[c2] = v();
+          return b2;
+        }
+        function v() {
+          return Object.create(null);
+        }
+        function ba(a2, b2) {
+          return b2.length - a2.length;
+        }
+        function x(a2) {
+          return typeof a2 === "string";
+        }
+        function C(a2) {
+          return typeof a2 === "object";
+        }
+        function D(a2) {
+          return typeof a2 === "function";
+        }
+        ;
+        function ca(a2, b2) {
+          var c2 = da;
+          if (a2 && (b2 && (a2 = E(a2, b2)), this.H && (a2 = E(a2, this.H)), this.J && 1 < a2.length && (a2 = E(a2, this.J)), c2 || c2 === "")) {
+            a2 = a2.split(c2);
+            if (this.filter) {
+              b2 = this.filter;
+              c2 = a2.length;
+              const d2 = [];
+              for (let e = 0, f = 0; e < c2; e++) {
+                const g = a2[e];
+                g && !b2[g] && (d2[f++] = g);
+              }
+              a2 = d2;
+            }
+            return a2;
+          }
+          return a2;
+        }
+        const da = /[\p{Z}\p{S}\p{P}\p{C}]+/u, ea = /[\u0300-\u036f]/g;
+        function fa(a2, b2) {
+          const c2 = Object.keys(a2), d2 = c2.length, e = [];
+          let f = "", g = 0;
+          for (let h = 0, k, m; h < d2; h++)
+            k = c2[h], (m = a2[k]) ? (e[g++] = F(b2 ? "(?!\\b)" + k + "(\\b|_)" : k), e[g++] = m) : f += (f ? "|" : "") + k;
+          f && (e[g++] = F(b2 ? "(?!\\b)(" + f + ")(\\b|_)" : "(" + f + ")"), e[g] = "");
+          return e;
+        }
+        function E(a2, b2) {
+          for (let c2 = 0, d2 = b2.length; c2 < d2 && (a2 = a2.replace(b2[c2], b2[c2 + 1]), a2); c2 += 2)
+            ;
+          return a2;
+        }
+        function F(a2) {
+          return new RegExp(a2, "g");
+        }
+        function ha(a2) {
+          let b2 = "", c2 = "";
+          for (let d2 = 0, e = a2.length, f; d2 < e; d2++)
+            (f = a2[d2]) !== c2 && (b2 += c2 = f);
+          return b2;
+        }
+        ;
+        var ja = {
+          encode: ia,
+          F: false,
+          G: ""
+        };
+        function ia(a2) {
+          return ca.call(this, ("" + a2).toLowerCase(), false);
+        }
+        ;
+        const ka = {}, G = {};
+        function la(a2) {
+          I(a2, "add");
+          I(a2, "append");
+          I(a2, "search");
+          I(a2, "update");
+          I(a2, "remove");
+        }
+        function I(a2, b2) {
+          a2[b2 + "Async"] = function() {
+            const c2 = this, d2 = arguments;
+            var e = d2[d2.length - 1];
+            let f;
+            D(e) && (f = e, delete d2[d2.length - 1]);
+            e = new Promise(function(g) {
+              setTimeout(function() {
+                c2.async = true;
+                const h = c2[b2].apply(c2, d2);
+                c2.async = false;
+                g(h);
+              });
+            });
+            return f ? (e.then(f), this) : e;
+          };
+        }
+        ;
+        function ma(a2, b2, c2, d2) {
+          const e = a2.length;
+          let f = [], g, h, k = 0;
+          d2 && (d2 = []);
+          for (let m = e - 1; 0 <= m; m--) {
+            const n = a2[m], w = n.length, q = v();
+            let r = !g;
+            for (let l = 0; l < w; l++) {
+              const p = n[l], z = p.length;
+              if (z)
+                for (let B = 0, A, y; B < z; B++)
+                  if (y = p[B], g) {
+                    if (g[y]) {
+                      if (!m) {
+                        if (c2)
+                          c2--;
+                        else if (f[k++] = y, k === b2)
+                          return f;
+                      }
+                      if (m || d2)
+                        q[y] = 1;
+                      r = true;
+                    }
+                    if (d2 && (h[y] = (A = h[y]) ? ++A : A = 1, A < e)) {
+                      const H = d2[A - 2] || (d2[A - 2] = []);
+                      H[H.length] = y;
+                    }
+                  } else
+                    q[y] = 1;
+            }
+            if (d2)
+              g || (h = q);
+            else if (!r)
+              return [];
+            g = q;
+          }
+          if (d2)
+            for (let m = d2.length - 1, n, w; 0 <= m; m--) {
+              n = d2[m];
+              w = n.length;
+              for (let q = 0, r; q < w; q++)
+                if (r = n[q], !g[r]) {
+                  if (c2)
+                    c2--;
+                  else if (f[k++] = r, k === b2)
+                    return f;
+                  g[r] = 1;
+                }
+            }
+          return f;
+        }
+        function na(a2, b2) {
+          const c2 = v(), d2 = v(), e = [];
+          for (let f = 0; f < a2.length; f++)
+            c2[a2[f]] = 1;
+          for (let f = 0, g; f < b2.length; f++) {
+            g = b2[f];
+            for (let h = 0, k; h < g.length; h++)
+              k = g[h], c2[k] && !d2[k] && (d2[k] = 1, e[e.length] = k);
+          }
+          return e;
+        }
+        ;
+        function J(a2) {
+          this.l = a2 !== true && a2;
+          this.cache = v();
+          this.h = [];
+        }
+        function oa(a2, b2, c2) {
+          C(a2) && (a2 = a2.query);
+          let d2 = this.cache.get(a2);
+          d2 || (d2 = this.search(a2, b2, c2), this.cache.set(a2, d2));
+          return d2;
+        }
+        J.prototype.set = function(a2, b2) {
+          if (!this.cache[a2]) {
+            var c2 = this.h.length;
+            c2 === this.l ? delete this.cache[this.h[c2 - 1]] : c2++;
+            for (--c2; 0 < c2; c2--)
+              this.h[c2] = this.h[c2 - 1];
+            this.h[0] = a2;
+          }
+          this.cache[a2] = b2;
+        };
+        J.prototype.get = function(a2) {
+          const b2 = this.cache[a2];
+          if (this.l && b2 && (a2 = this.h.indexOf(a2))) {
+            const c2 = this.h[a2 - 1];
+            this.h[a2 - 1] = this.h[a2];
+            this.h[a2] = c2;
+          }
+          return b2;
+        };
+        const qa = {
+          memory: {
+            charset: "latin:extra",
+            D: 3,
+            B: 4,
+            m: false
+          },
+          performance: {
+            D: 3,
+            B: 3,
+            s: false,
+            context: {
+              depth: 2,
+              D: 1
+            }
+          },
+          match: {
+            charset: "latin:extra",
+            G: "reverse"
+          },
+          score: {
+            charset: "latin:advanced",
+            D: 20,
+            B: 3,
+            context: {
+              depth: 3,
+              D: 9
+            }
+          },
+          "default": {}
+        };
+        function ra(a2, b2, c2, d2, e, f) {
+          setTimeout(function() {
+            const g = a2(c2, JSON.stringify(f));
+            g && g.then ? g.then(function() {
+              b2.export(a2, b2, c2, d2, e + 1);
+            }) : b2.export(a2, b2, c2, d2, e + 1);
+          });
+        }
+        ;
+        function K(a2, b2) {
+          if (!(this instanceof K))
+            return new K(a2);
+          var c2;
+          if (a2) {
+            x(a2) ? a2 = qa[a2] : (c2 = a2.preset) && (a2 = Object.assign({}, c2[c2], a2));
+            c2 = a2.charset;
+            var d2 = a2.lang;
+            x(c2) && (c2.indexOf(":") === -1 && (c2 += ":default"), c2 = G[c2]);
+            x(d2) && (d2 = ka[d2]);
+          } else
+            a2 = {};
+          let e, f, g = a2.context || {};
+          this.encode = a2.encode || c2 && c2.encode || ia;
+          this.register = b2 || v();
+          this.D = e = a2.resolution || 9;
+          this.G = b2 = c2 && c2.G || a2.tokenize || "strict";
+          this.depth = b2 === "strict" && g.depth;
+          this.l = u(g.bidirectional);
+          this.s = f = u(a2.optimize);
+          this.m = u(a2.fastupdate);
+          this.B = a2.minlength || 1;
+          this.C = a2.boost;
+          this.map = f ? aa(e) : v();
+          this.A = e = g.resolution || 1;
+          this.h = f ? aa(e) : v();
+          this.F = c2 && c2.F || a2.rtl;
+          this.H = (b2 = a2.matcher || d2 && d2.H) && fa(b2, false);
+          this.J = (b2 = a2.stemmer || d2 && d2.J) && fa(b2, true);
+          if (c2 = b2 = a2.filter || d2 && d2.filter) {
+            c2 = b2;
+            d2 = v();
+            for (let h = 0, k = c2.length; h < k; h++)
+              d2[c2[h]] = 1;
+            c2 = d2;
+          }
+          this.filter = c2;
+          this.cache = (b2 = a2.cache) && new J(b2);
+        }
+        t = K.prototype;
+        t.append = function(a2, b2) {
+          return this.add(a2, b2, true);
+        };
+        t.add = function(a2, b2, c2, d2) {
+          if (b2 && (a2 || a2 === 0)) {
+            if (!d2 && !c2 && this.register[a2])
+              return this.update(a2, b2);
+            b2 = this.encode(b2);
+            if (d2 = b2.length) {
+              const m = v(), n = v(), w = this.depth, q = this.D;
+              for (let r = 0; r < d2; r++) {
+                let l = b2[this.F ? d2 - 1 - r : r];
+                var e = l.length;
+                if (l && e >= this.B && (w || !n[l])) {
+                  var f = L(q, d2, r), g = "";
+                  switch (this.G) {
+                    case "full":
+                      if (3 < e) {
+                        for (f = 0; f < e; f++)
+                          for (var h = e; h > f; h--)
+                            if (h - f >= this.B) {
+                              var k = L(q, d2, r, e, f);
+                              g = l.substring(f, h);
+                              M(this, n, g, k, a2, c2);
+                            }
+                        break;
+                      }
+                    case "reverse":
+                      if (2 < e) {
+                        for (h = e - 1; 0 < h; h--)
+                          g = l[h] + g, g.length >= this.B && M(this, n, g, L(q, d2, r, e, h), a2, c2);
+                        g = "";
+                      }
+                    case "forward":
+                      if (1 < e) {
+                        for (h = 0; h < e; h++)
+                          g += l[h], g.length >= this.B && M(this, n, g, f, a2, c2);
+                        break;
+                      }
+                    default:
+                      if (this.C && (f = Math.min(f / this.C(b2, l, r) | 0, q - 1)), M(this, n, l, f, a2, c2), w && 1 < d2 && r < d2 - 1) {
+                        for (e = v(), g = this.A, f = l, h = Math.min(w + 1, d2 - r), e[f] = 1, k = 1; k < h; k++)
+                          if ((l = b2[this.F ? d2 - 1 - r - k : r + k]) && l.length >= this.B && !e[l]) {
+                            e[l] = 1;
+                            const p = this.l && l > f;
+                            M(this, m, p ? f : l, L(g + (d2 / 2 > g ? 0 : 1), d2, r, h - 1, k - 1), a2, c2, p ? l : f);
+                          }
+                      }
+                  }
+                }
+              }
+              this.m || (this.register[a2] = 1);
+            }
+          }
+          return this;
+        };
+        function L(a2, b2, c2, d2, e) {
+          return c2 && 1 < a2 ? b2 + (d2 || 0) <= a2 ? c2 + (e || 0) : (a2 - 1) / (b2 + (d2 || 0)) * (c2 + (e || 0)) + 1 | 0 : 0;
+        }
+        function M(a2, b2, c2, d2, e, f, g) {
+          let h = g ? a2.h : a2.map;
+          if (!b2[c2] || g && !b2[c2][g])
+            a2.s && (h = h[d2]), g ? (b2 = b2[c2] || (b2[c2] = v()), b2[g] = 1, h = h[g] || (h[g] = v())) : b2[c2] = 1, h = h[c2] || (h[c2] = []), a2.s || (h = h[d2] || (h[d2] = [])), f && h.indexOf(e) !== -1 || (h[h.length] = e, a2.m && (a2 = a2.register[e] || (a2.register[e] = []), a2[a2.length] = h));
+        }
+        t.search = function(a2, b2, c2) {
+          c2 || (!b2 && C(a2) ? (c2 = a2, a2 = c2.query) : C(b2) && (c2 = b2));
+          let d2 = [], e;
+          let f, g = 0;
+          if (c2) {
+            b2 = c2.limit;
+            g = c2.offset || 0;
+            var h = c2.context;
+            f = c2.suggest;
+          }
+          if (a2 && (a2 = this.encode(a2), e = a2.length, 1 < e)) {
+            c2 = v();
+            var k = [];
+            for (let n = 0, w = 0, q; n < e; n++)
+              if ((q = a2[n]) && q.length >= this.B && !c2[q])
+                if (this.s || f || this.map[q])
+                  k[w++] = q, c2[q] = 1;
+                else
+                  return d2;
+            a2 = k;
+            e = a2.length;
+          }
+          if (!e)
+            return d2;
+          b2 || (b2 = 100);
+          h = this.depth && 1 < e && h !== false;
+          c2 = 0;
+          let m;
+          h ? (m = a2[0], c2 = 1) : 1 < e && a2.sort(ba);
+          for (let n, w; c2 < e; c2++) {
+            w = a2[c2];
+            h ? (n = sa(this, d2, f, b2, g, e === 2, w, m), f && n === false && d2.length || (m = w)) : n = sa(this, d2, f, b2, g, e === 1, w);
+            if (n)
+              return n;
+            if (f && c2 === e - 1) {
+              k = d2.length;
+              if (!k) {
+                if (h) {
+                  h = 0;
+                  c2 = -1;
+                  continue;
+                }
+                return d2;
+              }
+              if (k === 1)
+                return ta(d2[0], b2, g);
+            }
+          }
+          return ma(d2, b2, g, f);
+        };
+        function sa(a2, b2, c2, d2, e, f, g, h) {
+          let k = [], m = h ? a2.h : a2.map;
+          a2.s || (m = ua(m, g, h, a2.l));
+          if (m) {
+            let n = 0;
+            const w = Math.min(m.length, h ? a2.A : a2.D);
+            for (let q = 0, r = 0, l, p; q < w; q++)
+              if (l = m[q]) {
+                if (a2.s && (l = ua(l, g, h, a2.l)), e && l && f && (p = l.length, p <= e ? (e -= p, l = null) : (l = l.slice(e), e = 0)), l && (k[n++] = l, f && (r += l.length, r >= d2)))
+                  break;
+              }
+            if (n) {
+              if (f)
+                return ta(k, d2, 0);
+              b2[b2.length] = k;
+              return;
+            }
+          }
+          return !c2 && k;
+        }
+        function ta(a2, b2, c2) {
+          a2 = a2.length === 1 ? a2[0] : [].concat.apply([], a2);
+          return c2 || a2.length > b2 ? a2.slice(c2, c2 + b2) : a2;
+        }
+        function ua(a2, b2, c2, d2) {
+          c2 ? (d2 = d2 && b2 > c2, a2 = (a2 = a2[d2 ? b2 : c2]) && a2[d2 ? c2 : b2]) : a2 = a2[b2];
+          return a2;
+        }
+        t.contain = function(a2) {
+          return !!this.register[a2];
+        };
+        t.update = function(a2, b2) {
+          return this.remove(a2).add(a2, b2);
+        };
+        t.remove = function(a2, b2) {
+          const c2 = this.register[a2];
+          if (c2) {
+            if (this.m)
+              for (let d2 = 0, e; d2 < c2.length; d2++)
+                e = c2[d2], e.splice(e.indexOf(a2), 1);
+            else
+              N(this.map, a2, this.D, this.s), this.depth && N(this.h, a2, this.A, this.s);
+            b2 || delete this.register[a2];
+            if (this.cache) {
+              b2 = this.cache;
+              for (let d2 = 0, e, f; d2 < b2.h.length; d2++)
+                f = b2.h[d2], e = b2.cache[f], e.indexOf(a2) !== -1 && (b2.h.splice(d2--, 1), delete b2.cache[f]);
+            }
+          }
+          return this;
+        };
+        function N(a2, b2, c2, d2, e) {
+          let f = 0;
+          if (a2.constructor === Array) {
+            if (e)
+              b2 = a2.indexOf(b2), b2 !== -1 ? 1 < a2.length && (a2.splice(b2, 1), f++) : f++;
+            else {
+              e = Math.min(a2.length, c2);
+              for (let g = 0, h; g < e; g++)
+                if (h = a2[g])
+                  f = N(h, b2, c2, d2, e), d2 || f || delete a2[g];
+            }
+          } else
+            for (let g in a2)
+              (f = N(a2[g], b2, c2, d2, e)) || delete a2[g];
+          return f;
+        }
+        t.searchCache = oa;
+        t.export = function(a2, b2, c2, d2, e) {
+          let f, g;
+          switch (e || (e = 0)) {
+            case 0:
+              f = "reg";
+              if (this.m) {
+                g = v();
+                for (let h in this.register)
+                  g[h] = 1;
+              } else
+                g = this.register;
+              break;
+            case 1:
+              f = "cfg";
+              g = {
+                doc: 0,
+                opt: this.s ? 1 : 0
+              };
+              break;
+            case 2:
+              f = "map";
+              g = this.map;
+              break;
+            case 3:
+              f = "ctx";
+              g = this.h;
+              break;
+            default:
+              return;
+          }
+          ra(a2, b2 || this, c2 ? c2 + "." + f : f, d2, e, g);
+          return true;
+        };
+        t.import = function(a2, b2) {
+          if (b2)
+            switch (x(b2) && (b2 = JSON.parse(b2)), a2) {
+              case "cfg":
+                this.s = !!b2.opt;
+                break;
+              case "reg":
+                this.m = false;
+                this.register = b2;
+                break;
+              case "map":
+                this.map = b2;
+                break;
+              case "ctx":
+                this.h = b2;
+            }
+        };
+        la(K.prototype);
+        function va(a2) {
+          a2 = a2.data;
+          var b2 = self._index;
+          const c2 = a2.args;
+          var d2 = a2.task;
+          switch (d2) {
+            case "init":
+              d2 = a2.options || {};
+              a2 = a2.factory;
+              b2 = d2.encode;
+              d2.cache = false;
+              b2 && b2.indexOf("function") === 0 && (d2.encode = Function("return " + b2)());
+              a2 ? (Function("return " + a2)()(self), self._index = new self.FlexSearch.Index(d2), delete self.FlexSearch) : self._index = new K(d2);
+              break;
+            default:
+              a2 = a2.id, b2 = b2[d2].apply(b2, c2), postMessage(d2 === "search" ? {
+                id: a2,
+                msg: b2
+              } : {
+                id: a2
+              });
+          }
+        }
+        ;
+        let wa = 0;
+        function O(a2) {
+          if (!(this instanceof O))
+            return new O(a2);
+          var b2;
+          a2 ? D(b2 = a2.encode) && (a2.encode = b2.toString()) : a2 = {};
+          (b2 = (self || window)._factory) && (b2 = b2.toString());
+          const c2 = self.exports, d2 = this;
+          this.o = xa(b2, c2, a2.worker);
+          this.h = v();
+          if (this.o) {
+            if (c2)
+              this.o.on("message", function(e) {
+                d2.h[e.id](e.msg);
+                delete d2.h[e.id];
+              });
+            else
+              this.o.onmessage = function(e) {
+                e = e.data;
+                d2.h[e.id](e.msg);
+                delete d2.h[e.id];
+              };
+            this.o.postMessage({
+              task: "init",
+              factory: b2,
+              options: a2
+            });
+          }
+        }
+        P("add");
+        P("append");
+        P("search");
+        P("update");
+        P("remove");
+        function P(a2) {
+          O.prototype[a2] = O.prototype[a2 + "Async"] = function() {
+            const b2 = this, c2 = [].slice.call(arguments);
+            var d2 = c2[c2.length - 1];
+            let e;
+            D(d2) && (e = d2, c2.splice(c2.length - 1, 1));
+            d2 = new Promise(function(f) {
+              setTimeout(function() {
+                b2.h[++wa] = f;
+                b2.o.postMessage({
+                  task: a2,
+                  id: wa,
+                  args: c2
+                });
+              });
+            });
+            return e ? (d2.then(e), this) : d2;
+          };
+        }
+        function xa(a, b, c) {
+          let d;
+          try {
+            d = b ? eval('new (require("worker_threads")["Worker"])("../dist/node/node.js")') : a ? new Worker(URL.createObjectURL(new Blob(["onmessage=" + va.toString()], {
+              type: "text/javascript"
+            }))) : new Worker(x(c) ? c : "worker/worker.js", {
+              type: "module"
+            });
+          } catch (e) {
+          }
+          return d;
+        }
+        ;
+        function Q(a2) {
+          if (!(this instanceof Q))
+            return new Q(a2);
+          var b2 = a2.document || a2.doc || a2, c2;
+          this.K = [];
+          this.h = [];
+          this.A = [];
+          this.register = v();
+          this.key = (c2 = b2.key || b2.id) && S(c2, this.A) || "id";
+          this.m = u(a2.fastupdate);
+          this.C = (c2 = b2.store) && c2 !== true && [];
+          this.store = c2 && v();
+          this.I = (c2 = b2.tag) && S(c2, this.A);
+          this.l = c2 && v();
+          this.cache = (c2 = a2.cache) && new J(c2);
+          a2.cache = false;
+          this.o = a2.worker;
+          this.async = false;
+          c2 = v();
+          let d2 = b2.index || b2.field || b2;
+          x(d2) && (d2 = [d2]);
+          for (let e = 0, f, g; e < d2.length; e++)
+            f = d2[e], x(f) || (g = f, f = f.field), g = C(g) ? Object.assign({}, a2, g) : a2, this.o && (c2[f] = new O(g), c2[f].o || (this.o = false)), this.o || (c2[f] = new K(g, this.register)), this.K[e] = S(f, this.A), this.h[e] = f;
+          if (this.C)
+            for (a2 = b2.store, x(a2) && (a2 = [a2]), b2 = 0; b2 < a2.length; b2++)
+              this.C[b2] = S(a2[b2], this.A);
+          this.index = c2;
+        }
+        function S(a2, b2) {
+          const c2 = a2.split(":");
+          let d2 = 0;
+          for (let e = 0; e < c2.length; e++)
+            a2 = c2[e], 0 <= a2.indexOf("[]") && (a2 = a2.substring(0, a2.length - 2)) && (b2[d2] = true), a2 && (c2[d2++] = a2);
+          d2 < c2.length && (c2.length = d2);
+          return 1 < d2 ? c2 : c2[0];
+        }
+        function T(a2, b2) {
+          if (x(b2))
+            a2 = a2[b2];
+          else
+            for (let c2 = 0; a2 && c2 < b2.length; c2++)
+              a2 = a2[b2[c2]];
+          return a2;
+        }
+        function U(a2, b2, c2, d2, e) {
+          a2 = a2[e];
+          if (d2 === c2.length - 1)
+            b2[e] = a2;
+          else if (a2)
+            if (a2.constructor === Array)
+              for (b2 = b2[e] = Array(a2.length), e = 0; e < a2.length; e++)
+                U(a2, b2, c2, d2, e);
+            else
+              b2 = b2[e] || (b2[e] = v()), e = c2[++d2], U(a2, b2, c2, d2, e);
+        }
+        function V(a2, b2, c2, d2, e, f, g, h) {
+          if (a2 = a2[g])
+            if (d2 === b2.length - 1) {
+              if (a2.constructor === Array) {
+                if (c2[d2]) {
+                  for (b2 = 0; b2 < a2.length; b2++)
+                    e.add(f, a2[b2], true, true);
+                  return;
+                }
+                a2 = a2.join(" ");
+              }
+              e.add(f, a2, h, true);
+            } else if (a2.constructor === Array)
+              for (g = 0; g < a2.length; g++)
+                V(a2, b2, c2, d2, e, f, g, h);
+            else
+              g = b2[++d2], V(a2, b2, c2, d2, e, f, g, h);
+        }
+        t = Q.prototype;
+        t.add = function(a2, b2, c2) {
+          C(a2) && (b2 = a2, a2 = T(b2, this.key));
+          if (b2 && (a2 || a2 === 0)) {
+            if (!c2 && this.register[a2])
+              return this.update(a2, b2);
+            for (let d2 = 0, e, f; d2 < this.h.length; d2++)
+              f = this.h[d2], e = this.K[d2], x(e) && (e = [e]), V(b2, e, this.A, 0, this.index[f], a2, e[0], c2);
+            if (this.I) {
+              let d2 = T(b2, this.I), e = v();
+              x(d2) && (d2 = [d2]);
+              for (let f = 0, g, h; f < d2.length; f++)
+                if (g = d2[f], !e[g] && (e[g] = 1, h = this.l[g] || (this.l[g] = []), !c2 || h.indexOf(a2) === -1)) {
+                  if (h[h.length] = a2, this.m) {
+                    const k = this.register[a2] || (this.register[a2] = []);
+                    k[k.length] = h;
+                  }
+                }
+            }
+            if (this.store && (!c2 || !this.store[a2])) {
+              let d2;
+              if (this.C) {
+                d2 = v();
+                for (let e = 0, f; e < this.C.length; e++)
+                  f = this.C[e], x(f) ? d2[f] = b2[f] : U(b2, d2, f, 0, f[0]);
+              }
+              this.store[a2] = d2 || b2;
+            }
+          }
+          return this;
+        };
+        t.append = function(a2, b2) {
+          return this.add(a2, b2, true);
+        };
+        t.update = function(a2, b2) {
+          return this.remove(a2).add(a2, b2);
+        };
+        t.remove = function(a2) {
+          C(a2) && (a2 = T(a2, this.key));
+          if (this.register[a2]) {
+            for (var b2 = 0; b2 < this.h.length && (this.index[this.h[b2]].remove(a2, !this.o), !this.m); b2++)
+              ;
+            if (this.I && !this.m)
+              for (let c2 in this.l) {
+                b2 = this.l[c2];
+                const d2 = b2.indexOf(a2);
+                d2 !== -1 && (1 < b2.length ? b2.splice(d2, 1) : delete this.l[c2]);
+              }
+            this.store && delete this.store[a2];
+            delete this.register[a2];
+          }
+          return this;
+        };
+        t.search = function(a2, b2, c2, d2) {
+          c2 || (!b2 && C(a2) ? (c2 = a2, a2 = c2.query) : C(b2) && (c2 = b2, b2 = 0));
+          let e = [], f = [], g, h, k, m, n, w, q = 0;
+          if (c2)
+            if (c2.constructor === Array)
+              k = c2, c2 = null;
+            else {
+              k = (g = c2.pluck) || c2.index || c2.field;
+              m = c2.tag;
+              h = this.store && c2.enrich;
+              n = c2.bool === "and";
+              b2 = c2.limit || 100;
+              w = c2.offset || 0;
+              if (m && (x(m) && (m = [m]), !a2)) {
+                for (let l = 0, p; l < m.length; l++)
+                  if (p = ya.call(this, m[l], b2, w, h))
+                    e[e.length] = p, q++;
+                return q ? e : [];
+              }
+              x(k) && (k = [k]);
+            }
+          k || (k = this.h);
+          n = n && (1 < k.length || m && 1 < m.length);
+          const r = !d2 && (this.o || this.async) && [];
+          for (let l = 0, p, z, B; l < k.length; l++) {
+            let A;
+            z = k[l];
+            x(z) || (A = z, z = z.field);
+            if (r)
+              r[l] = this.index[z].searchAsync(a2, b2, A || c2);
+            else {
+              d2 ? p = d2[l] : p = this.index[z].search(a2, b2, A || c2);
+              B = p && p.length;
+              if (m && B) {
+                const y = [];
+                let H = 0;
+                n && (y[0] = [p]);
+                for (let X = 0, pa, R; X < m.length; X++)
+                  if (pa = m[X], B = (R = this.l[pa]) && R.length)
+                    H++, y[y.length] = n ? [R] : R;
+                H && (p = n ? ma(y, b2 || 100, w || 0) : na(p, y), B = p.length);
+              }
+              if (B)
+                f[q] = z, e[q++] = p;
+              else if (n)
+                return [];
+            }
+          }
+          if (r) {
+            const l = this;
+            return new Promise(function(p) {
+              Promise.all(r).then(function(z) {
+                p(l.search(a2, b2, c2, z));
+              });
+            });
+          }
+          if (!q)
+            return [];
+          if (g && (!h || !this.store))
+            return e[0];
+          for (let l = 0, p; l < f.length; l++) {
+            p = e[l];
+            p.length && h && (p = za.call(this, p));
+            if (g)
+              return p;
+            e[l] = {
+              field: f[l],
+              result: p
+            };
+          }
+          return e;
+        };
+        function ya(a2, b2, c2, d2) {
+          let e = this.l[a2], f = e && e.length - c2;
+          if (f && 0 < f) {
+            if (f > b2 || c2)
+              e = e.slice(c2, c2 + b2);
+            d2 && (e = za.call(this, e));
+            return {
+              tag: a2,
+              result: e
+            };
+          }
+        }
+        function za(a2) {
+          const b2 = Array(a2.length);
+          for (let c2 = 0, d2; c2 < a2.length; c2++)
+            d2 = a2[c2], b2[c2] = {
+              id: d2,
+              doc: this.store[d2]
+            };
+          return b2;
+        }
+        t.contain = function(a2) {
+          return !!this.register[a2];
+        };
+        t.get = function(a2) {
+          return this.store[a2];
+        };
+        t.set = function(a2, b2) {
+          this.store[a2] = b2;
+          return this;
+        };
+        t.searchCache = oa;
+        t.export = function(a2, b2, c2, d2, e) {
+          e || (e = 0);
+          d2 || (d2 = 0);
+          if (d2 < this.h.length) {
+            const f = this.h[d2], g = this.index[f];
+            b2 = this;
+            setTimeout(function() {
+              g.export(a2, b2, e ? f.replace(":", "-") : "", d2, e++) || (d2++, e = 1, b2.export(a2, b2, f, d2, e));
+            });
+          } else {
+            let f;
+            switch (e) {
+              case 1:
+                c2 = "tag";
+                f = this.l;
+                break;
+              case 2:
+                c2 = "store";
+                f = this.store;
+                break;
+              default:
+                return;
+            }
+            ra(a2, this, c2, d2, e, f);
+          }
+        };
+        t.import = function(a2, b2) {
+          if (b2)
+            switch (x(b2) && (b2 = JSON.parse(b2)), a2) {
+              case "tag":
+                this.l = b2;
+                break;
+              case "reg":
+                this.m = false;
+                this.register = b2;
+                for (let d2 = 0, e; d2 < this.h.length; d2++)
+                  e = this.index[this.h[d2]], e.register = b2, e.m = false;
+                break;
+              case "store":
+                this.store = b2;
+                break;
+              default:
+                a2 = a2.split(".");
+                const c2 = a2[0];
+                a2 = a2[1];
+                c2 && a2 && this.index[c2].import(a2, b2);
+            }
+        };
+        la(Q.prototype);
+        var Ba = {
+          encode: Aa,
+          F: false,
+          G: ""
+        };
+        const Ca = [F("[\xE0\xE1\xE2\xE3\xE4\xE5]"), "a", F("[\xE8\xE9\xEA\xEB]"), "e", F("[\xEC\xED\xEE\xEF]"), "i", F("[\xF2\xF3\xF4\xF5\xF6\u0151]"), "o", F("[\xF9\xFA\xFB\xFC\u0171]"), "u", F("[\xFD\u0177\xFF]"), "y", F("\xF1"), "n", F("[\xE7c]"), "k", F("\xDF"), "s", F(" & "), " and "];
+        function Aa(a2) {
+          var b2 = a2;
+          b2.normalize && (b2 = b2.normalize("NFD").replace(ea, ""));
+          return ca.call(this, b2.toLowerCase(), !a2.normalize && Ca);
+        }
+        ;
+        var Ea = {
+          encode: Da,
+          F: false,
+          G: "strict"
+        };
+        const Fa = /[^a-z0-9]+/, Ga = {
+          b: "p",
+          v: "f",
+          w: "f",
+          z: "s",
+          x: "s",
+          "\xDF": "s",
+          d: "t",
+          n: "m",
+          c: "k",
+          g: "k",
+          j: "k",
+          q: "k",
+          i: "e",
+          y: "e",
+          u: "o"
+        };
+        function Da(a2) {
+          a2 = Aa.call(this, a2).join(" ");
+          const b2 = [];
+          if (a2) {
+            const c2 = a2.split(Fa), d2 = c2.length;
+            for (let e = 0, f, g = 0; e < d2; e++)
+              if ((a2 = c2[e]) && (!this.filter || !this.filter[a2])) {
+                f = a2[0];
+                let h = Ga[f] || f, k = h;
+                for (let m = 1; m < a2.length; m++) {
+                  f = a2[m];
+                  const n = Ga[f] || f;
+                  n && n !== k && (h += n, k = n);
+                }
+                b2[g++] = h;
+              }
+          }
+          return b2;
+        }
+        ;
+        var Ia = {
+          encode: Ha,
+          F: false,
+          G: ""
+        };
+        const Ja = [F("ae"), "a", F("oe"), "o", F("sh"), "s", F("th"), "t", F("ph"), "f", F("pf"), "f", F("(?![aeo])h(?![aeo])"), "", F("(?!^[aeo])h(?!^[aeo])"), ""];
+        function Ha(a2, b2) {
+          a2 && (a2 = Da.call(this, a2).join(" "), 2 < a2.length && (a2 = E(a2, Ja)), b2 || (1 < a2.length && (a2 = ha(a2)), a2 && (a2 = a2.split(" "))));
+          return a2;
+        }
+        ;
+        var La = {
+          encode: Ka,
+          F: false,
+          G: ""
+        };
+        const Ma = F("(?!\\b)[aeo]");
+        function Ka(a2) {
+          a2 && (a2 = Ha.call(this, a2, true), 1 < a2.length && (a2 = a2.replace(Ma, "")), 1 < a2.length && (a2 = ha(a2)), a2 && (a2 = a2.split(" ")));
+          return a2;
+        }
+        ;
+        G["latin:default"] = ja;
+        G["latin:simple"] = Ba;
+        G["latin:balance"] = Ea;
+        G["latin:advanced"] = Ia;
+        G["latin:extra"] = La;
+        const W = self;
+        let Y;
+        const Z = {
+          Index: K,
+          Document: Q,
+          Worker: O,
+          registerCharset: function(a2, b2) {
+            G[a2] = b2;
+          },
+          registerLanguage: function(a2, b2) {
+            ka[a2] = b2;
+          }
+        };
+        (Y = W.define) && Y.amd ? Y([], function() {
+          return Z;
+        }) : W.exports ? W.exports = Z : W.FlexSearch = Z;
+      })(exports);
     }
   });
 
   // client.js
   var import_gun = __toModule(require_browser());
+  var import_flexsearch = __toModule(require_flexsearch_bundle());
 
   // node_modules/gun/lib/open.js
   var Gun2 = typeof window !== "undefined" ? window.Gun : require_gun();
@@ -3408,7 +4399,8 @@
       onChange,
       atts,
       value,
-      parent
+      parent,
+      className
     } = props;
     if (children) {
       props.children = Object.fromEntries(Object.values(children).map((it, index2) => [index2, it.render({
@@ -3432,6 +4424,8 @@
         el.value = value;
       if (text != null)
         el.textContent = text;
+      if (className != null)
+        el.className = className;
       if (style)
         Object.entries(style).forEach(([key, val]) => el.style[key] = val);
       setListeners(props);
@@ -3515,24 +4509,38 @@
   };
 
   // client.js
-  if ("serviceWorker" in navigator) {
-    window.addEventListener("load", function() {
-      navigator.serviceWorker.register("/serviceWorker.js").then((res) => console.log("service worker registered")).catch((err) => console.log("service worker not registered", err));
-    });
+  if (false) {
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function() {
+        navigator.serviceWorker.register("/serviceWorker.js").then((res) => console.log("service worker registered")).catch((err) => console.log("service worker not registered", err));
+      });
+    }
   }
   var gun = (0, import_gun.default)({
     peers: ["https://santicgunrelay.herokuapp.com/gun", "http://localhost:3000/gun"]
   });
   window.gun = gun;
-  var index = new FlexSearch.Worker("performance");
-  gun.get("terms").map().once((term) => {
-    console.log("indexing ", term["_"]["#"]);
-    index.add(term["_"]["#"], term.text);
+  var Searchbar = Input({
+    className: "fullWidth p-1",
+    on_input: async (_, e) => {
+      const query = e.target.value;
+      if (!query) {
+        view(Object.values(terms));
+      } else {
+        const queryTerms = {};
+        const results = await index.search(query, {
+          pluck: "text"
+        });
+        console.log("results", results);
+        results.forEach((result) => gun.get(result).once((data) => {
+          queryTerms[result] = data;
+          view(Object.values(queryTerms));
+        }));
+      }
+    }
   });
-  var Searchbar = Row([Text("search:"), Input({
-    on_input: async (_, e) => console.log(e.target.value, await index.search(e.target.value))
-  })]);
-  var AddTerm = [Input({
+  var AddTerm = Row([Input({
+    className: "p-1",
     init: ({
       _inputVal
     }) => ({
@@ -3544,6 +4552,7 @@
       _inputVal: e.target.value
     })
   }), Button({
+    className: "p-1",
     text: "add term",
     on_click: ({
       _inputVal,
@@ -3558,18 +4567,40 @@
         _inputVal: ""
       });
     }
-  })];
-  var TermsList = (terms = []) => Column({
+  })]);
+  var TermsList = (terms2 = []) => Column({
+    className: "p-1",
     _inputVal: "",
-    children: terms.filter((term) => !term.deleted).map((term) => Text({
+    children: terms2.filter((term) => !term.deleted).map((term) => Text({
       text: term.text,
       on_dblclick: () => gun.get("terms/" + term.text).put({
         deleted: true
       })
     }))
   });
-  var view = (terms) => Column([Searchbar, TermsList(terms), ...AddTerm]).render({
-    el: document.querySelector("#root")
+  function view(terms2) {
+    return Column([Searchbar, TermsList(terms2), AddTerm]).render({
+      el: document.querySelector("#root")
+    });
+  }
+  var index = new import_flexsearch.Document({
+    tokenize: "full",
+    worker: true,
+    document: {
+      id: "id",
+      index: ["text"]
+    }
   });
-  gun.get("terms").open((terms) => view(Object.values(terms)).render());
+  var terms = {};
+  var total = 0;
+  gun.get("terms").map().on((term) => {
+    index.add({
+      id: term["_"]["#"],
+      text: term.text
+    });
+    terms[term["_"]["#"]] = term;
+    total++;
+    view(Object.values(terms));
+  });
+  setTimeout(() => console.log("indexed " + total + " terms"), 2e3);
 })();
