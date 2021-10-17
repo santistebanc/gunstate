@@ -3392,10 +3392,11 @@
     }
   }
   function render(passedProps = {}, prevProps = {}) {
-    const props = passedProps.init?.({
-      ...passedProps
-    }, prevProps) ?? {
-      ...passedProps
+    const props = {
+      ...passedProps,
+      ...passedProps.init?.({
+        ...passedProps
+      }, prevProps) ?? {}
     };
     assignRender(props);
     assignElement(props);
