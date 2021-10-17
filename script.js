@@ -6078,7 +6078,7 @@
     const query = e.target.value;
     const queryTerms = {};
     if (!query) {
-      view(Object.values(terms));
+      view(Object.values(terms).reverse());
     } else {
       const results = await index.search(query, {
         pluck: "text"
@@ -6190,7 +6190,7 @@
       });
       terms[term["_"]["#"]] = term;
     }
-    view(Object.values(terms));
+    view(Object.values(terms).reverse());
   });
   setTimeout(() => console.log("indexed " + Object.keys(terms).length + " terms"), 2e3);
   gun.get("room-name<?10").set("carlos");
