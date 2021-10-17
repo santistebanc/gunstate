@@ -3514,7 +3514,9 @@
   };
 
   // client.js
-  var gun = (0, import_gun.default)("https://santicgunrelay.herokuapp.com/gun");
+  var gun = (0, import_gun.default)({
+    peers: ["https://santicgunrelay.herokuapp.com/gun", "http://localhost:3000/gun"]
+  });
   window.gun = gun;
   var index = new FlexSearch.Worker("performance");
   gun.get("terms").map().once((term) => {
