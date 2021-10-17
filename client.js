@@ -2,6 +2,15 @@ import Gun from "gun";
 import "gun/lib/open.js";
 import { Button, Column, Input, Row, Text } from "./ui";
 
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function () {
+    navigator.serviceWorker
+      .register("/serviceWorker.js")
+      .then((res) => console.log("service worker registered"))
+      .catch((err) => console.log("service worker not registered", err));
+  });
+}
+
 const gun = Gun({
   peers: [
     "https://santicgunrelay.herokuapp.com/gun",
