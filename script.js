@@ -4462,7 +4462,8 @@
     } : args;
     return Component({
       style: {
-        display: "flex"
+        display: "flex",
+        ...props.style ?? {}
       },
       ...props
     });
@@ -4472,11 +4473,12 @@
       children: args
     } : args;
     return Component({
+      ...props,
       style: {
         display: "flex",
-        flexDirection: "column"
-      },
-      ...props
+        flexDirection: "column",
+        ...props.style ?? {}
+      }
     });
   };
   var Text = (args) => {
@@ -4527,6 +4529,9 @@
       value: _inputVal
     }),
     className: "p-1",
+    style: {
+      flex: 1
+    },
     on_input: async ({
       render: render2
     }, e) => {
@@ -4538,7 +4543,6 @@
         const results = await index.search(query, {
           pluck: "text"
         });
-        console.log("results", results);
         results.forEach((result) => gun.get(result).once((data) => {
           queryTerms[result] = data;
           view(Object.values(queryTerms));
@@ -4598,6 +4602,9 @@
   var TermsList = (terms2 = []) => Column({
     className: "p-1",
     _inputVal: "",
+    style: {
+      flexDirection: "column-reverse"
+    },
     children: terms2.filter((term) => !term.deleted).map((term) => Text({
       text: term.text,
       on_dblclick: () => gun.get("terms/" + term.text).put({
