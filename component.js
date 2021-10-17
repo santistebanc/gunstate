@@ -74,7 +74,17 @@ export function render(passedProps = {}, prevProps = {}) {
   assignRender(props);
   assignElement(props);
 
-  const { el, text, children, style, onChange, atts, value, parent } = props;
+  const {
+    el,
+    text,
+    children,
+    style,
+    onChange,
+    atts,
+    value,
+    parent,
+    className,
+  } = props;
 
   if (children) {
     props.children = Object.fromEntries(
@@ -102,9 +112,11 @@ export function render(passedProps = {}, prevProps = {}) {
     }
     if (value != null) el.value = value;
     if (text != null) el.textContent = text;
+    if (className != null) el.className = className;
     if (style)
       //TODO this doesnt delete previous styles
       Object.entries(style).forEach(([key, val]) => (el.style[key] = val));
+
     setListeners(props);
 
     if (parent?.el?.parentElement && !parent?.el.contains(el)) {

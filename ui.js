@@ -2,14 +2,17 @@ import { Component } from "./component";
 
 export const Row = (args) => {
   const props = Array.isArray(args) ? { children: args } : args;
-  return Component({ style: { display: "flex" }, ...props });
+  return Component({
+    style: { display: "flex", ...(props.style ?? {}) },
+    ...props,
+  });
 };
 
 export const Column = (args) => {
   const props = Array.isArray(args) ? { children: args } : args;
   return Component({
-    style: { display: "flex", flexDirection: "column" },
     ...props,
+    style: { display: "flex", flexDirection: "column", ...(props.style ?? {}) },
   });
 };
 

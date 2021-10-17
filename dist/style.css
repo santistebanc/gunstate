@@ -3,16 +3,43 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-body {
-  background: #fdfdfd;
   font-family: "Nunito", sans-serif;
   font-size: 1rem;
 }
-h1 {
-  color: #e74c3c;
-  margin-bottom: 0.5rem;
+body {
+  background: #fdfdfd;
 }
-#root {
-  margin: 0.5rem;
+input {
+  border: 0;
+  outline: solid 1px grey;
+}
+button {
+  border: 0;
+  outline: solid 1px grey;
+}
+.fullWidth {
+  width: 100%;
+}
+.p-1 {
+  padding: 0.5rem;
+}
+.pr-1 {
+  padding-right: 0.5rem;
+}
+.pt-1 {
+  padding-top: 0.5rem;
+}
+.pb-1 {
+  padding-bottom: 0.5rem;
+}
+.pl-1 {
+  padding-left: 0.5rem;
+}
+.px-1 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+.py-1 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
