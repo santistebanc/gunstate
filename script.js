@@ -3498,7 +3498,8 @@
     return Component({
       tag: "input",
       atts: {
-        type: "text"
+        type: "text",
+        autocapitalize: "none"
       },
       ...props
     });
