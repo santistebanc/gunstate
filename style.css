@@ -13,6 +13,10 @@ input {
   border: 0;
   outline: solid 1px grey;
 }
+button {
+  border: 0;
+  outline: solid 1px grey;
+}
 .fullWidth {
   width: 100%;
 }

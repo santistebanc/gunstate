@@ -4256,73 +4256,1622 @@
     }
   });
 
+  // node_modules/gun/lib/radix.js
+  var require_radix = __commonJS({
+    "node_modules/gun/lib/radix.js"(exports2, module2) {
+      (function() {
+        function Radix() {
+          var radix = function(key, val, t2) {
+            radix.unit = 0;
+            if (!t2 && u2 !== val) {
+              radix.last = "" + key < radix.last ? radix.last : "" + key;
+              delete (radix.$ || {})[_];
+            }
+            t2 = t2 || radix.$ || (radix.$ = {});
+            if (!key && Object.keys(t2).length) {
+              return t2;
+            }
+            key = "" + key;
+            var i = 0, l = key.length - 1, k = key[i], at, tmp;
+            while (!(at = t2[k]) && i < l) {
+              k += key[++i];
+            }
+            if (!at) {
+              if (!each(t2, function(r, s) {
+                var ii = 0, kk = "";
+                if ((s || "").length) {
+                  while (s[ii] == key[ii]) {
+                    kk += s[ii++];
+                  }
+                }
+                if (kk) {
+                  if (u2 === val) {
+                    if (ii <= l) {
+                      return;
+                    }
+                    (tmp || (tmp = {}))[s.slice(ii)] = r;
+                    return r;
+                  }
+                  var __ = {};
+                  __[s.slice(ii)] = r;
+                  ii = key.slice(ii);
+                  ii === "" ? __[""] = val : (__[ii] = {})[""] = val;
+                  t2[kk] = __;
+                  if (Radix.debug && "" + kk === "undefined") {
+                    console.log(0, kk);
+                    debugger;
+                  }
+                  delete t2[s];
+                  return true;
+                }
+              })) {
+                if (u2 === val) {
+                  return;
+                }
+                (t2[k] || (t2[k] = {}))[""] = val;
+                if (Radix.debug && "" + k === "undefined") {
+                  console.log(1, k);
+                  debugger;
+                }
+              }
+              if (u2 === val) {
+                return tmp;
+              }
+            } else if (i == l) {
+              if (u2 === val) {
+                return u2 === (tmp = at[""]) ? at : (radix.unit = 1) && tmp;
+              }
+              at[""] = val;
+            } else {
+              if (u2 !== val) {
+                delete at[_];
+              }
+              return radix(key.slice(++i), val, at || (at = {}));
+            }
+          };
+          return radix;
+        }
+        ;
+        Radix.map = function rap(radix, cb, opt, pre) {
+          pre = pre || [];
+          var t2 = typeof radix == "function" ? radix.$ || {} : radix;
+          if (!t2) {
+            return;
+          }
+          if (typeof t2 == "string") {
+            if (Radix.debug) {
+              throw ["BUG:", radix, cb, opt, pre];
+            }
+            return;
+          }
+          var keys = (t2[_] || no).sort || (t2[_] = function $() {
+            $.sort = Object.keys(t2).sort();
+            return $;
+          }()).sort, rev;
+          opt = opt === true ? {
+            branch: true
+          } : opt || {};
+          if (rev = opt.reverse) {
+            keys = keys.slice(0).reverse();
+          }
+          var start = opt.start, end = opt.end, END = "\uFFFF";
+          var i = 0, l = keys.length;
+          for (; i < l; i++) {
+            var key = keys[i], tree = t2[key], tmp, p, pt;
+            if (!tree || key === "" || _ === key) {
+              continue;
+            }
+            p = pre.slice(0);
+            p.push(key);
+            pt = p.join("");
+            if (u2 !== start && pt < (start || "").slice(0, pt.length)) {
+              continue;
+            }
+            if (u2 !== end && (end || END) < pt) {
+              continue;
+            }
+            if (rev) {
+              tmp = rap(tree, cb, opt, p);
+              if (u2 !== tmp) {
+                return tmp;
+              }
+            }
+            if (u2 !== (tmp = tree[""])) {
+              var yes = 1;
+              if (u2 !== start && pt < (start || "")) {
+                yes = 0;
+              }
+              if (u2 !== end && pt > (end || END)) {
+                yes = 0;
+              }
+              if (yes) {
+                tmp = cb(tmp, pt, key, pre);
+                if (u2 !== tmp) {
+                  return tmp;
+                }
+              }
+            } else if (opt.branch) {
+              tmp = cb(u2, pt, key, pre);
+              if (u2 !== tmp) {
+                return tmp;
+              }
+            }
+            pre = p;
+            if (!rev) {
+              tmp = rap(tree, cb, opt, pre);
+              if (u2 !== tmp) {
+                return tmp;
+              }
+            }
+            pre.pop();
+          }
+        };
+        if (typeof window !== "undefined") {
+          window.Radix = Radix;
+        } else {
+          try {
+            module2.exports = Radix;
+          } catch (e) {
+          }
+        }
+        var each = Radix.object = function(o, f, r) {
+          for (var k in o) {
+            if (!o.hasOwnProperty(k)) {
+              continue;
+            }
+            if ((r = f(o[k], k)) !== u2) {
+              return r;
+            }
+          }
+        }, no = {}, u2;
+        var _ = String.fromCharCode(24);
+      })();
+    }
+  });
+
+  // node_modules/gun/lib/yson.js
+  var require_yson = __commonJS({
+    "node_modules/gun/lib/yson.js"(exports2, module2) {
+      (function() {
+        var yson = {}, u2, sI = setTimeout.turn || typeof setImmediate != "" + u2 && setImmediate || setTimeout;
+        yson.parseAsync = function(text, done, revive, M2) {
+          if (typeof text != "string") {
+            try {
+              done(u2, JSON.parse(text));
+            } catch (e) {
+              done(e);
+            }
+            return;
+          }
+          var ctx = {
+            i: 0,
+            text,
+            done,
+            l: text.length,
+            up: []
+          };
+          M2 = M2 || 1024 * 32;
+          parse();
+          function parse() {
+            var s = ctx.text;
+            var i = ctx.i, l = ctx.l, j = 0;
+            var w = ctx.w, b2, tmp;
+            while (j++ < M2) {
+              var c2 = s[i++];
+              if (i > l) {
+                ctx.end = true;
+                break;
+              }
+              if (w) {
+                i = s.indexOf('"', i - 1);
+                c2 = s[i];
+                tmp = s[i - 1] == "\\";
+                b2 = b2 || tmp;
+                if (c2 == '"' && !tmp) {
+                  w = u2;
+                  tmp = ctx.s;
+                  if (ctx.a) {
+                    tmp = s.slice(ctx.sl, i);
+                    if (b2 || 1 + tmp.indexOf("\\u")) {
+                      tmp = JSON.parse('"' + tmp + '"');
+                    }
+                    if (ctx.at instanceof Array) {
+                      ctx.at.push(ctx.s = tmp);
+                    } else {
+                      if (!ctx.at) {
+                        ctx.end = j = M2;
+                        tmp = u2;
+                      }
+                      (ctx.at || {})[ctx.s] = ctx.s = tmp;
+                    }
+                  } else {
+                    ctx.s = s.slice(ctx.sl, i);
+                    if (b2 || 1 + ctx.s.indexOf("\\u")) {
+                      ctx.s = JSON.parse('"' + ctx.s + '"');
+                    }
+                  }
+                  ctx.a = b2 = u2;
+                }
+                ++i;
+              } else {
+                switch (c2) {
+                  case '"':
+                    ctx.sl = i;
+                    w = true;
+                    break;
+                  case ":":
+                    ctx.ai = i;
+                    ctx.a = true;
+                    break;
+                  case ",":
+                    if (ctx.a || ctx.at instanceof Array) {
+                      if (tmp = s.slice(ctx.ai, i - 1)) {
+                        if (u2 !== (tmp = value(tmp))) {
+                          if (ctx.at instanceof Array) {
+                            ctx.at.push(tmp);
+                          } else {
+                            ctx.at[ctx.s] = tmp;
+                          }
+                        }
+                      }
+                    }
+                    ctx.a = u2;
+                    if (ctx.at instanceof Array) {
+                      ctx.a = true;
+                      ctx.ai = i;
+                    }
+                    break;
+                  case "{":
+                    ctx.up.push(ctx.at || (ctx.at = {}));
+                    if (ctx.at instanceof Array) {
+                      ctx.at.push(ctx.at = {});
+                    } else if (u2 !== (tmp = ctx.s)) {
+                      ctx.at[tmp] = ctx.at = {};
+                    }
+                    ctx.a = u2;
+                    break;
+                  case "}":
+                    if (ctx.a) {
+                      if (tmp = s.slice(ctx.ai, i - 1)) {
+                        if (u2 !== (tmp = value(tmp))) {
+                          if (ctx.at instanceof Array) {
+                            ctx.at.push(tmp);
+                          } else {
+                            if (!ctx.at) {
+                              ctx.end = j = M2;
+                              tmp = u2;
+                            }
+                            (ctx.at || {})[ctx.s] = tmp;
+                          }
+                        }
+                      }
+                    }
+                    ctx.a = u2;
+                    ctx.at = ctx.up.pop();
+                    break;
+                  case "[":
+                    if (u2 !== (tmp = ctx.s)) {
+                      ctx.up.push(ctx.at);
+                      ctx.at[tmp] = ctx.at = [];
+                    } else if (!ctx.at) {
+                      ctx.up.push(ctx.at = []);
+                    }
+                    ctx.a = true;
+                    ctx.ai = i;
+                    break;
+                  case "]":
+                    if (ctx.a) {
+                      if (tmp = s.slice(ctx.ai, i - 1)) {
+                        if (u2 !== (tmp = value(tmp))) {
+                          if (ctx.at instanceof Array) {
+                            ctx.at.push(tmp);
+                          } else {
+                            ctx.at[ctx.s] = tmp;
+                          }
+                        }
+                      }
+                    }
+                    ctx.a = u2;
+                    ctx.at = ctx.up.pop();
+                    break;
+                }
+              }
+            }
+            ctx.s = u2;
+            ctx.i = i;
+            ctx.w = w;
+            if (ctx.end) {
+              tmp = ctx.at;
+              if (u2 === tmp) {
+                try {
+                  tmp = JSON.parse(text);
+                } catch (e) {
+                  return ctx.done(e);
+                }
+              }
+              ctx.done(u2, tmp);
+            } else {
+              sI(parse);
+            }
+          }
+        };
+        function value(s) {
+          var n = parseFloat(s);
+          if (!isNaN(n)) {
+            return n;
+          }
+          s = s.trim();
+          if (s == "true") {
+            return true;
+          }
+          if (s == "false") {
+            return false;
+          }
+          if (s == "null") {
+            return null;
+          }
+        }
+        yson.stringifyAsync = function(data, done, replacer, space, ctx) {
+          ctx = ctx || {};
+          ctx.text = ctx.text || "";
+          ctx.up = [ctx.at = {
+            d: data
+          }];
+          ctx.done = done;
+          ctx.i = 0;
+          var j = 0;
+          ify();
+          function ify() {
+            var at = ctx.at, data2 = at.d, add = "", tmp;
+            if (at.i && at.i - at.j > 0) {
+              add += ",";
+            }
+            if (u2 !== (tmp = at.k)) {
+              add += JSON.stringify(tmp) + ":";
+            }
+            switch (typeof data2) {
+              case "boolean":
+                add += "" + data2;
+                break;
+              case "string":
+                add += JSON.stringify(data2);
+                break;
+              case "number":
+                add += data2;
+                break;
+              case "object":
+                if (!data2) {
+                  add += "null";
+                  break;
+                }
+                if (data2 instanceof Array) {
+                  add += "[";
+                  at = {
+                    i: -1,
+                    as: data2,
+                    up: at,
+                    j: 0
+                  };
+                  at.l = data2.length;
+                  ctx.up.push(ctx.at = at);
+                  break;
+                }
+                if (typeof (data2 || "").toJSON != "function") {
+                  add += "{";
+                  at = {
+                    i: -1,
+                    ok: Object.keys(data2).sort(),
+                    as: data2,
+                    up: at,
+                    j: 0
+                  };
+                  at.l = at.ok.length;
+                  ctx.up.push(ctx.at = at);
+                  break;
+                }
+                if (tmp = data2.toJSON()) {
+                  add += tmp;
+                  break;
+                }
+              case "function":
+                if (at.as instanceof Array) {
+                  add += "null";
+                  break;
+                }
+              default:
+                add = "";
+                at.j++;
+            }
+            ctx.text += add;
+            while (1 + at.i >= at.l) {
+              ctx.text += at.ok ? "}" : "]";
+              at = ctx.at = at.up;
+            }
+            if (++at.i < at.l) {
+              if (tmp = at.ok) {
+                at.d = at.as[at.k = tmp[at.i]];
+              } else {
+                at.d = at.as[at.i];
+              }
+              if (++j < 9) {
+                return ify();
+              } else {
+                j = 0;
+              }
+              sI(ify);
+              return;
+            }
+            ctx.done(u2, ctx.text);
+          }
+        };
+        if (typeof window != "" + u2) {
+          window.YSON = yson;
+        }
+        try {
+          if (typeof module2 != "" + u2) {
+            module2.exports = yson;
+          }
+        } catch (e) {
+        }
+        if (typeof JSON != "" + u2) {
+          JSON.parseAsync = yson.parseAsync;
+          JSON.stringifyAsync = yson.stringifyAsync;
+        }
+      })();
+    }
+  });
+
+  // node_modules/gun/lib/radmigtmp.js
+  var require_radmigtmp = __commonJS({
+    "node_modules/gun/lib/radmigtmp.js"(exports2, module2) {
+      module2.exports = function(r) {
+        var Radix = require_radix();
+        r.find("a", function() {
+          var l = [];
+          Radix.map(r.list, function(v3, f2) {
+            if (!(f2.indexOf("%1B") + 1)) {
+              return;
+            }
+            if (!v3) {
+              return;
+            }
+            l.push([f2, v3]);
+          });
+          if (l.length) {
+            console.log("\n! ! ! WARNING ! ! !\nRAD v0.2020.x has detected OLD v0.2019.x data & automatically migrating. Automatic migration will be turned OFF in future versions! If you are just developing/testing, we recommend you reset your data. Please contact us if you have any concerns.\nThis message should only log once.");
+          }
+          var f, v2;
+          l.forEach(function(a2) {
+            f = a2[0];
+            v2 = a2[1];
+            r.list(decodeURIComponent(f), v2);
+            r.list(f, 0);
+          });
+          if (!f) {
+            return;
+          }
+          r.find.bad(f);
+        });
+      };
+    }
+  });
+
+  // node_modules/gun/lib/radisk.js
+  var require_radisk = __commonJS({
+    "node_modules/gun/lib/radisk.js"(exports2, module2) {
+      (function() {
+        function Radisk(opt) {
+          opt = opt || {};
+          opt.log = opt.log || console.log;
+          opt.file = String(opt.file || "radata");
+          var has = (Radisk.has || (Radisk.has = {}))[opt.file];
+          if (has) {
+            return has;
+          }
+          opt.max = opt.max || (opt.memory ? opt.memory * 999 * 999 : 3e8) * 0.3;
+          opt.until = opt.until || opt.wait || 250;
+          opt.batch = opt.batch || 10 * 1e3;
+          opt.chunk = opt.chunk || 1024 * 1024 * 1;
+          opt.code = opt.code || {};
+          opt.code.from = opt.code.from || "!";
+          opt.jsonify = true;
+          function ename(t2) {
+            return encodeURIComponent(t2).replace(/\*/g, "%2A");
+          }
+          function atomic(v2) {
+            return u2 !== v2 && (!v2 || typeof v2 != "object");
+          }
+          var timediate = "" + u2 === typeof setImmediate ? setTimeout : setImmediate;
+          var puff = setTimeout.turn || timediate, u2;
+          var map = Radix.object;
+          var ST = 0;
+          if (!opt.store) {
+            return opt.log("ERROR: Radisk needs `opt.store` interface with `{get: fn, put: fn (, list: fn)}`!");
+          }
+          if (!opt.store.put) {
+            return opt.log("ERROR: Radisk needs `store.put` interface with `(file, data, cb)`!");
+          }
+          if (!opt.store.get) {
+            return opt.log("ERROR: Radisk needs `store.get` interface with `(file, cb)`!");
+          }
+          if (!opt.store.list) {
+          }
+          if ("" + u2 != typeof __require) {
+            require_yson();
+          }
+          var parse = JSON.parseAsync || function(t2, cb, r2) {
+            var u3;
+            try {
+              cb(u3, JSON.parse(t2, r2));
+            } catch (e) {
+              cb(e);
+            }
+          };
+          var json = JSON.stringifyAsync || function(v2, cb, r2, s) {
+            var u3;
+            try {
+              cb(u3, JSON.stringify(v2, r2, s));
+            } catch (e) {
+              cb(e);
+            }
+          };
+          var r = function(key, data, cb, tag, DBG) {
+            if (typeof data === "function") {
+              var o = cb || {};
+              cb = data;
+              r.read(key, cb, o, DBG || tag);
+              return;
+            }
+            r.save(key, data, cb, tag, DBG);
+          };
+          r.save = function(key, data, cb, tag, DBG) {
+            var s = {
+              key
+            }, tags, f, d2, q;
+            s.find = function(file) {
+              var tmp;
+              s.file = file || (file = opt.code.from);
+              DBG && (DBG = DBG[file] = DBG[file] || {});
+              DBG && (DBG.sf = DBG.sf || +new Date());
+              if (tmp = r.disk[file]) {
+                s.mix(u2, tmp);
+                return;
+              }
+              r.parse(file, s.mix, u2, DBG);
+            };
+            s.mix = function(err, disk) {
+              DBG && (DBG.sml = +new Date());
+              DBG && (DBG.sm = DBG.sm || +new Date());
+              if (s.err = err || s.err) {
+                cb(err);
+                return;
+              }
+              var file = s.file = (disk || "").file || s.file, tmp;
+              if (!disk && file !== opt.code.from) {
+                r.find.bad(file);
+                r.save(key, data, cb, tag);
+                return;
+              }
+              (disk = r.disk[file] || (r.disk[file] = disk || Radix())).file || (disk.file = file);
+              if (opt.compare) {
+                data = opt.compare(disk(key), data, key, file);
+                if (u2 === data) {
+                  cb(err, -1);
+                  return;
+                }
+              }
+              (s.disk = disk)(key, data);
+              if (tag) {
+                (tmp = (tmp = disk.tags || (disk.tags = {}))[tag] || (tmp[tag] = r.tags[tag] || (r.tags[tag] = {})))[file] || (tmp[file] = r.one[tag] || (r.one[tag] = cb));
+                cb = null;
+              }
+              DBG && (DBG.st = DBG.st || +new Date());
+              if (disk.Q) {
+                cb && disk.Q.push(cb);
+                return;
+              }
+              disk.Q = cb ? [cb] : [];
+              disk.to = setTimeout(s.write, opt.until);
+            };
+            s.write = function() {
+              DBG && (DBG.sto = DBG.sto || +new Date());
+              var file = f = s.file, disk = d2 = s.disk;
+              q = s.q = disk.Q;
+              tags = s.tags = disk.tags;
+              delete disk.Q;
+              delete r.disk[file];
+              delete disk.tags;
+              r.write(file, disk, s.ack, u2, DBG);
+            };
+            s.ack = function(err, ok) {
+              DBG && (DBG.sa = DBG.sa || +new Date());
+              DBG && (DBG.sal = q.length);
+              var ack, tmp;
+              for (var id in r.tags) {
+                if (!r.tags.hasOwnProperty(id)) {
+                  continue;
+                }
+                var tag2 = r.tags[id];
+                if ((tmp = r.disk[f]) && (tmp = tmp.tags) && tmp[tag2]) {
+                  continue;
+                }
+                ack = tag2[f];
+                delete tag2[f];
+                var ne;
+                for (var k in tag2) {
+                  if (tag2.hasOwnProperty(k)) {
+                    ne = true;
+                    break;
+                  }
+                }
+                if (ne) {
+                  continue;
+                }
+                delete r.tags[tag2];
+                ack && ack(err, ok);
+              }
+              !q && (q = "");
+              var l = q.length, i = 0;
+              var S2 = +new Date();
+              for (; i < l; i++) {
+                (ack = q[i]) && ack(err, ok);
+              }
+              console.STAT && console.STAT(S2, +new Date() - S2, "rad acks", ename(s.file));
+              console.STAT && console.STAT(S2, q.length, "rad acks #", ename(s.file));
+            };
+            cb || (cb = function(err, ok) {
+              if (!err) {
+                return;
+              }
+            });
+            r.find(key, s.find);
+          };
+          r.disk = {};
+          r.one = {};
+          r.tags = {};
+          var RWC = 0;
+          r.write = function(file, rad, cb, o, DBG) {
+            if (!rad) {
+              cb("No radix!");
+              return;
+            }
+            o = typeof o == "object" ? o : {
+              force: o
+            };
+            var f = function Fractal() {
+            }, a2, b2;
+            f.text = "";
+            f.file = file = rad.file || (rad.file = file);
+            if (!file) {
+              cb("What file?");
+              return;
+            }
+            f.write = function() {
+              var text = rad.raw = f.text;
+              r.disk[file = rad.file || f.file || file] = rad;
+              var S2 = +new Date();
+              DBG && (DBG.wd = S2);
+              r.find.add(file, function add(err) {
+                DBG && (DBG.wa = +new Date());
+                if (err) {
+                  cb(err);
+                  return;
+                }
+                opt.store.put(ename(file), text, function safe(err2, ok) {
+                  DBG && (DBG.wp = +new Date());
+                  console.STAT && console.STAT(S2, ST = +new Date() - S2, "wrote disk", JSON.stringify(file), ++RWC, "total all writes.");
+                  cb(err2, ok || 1);
+                  if (!rad.Q) {
+                    delete r.disk[file];
+                  }
+                });
+              });
+            };
+            f.split = function() {
+              var S2 = +new Date();
+              DBG && (DBG.wf = S2);
+              f.text = "";
+              if (!f.count) {
+                f.count = 0;
+                Radix.map(rad, function count() {
+                  f.count++;
+                });
+              }
+              DBG && (DBG.wfc = f.count);
+              f.limit = Math.ceil(f.count / 2);
+              var SC = f.count;
+              f.count = 0;
+              DBG && (DBG.wf1 = +new Date());
+              f.sub = Radix();
+              Radix.map(rad, f.slice, {
+                reverse: 1
+              });
+              DBG && (DBG.wf2 = +new Date());
+              r.write(f.end, f.sub, f.both, o);
+              DBG && (DBG.wf3 = +new Date());
+              f.hub = Radix();
+              Radix.map(rad, f.stop);
+              DBG && (DBG.wf4 = +new Date());
+              r.write(rad.file, f.hub, f.both, o);
+              DBG && (DBG.wf5 = +new Date());
+              console.STAT && console.STAT(S2, +new Date() - S2, "rad split", ename(rad.file), SC);
+              return true;
+            };
+            f.slice = function(val, key) {
+              f.sub(f.end = key, val);
+              if (f.limit <= ++f.count) {
+                return true;
+              }
+            };
+            f.stop = function(val, key) {
+              if (key >= f.end) {
+                return true;
+              }
+              f.hub(key, val);
+            };
+            f.both = function(err, ok) {
+              DBG && (DBG.wfd = +new Date());
+              if (b2) {
+                cb(err || b2);
+                return;
+              }
+              if (a2) {
+                cb(err, ok);
+                return;
+              }
+              a2 = true;
+              b2 = err;
+            };
+            f.each = function(val, key, k, pre) {
+              if (u2 !== val) {
+                f.count++;
+              }
+              if (opt.max <= (val || "").length) {
+                return cb("Data too big!"), true;
+              }
+              var enc = Radisk.encode(pre.length) + "#" + Radisk.encode(k) + (u2 === val ? "" : ":" + Radisk.encode(val)) + "\n";
+              if (opt.chunk < f.text.length + enc.length && 1 < f.count && !o.force) {
+                return f.split();
+              }
+              f.text += enc;
+            };
+            if (opt.jsonify) {
+              r.write.jsonify(f, rad, cb, o, DBG);
+              return;
+            }
+            if (!Radix.map(rad, f.each, true)) {
+              f.write();
+            }
+          };
+          r.write.jsonify = function(f, rad, cb, o, DBG) {
+            var raw;
+            var S2 = +new Date();
+            DBG && (DBG.w = S2);
+            try {
+              raw = JSON.stringify(rad.$);
+            } catch (e) {
+              cb("Cannot radisk!");
+              return;
+            }
+            DBG && (DBG.ws = +new Date());
+            console.STAT && console.STAT(S2, +new Date() - S2, "rad stringified JSON");
+            if (opt.chunk < raw.length && !o.force) {
+              var c2 = 0;
+              Radix.map(rad, function() {
+                if (c2++) {
+                  return true;
+                }
+              });
+              if (c2 > 1) {
+                return f.split();
+              }
+            }
+            f.text = raw;
+            f.write();
+          };
+          r.range = function(tree, o) {
+            if (!tree || !o) {
+              return;
+            }
+            if (u2 === o.start && u2 === o.end) {
+              return tree;
+            }
+            if (atomic(tree)) {
+              return tree;
+            }
+            var sub = Radix();
+            Radix.map(tree, function(v2, k) {
+              sub(k, v2);
+            }, o);
+            return sub("");
+          };
+          (function() {
+            r.read = function(key, cb, o, DBG) {
+              o = o || {};
+              var g = {
+                key
+              };
+              g.find = function(file) {
+                var tmp;
+                g.file = file || (file = opt.code.from);
+                DBG && (DBG = DBG[file] = DBG[file] || {});
+                DBG && (DBG.rf = DBG.rf || +new Date());
+                if (tmp = r.disk[g.file = file]) {
+                  g.check(u2, tmp);
+                  return;
+                }
+                r.parse(file, g.check, u2, DBG);
+              };
+              g.get = function(err, disk, info) {
+                DBG && (DBG.rgl = +new Date());
+                DBG && (DBG.rg = DBG.rg || +new Date());
+                if (g.err = err || g.err) {
+                  cb(err);
+                  return;
+                }
+                var file = g.file = (disk || "").file || g.file;
+                if (!disk && file !== opt.code.from) {
+                  r.find.bad(file);
+                  r.read(key, cb, o);
+                  return;
+                }
+                disk = r.disk[file] || (r.disk[file] = disk);
+                if (!disk) {
+                  cb(file === opt.code.from ? u2 : "No file!");
+                  return;
+                }
+                disk.file || (disk.file = file);
+                var data = r.range(disk(key), o);
+                DBG && (DBG.rr = +new Date());
+                o.unit = disk.unit;
+                o.chunks = (o.chunks || 0) + 1;
+                o.parsed = (o.parsed || 0) + ((info || "").parsed || o.chunks * opt.chunk);
+                o.more = 1;
+                o.next = u2;
+                Radix.map(r.list, function next2(v2, f) {
+                  if (!v2 || file === f) {
+                    return;
+                  }
+                  o.next = f;
+                  return 1;
+                }, o.reverse ? {
+                  reverse: 1,
+                  end: file
+                } : {
+                  start: file
+                });
+                DBG && (DBG.rl = +new Date());
+                if (!o.next) {
+                  o.more = 0;
+                }
+                if (o.next) {
+                  if (!o.reverse && (key < o.next && o.next.indexOf(key) != 0 || u2 !== o.end && (o.end || "\uFFFF") < o.next)) {
+                    o.more = 0;
+                  }
+                  if (o.reverse && (key > o.next && key.indexOf(o.next) != 0 || u2 !== o.start && (o.start || "") > o.next && file <= o.start)) {
+                    o.more = 0;
+                  }
+                }
+                if (!o.more) {
+                  cb(g.err, data, o);
+                  return;
+                }
+                if (data) {
+                  cb(g.err, data, o);
+                }
+                if (o.parsed >= o.limit) {
+                  return;
+                }
+                var S2 = +new Date();
+                DBG && (DBG.rm = S2);
+                var next = o.next;
+                timediate(function() {
+                  console.STAT && console.STAT(S2, +new Date() - S2, "rad more");
+                  r.parse(next, g.check);
+                }, 0);
+              };
+              g.check = function(err, disk, info) {
+                g.get(err, disk, info);
+                if (!disk || disk.check) {
+                  return;
+                }
+                disk.check = 1;
+                var S2 = +new Date();
+                (info || (info = {})).file || (info.file = g.file);
+                Radix.map(disk, function(val, key2) {
+                  r.find(key2, function(file) {
+                    if ((file || (file = opt.code.from)) === info.file) {
+                      return;
+                    }
+                    var id = ("" + Math.random()).slice(-3);
+                    puff(function() {
+                      r.save(key2, val, function ack(err2, ok) {
+                        if (err2) {
+                          r.save(key2, val, ack);
+                          return;
+                        }
+                        console.STAT && console.STAT("MISLOCATED DATA CORRECTED", id, ename(key2), ename(info.file), ename(file));
+                      });
+                    }, 0);
+                  });
+                });
+                console.STAT && console.STAT(S2, +new Date() - S2, "rad check");
+              };
+              r.find(key || (o.reverse ? o.end || "" : o.start || ""), g.find);
+            };
+            function rev(a2, b2) {
+              return b2;
+            }
+            var revo = {
+              reverse: true
+            };
+          })();
+          ;
+          (function() {
+            var RPC = 0;
+            var Q2 = {}, s = String.fromCharCode(31);
+            r.parse = function(file, cb, raw, DBG) {
+              var q;
+              if (!file) {
+                return cb();
+              }
+              if (q = Q2[file]) {
+                q.push(cb);
+                return;
+              }
+              q = Q2[file] = [cb];
+              var p = function Parse() {
+              }, info = {
+                file
+              };
+              (p.disk = Radix()).file = file;
+              p.read = function(err, data) {
+                var tmp;
+                DBG && (DBG.rpg = +new Date());
+                console.STAT && console.STAT(S2, +new Date() - S2, "read disk", JSON.stringify(file), ++RPC, "total all parses.");
+                if ((p.err = err) || (p.not = !data)) {
+                  delete Q2[file];
+                  p.map(q, p.ack);
+                  return;
+                }
+                if (typeof data !== "string") {
+                  try {
+                    if (opt.max <= data.length) {
+                      p.err = "Chunk too big!";
+                    } else {
+                      data = data.toString();
+                    }
+                  } catch (e) {
+                    p.err = e;
+                  }
+                  if (p.err) {
+                    delete Q2[file];
+                    p.map(q, p.ack);
+                    return;
+                  }
+                }
+                info.parsed = data.length;
+                DBG && (DBG.rpl = info.parsed);
+                DBG && (DBG.rpa = q.length);
+                S2 = +new Date();
+                if (!(opt.jsonify || data[0] === "{")) {
+                  p.radec(err, data);
+                  return;
+                }
+                parse(data, function(err2, tree) {
+                  if (!err2) {
+                    delete Q2[file];
+                    p.disk.$ = tree;
+                    console.STAT && (ST = +new Date() - S2) > 9 && console.STAT(S2, ST, "rad parsed JSON");
+                    DBG && (DBG.rpd = +new Date());
+                    p.map(q, p.ack);
+                    return;
+                  }
+                  if (data[0] === "{") {
+                    delete Q2[file];
+                    p.err = tmp || "JSON error!";
+                    p.map(q, p.ack);
+                    return;
+                  }
+                  p.radec(err2, data);
+                });
+              };
+              p.map = function() {
+                if (!q || !q.length) {
+                  return;
+                }
+                var S3 = +new Date();
+                var err = p.err, data = p.not ? u2 : p.disk;
+                var i = 0, ack;
+                while (i < 9 && (ack = q[i++])) {
+                  ack(err, data, info);
+                }
+                console.STAT && console.STAT(S3, +new Date() - S3, "rad packs", ename(file));
+                console.STAT && console.STAT(S3, i, "rad packs #", ename(file));
+                if (!(q = q.slice(i)).length) {
+                  return;
+                }
+                puff(p.map, 0);
+              };
+              p.ack = function(cb2) {
+                if (!cb2) {
+                  return;
+                }
+                if (p.err || p.not) {
+                  cb2(p.err, u2, info);
+                  return;
+                }
+                cb2(u2, p.disk, info);
+              };
+              p.radec = function(err, data) {
+                delete Q2[file];
+                S2 = +new Date();
+                var tmp = p.split(data), pre = [], i, k, v2;
+                if (!tmp || tmp[1] !== 0) {
+                  p.err = "File '" + file + "' does not have root radix! ";
+                  p.map(q, p.ack);
+                  return;
+                }
+                while (tmp) {
+                  k = v2 = u2;
+                  i = tmp[1];
+                  tmp = p.split(tmp[2]) || "";
+                  if (tmp[0] == "#") {
+                    k = tmp[1];
+                    pre = pre.slice(0, i);
+                    if (i <= pre.length) {
+                      pre.push(k);
+                    }
+                  }
+                  tmp = p.split(tmp[2]) || "";
+                  if (tmp[0] == "\n") {
+                    continue;
+                  }
+                  if (tmp[0] == "=" || tmp[0] == ":") {
+                    v2 = tmp[1];
+                  }
+                  if (u2 !== k && u2 !== v2) {
+                    p.disk(pre.join(""), v2);
+                  }
+                  tmp = p.split(tmp[2]);
+                }
+                console.STAT && console.STAT(S2, +new Date() - S2, "parsed RAD");
+                p.map(q, p.ack);
+              };
+              p.split = function(t2) {
+                if (!t2) {
+                  return;
+                }
+                var l = [], o = {}, i = -1, a2 = "", b2, c2;
+                i = t2.indexOf(s);
+                if (!t2[i]) {
+                  return;
+                }
+                a2 = t2.slice(0, i);
+                l[0] = a2;
+                l[1] = b2 = Radisk.decode(t2.slice(i), o);
+                l[2] = t2.slice(i + o.i);
+                return l;
+              };
+              if (r.disk) {
+                raw || (raw = (r.disk[file] || "").raw);
+              }
+              var S2 = +new Date(), SM, SL;
+              DBG && (DBG.rp = S2);
+              if (raw) {
+                return puff(function() {
+                  p.read(u2, raw);
+                }, 0);
+              }
+              opt.store.get(ename(file), p.read);
+            };
+          })();
+          ;
+          (function() {
+            var dir, f = String.fromCharCode(28), Q2;
+            r.find = function(key, cb) {
+              if (!dir) {
+                if (Q2) {
+                  Q2.push([key, cb]);
+                  return;
+                }
+                Q2 = [[key, cb]];
+                r.parse(f, init);
+                return;
+              }
+              Radix.map(r.list = dir, function(val, key2) {
+                if (!val) {
+                  return;
+                }
+                return cb(key2) || true;
+              }, {
+                reverse: 1,
+                end: key
+              }) || cb(opt.code.from);
+            };
+            r.find.add = function(file, cb) {
+              var has2 = dir(file);
+              if (has2 || file === f) {
+                cb(u2, 1);
+                return;
+              }
+              dir(file, 1);
+              cb.found = (cb.found || 0) + 1;
+              r.write(f, dir, function(err, ok) {
+                if (err) {
+                  cb(err);
+                  return;
+                }
+                cb.found = (cb.found || 0) - 1;
+                if (cb.found !== 0) {
+                  return;
+                }
+                cb(u2, 1);
+              }, true);
+            };
+            r.find.bad = function(file, cb) {
+              dir(file, 0);
+              r.write(f, dir, cb || noop);
+            };
+            function init(err, disk) {
+              if (err) {
+                opt.log("list", err);
+                setTimeout(function() {
+                  r.parse(f, init);
+                }, 1e3);
+                return;
+              }
+              if (disk) {
+                drain(disk);
+                return;
+              }
+              dir = dir || disk || Radix();
+              if (!opt.store.list) {
+                drain(dir);
+                return;
+              }
+              opt.store.list(function(file) {
+                if (!file) {
+                  drain(dir);
+                  return;
+                }
+                r.find.add(file, noop);
+              });
+            }
+            function drain(rad, tmp) {
+              dir = dir || rad;
+              dir.file = f;
+              tmp = Q2;
+              Q2 = null;
+              map(tmp, function(arg) {
+                r.find(arg[0], arg[1]);
+              });
+            }
+          })();
+          try {
+            !Gun4.window && require_radmigtmp()(r);
+          } catch (e) {
+          }
+          var noop = function() {
+          }, RAD, u2;
+          Radisk.has[opt.file] = r;
+          return r;
+        }
+        ;
+        (function() {
+          var _ = String.fromCharCode(31), u2;
+          Radisk.encode = function(d2, o, s) {
+            s = s || _;
+            var t2 = s, tmp;
+            if (typeof d2 == "string") {
+              var i = d2.indexOf(s);
+              while (i != -1) {
+                t2 += s;
+                i = d2.indexOf(s, i + 1);
+              }
+              return t2 + '"' + d2 + s;
+            } else if (d2 && d2["#"] && Object.keys(d2).length == 1) {
+              return t2 + "#" + tmp + t2;
+            } else if (typeof d2 == "number") {
+              return t2 + "+" + (d2 || 0) + t2;
+            } else if (d2 === null) {
+              return t2 + " " + t2;
+            } else if (d2 === true) {
+              return t2 + "+" + t2;
+            } else if (d2 === false) {
+              return t2 + "-" + t2;
+            }
+          };
+          Radisk.decode = function(t2, o, s) {
+            s = s || _;
+            var d2 = "", i = -1, n = 0, c2, p;
+            if (s !== t2[0]) {
+              return;
+            }
+            while (s === t2[++i]) {
+              ++n;
+            }
+            p = t2[c2 = n] || true;
+            while (--n >= 0) {
+              i = t2.indexOf(s, i + 1);
+            }
+            if (i == -1) {
+              i = t2.length;
+            }
+            d2 = t2.slice(c2 + 1, i);
+            if (o) {
+              o.i = i + 1;
+            }
+            if (p === '"') {
+              return d2;
+            } else if (p === "#") {
+              return {
+                "#": d2
+              };
+            } else if (p === "+") {
+              if (d2.length === 0) {
+                return true;
+              }
+              return parseFloat(d2);
+            } else if (p === " ") {
+              return null;
+            } else if (p === "-") {
+              return false;
+            }
+          };
+        })();
+        if (typeof window !== "undefined") {
+          var Gun4 = window.Gun;
+          var Radix = window.Radix;
+          window.Radisk = Radisk;
+        } else {
+          var Gun4 = require_gun();
+          var Radix = require_radix();
+          try {
+            module2.exports = Radisk;
+          } catch (e) {
+          }
+        }
+        Radisk.Radix = Radix;
+      })();
+    }
+  });
+
+  // node_modules/gun/lib/rindexed.js
+  var require_rindexed = __commonJS({
+    "node_modules/gun/lib/rindexed.js"(exports2, module2) {
+      (function() {
+        function Store(opt) {
+          opt = opt || {};
+          opt.file = String(opt.file || "radata");
+          var store = Store[opt.file], db = null, u2;
+          if (store) {
+            console.log("Warning: reusing same IndexedDB store and options as 1st.");
+            return Store[opt.file];
+          }
+          store = Store[opt.file] = function() {
+          };
+          try {
+            opt.indexedDB = opt.indexedDB || Store.indexedDB || indexedDB;
+          } catch (e) {
+          }
+          try {
+            if (!opt.indexedDB || location.protocol == "file:") {
+              var s = store.d || (store.d = {});
+              store.put = function(f, d2, cb) {
+                s[f] = d2;
+                setTimeout(function() {
+                  cb(null, 1);
+                }, 250);
+              };
+              store.get = function(f, cb) {
+                setTimeout(function() {
+                  cb(null, s[f] || u2);
+                }, 5);
+              };
+              console.log("Warning: No indexedDB exists to persist data to!");
+              return store;
+            }
+          } catch (e) {
+          }
+          store.start = function() {
+            var o = indexedDB.open(opt.file, 1);
+            o.onupgradeneeded = function(eve) {
+              eve.target.result.createObjectStore(opt.file);
+            };
+            o.onsuccess = function() {
+              db = o.result;
+            };
+            o.onerror = function(eve) {
+              console.log(eve || 1);
+            };
+          };
+          store.start();
+          store.put = function(key, data, cb) {
+            if (!db) {
+              setTimeout(function() {
+                store.put(key, data, cb);
+              }, 1);
+              return;
+            }
+            var tx = db.transaction([opt.file], "readwrite");
+            var obj = tx.objectStore(opt.file);
+            var req = obj.put(data, "" + key);
+            req.onsuccess = obj.onsuccess = tx.onsuccess = function() {
+              cb(null, 1);
+            };
+            req.onabort = obj.onabort = tx.onabort = function(eve) {
+              cb(eve || "put.tx.abort");
+            };
+            req.onerror = obj.onerror = tx.onerror = function(eve) {
+              cb(eve || "put.tx.error");
+            };
+          };
+          store.get = function(key, cb) {
+            if (!db) {
+              setTimeout(function() {
+                store.get(key, cb);
+              }, 9);
+              return;
+            }
+            var tx = db.transaction([opt.file], "readonly");
+            var obj = tx.objectStore(opt.file);
+            var req = obj.get("" + key);
+            req.onsuccess = function() {
+              cb(null, req.result);
+            };
+            req.onabort = function(eve) {
+              cb(eve || 4);
+            };
+            req.onerror = function(eve) {
+              cb(eve || 5);
+            };
+          };
+          setInterval(function() {
+            db && db.close();
+            db = null;
+            store.start();
+          }, 1e3 * 15);
+          return store;
+        }
+        if (typeof window !== "undefined") {
+          (Store.window = window).RindexedDB = Store;
+          Store.indexedDB = window.indexedDB;
+        } else {
+          try {
+            module2.exports = Store;
+          } catch (e) {
+          }
+        }
+        try {
+          var Gun4 = Store.window.Gun || require_gun();
+          Gun4.on("create", function(root) {
+            this.to.next(root);
+            root.opt.store = root.opt.store || Store(root.opt);
+          });
+        } catch (e) {
+        }
+      })();
+    }
+  });
+
   // client.js
   var import_gun = __toModule(require_browser());
   var import_flexsearch = __toModule(require_flexsearch_bundle());
+  var import_radix = __toModule(require_radix());
+  var import_radisk = __toModule(require_radisk());
 
-  // node_modules/gun/lib/open.js
+  // node_modules/gun/lib/store.js
   var Gun2 = typeof window !== "undefined" ? window.Gun : require_gun();
-  Gun2.chain.open = function(cb, opt, at) {
-    opt = opt || {};
-    opt.doc = opt.doc || {};
-    opt.ids = opt.ids || {};
-    opt.any = opt.any || cb;
-    opt.meta = opt.meta || false;
-    opt.ev = opt.ev || {
-      off: function() {
-        Gun2.obj.map(opt.ev.s, function(e) {
-          if (e) {
-            e.off();
-          }
-        });
-        opt.ev.s = {};
-      },
-      s: {}
-    };
-    return this.on(function(data, key, ctx, ev) {
-      if (opt.meta !== true) {
-        delete ((data = Gun2.obj.copy(data)) || {})._;
-      }
-      clearTimeout(opt.to);
-      opt.to = setTimeout(function() {
-        if (!opt.any) {
-          return;
-        }
-        opt.any.call(opt.at.$, opt.doc, opt.key, opt, opt.ev);
-        if (opt.off) {
-          opt.ev.off();
-          opt.any = null;
-        }
-      }, opt.wait || 1);
-      opt.at = opt.at || ctx;
-      opt.key = opt.key || key;
-      opt.ev.s[this._.id] = ev;
-      if (Gun2.val.is(data)) {
-        if (!at) {
-          opt.doc = data;
-        } else {
-          at[key] = data;
-        }
+  Gun2.on("create", function(root) {
+    if (Gun2.TESTING) {
+      root.opt.file = "radatatest";
+    }
+    this.to.next(root);
+    var opt = root.opt, empty = {}, u2;
+    if (opt.rad === false || opt.radisk === false) {
+      return;
+    }
+    if (u2 + "" != typeof process && "" + (process.env || "").RAD === "false") {
+      return;
+    }
+    var Radisk = Gun2.window && Gun2.window.Radisk || require_radisk();
+    var Radix = Radisk.Radix;
+    var dare = Radisk(opt), esc = String.fromCharCode(27);
+    var ST = 0;
+    root.on("put", function(msg) {
+      this.to.next(msg);
+      if ((msg._ || "").rad) {
         return;
       }
-      var tmp = this, id;
-      Gun2.obj.map(data, function(val, key2) {
-        var doc = at || opt.doc;
-        if (!doc) {
+      var id = msg["#"], put = msg.put, soul = put["#"], key = put["."], val = put[":"], state = put[">"], tmp;
+      var DBG = (msg._ || "").DBG;
+      DBG && (DBG.sp = DBG.sp || +new Date());
+      var S2 = (msg._ || "").RPS || ((msg._ || "").RPS = +new Date());
+      dare(soul + esc + key, {
+        ":": val,
+        ">": state
+      }, function(err, ok) {
+        DBG && (DBG.spd = DBG.spd || +new Date());
+        console.STAT && console.STAT(S2, +new Date() - S2, "put");
+        if (err) {
+          root.on("in", {
+            "@": id,
+            err,
+            DBG
+          });
           return;
         }
-        if (!(id = Gun2.val.link.is(val))) {
-          doc[key2] = val;
-          return;
-        }
-        if (opt.ids[id]) {
-          doc[key2] = opt.ids[id];
-          return;
-        }
-        tmp.get(key2).open(opt.any, opt, opt.ids[id] = doc[key2] = {});
-      });
+        root.on("in", {
+          "@": id,
+          ok,
+          DBG
+        });
+      }, false, DBG && (DBG.r = DBG.r || {}));
+      DBG && (DBG.sps = DBG.sps || +new Date());
     });
-  };
+    var count = {}, obj_empty = Object.empty;
+    root.on("get", function(msg) {
+      this.to.next(msg);
+      var ctx = msg._ || "", DBG = ctx.DBG = msg.DBG;
+      DBG && (DBG.sg = +new Date());
+      var id = msg["#"], get = msg.get, soul = msg.get["#"], has = msg.get["."] || "", o = {}, graph, lex, key, tmp, force;
+      if (typeof soul == "string") {
+        key = soul;
+      } else if (soul) {
+        if (u2 !== (tmp = soul["*"])) {
+          o.limit = force = 1;
+        }
+        if (u2 !== soul[">"]) {
+          o.start = soul[">"];
+        }
+        if (u2 !== soul["<"]) {
+          o.end = soul["<"];
+        }
+        key = force ? "" + tmp : tmp || soul["="];
+        force = null;
+      }
+      if (key && !o.limit) {
+        if (typeof has == "string") {
+          key = key + esc + (o.atom = has);
+        } else if (has) {
+          if (u2 !== has[">"]) {
+            o.start = has[">"];
+            o.limit = 1;
+          }
+          if (u2 !== has["<"]) {
+            o.end = has["<"];
+            o.limit = 1;
+          }
+          if (u2 !== (tmp = has["*"])) {
+            o.limit = force = 1;
+          }
+          if (key) {
+            key = key + esc + (force ? "" + (tmp || "") : tmp || (o.atom = has["="] || ""));
+          }
+        }
+      }
+      if ((tmp = get["%"]) || o.limit) {
+        o.limit = tmp <= (o.pack || 1e3 * 100) ? tmp : 1;
+      }
+      if (has["-"] || (soul || {})["-"] || get["-"]) {
+        o.reverse = true;
+      }
+      if ((tmp = (root.next || "")[soul]) && tmp.put) {
+        if (o.atom) {
+          tmp = (tmp.next || "")[o.atom];
+          if (tmp && tmp.rad) {
+            return;
+          }
+        } else if (tmp && tmp.rad) {
+          return;
+        }
+      }
+      var now = Gun2.state();
+      var S2 = +new Date(), C2 = 0, SPT = 0;
+      DBG && (DBG.sgm = S2);
+      dare(key || "", function(err, data, info) {
+        DBG && (DBG.sgr = +new Date());
+        DBG && (DBG.sgi = info);
+        try {
+          opt.store.stats.get.time[statg % 50] = +new Date() - S2;
+          ++statg;
+          opt.store.stats.get.count++;
+          if (err) {
+            opt.store.stats.get.err = err;
+          }
+        } catch (e) {
+        }
+        console.STAT && console.STAT(S2, +new Date() - S2, "got", JSON.stringify(key));
+        S2 = +new Date();
+        info = info || "";
+        var va2, ve;
+        if (info.unit && data && u2 !== (va2 = data[":"]) && u2 !== (ve = data[">"])) {
+          var tmp2 = key.split(esc), so = tmp2[0], ha2 = tmp2[1];
+          (graph = graph || {})[so] = Gun2.state.ify(graph[so], ha2, ve, va2, so);
+          root.$.get(so).get(ha2)._.rad = now;
+        } else if (data) {
+          if (typeof data !== "string") {
+            if (o.atom) {
+              data = u2;
+            } else {
+              Radix.map(data, each, o);
+            }
+          }
+          if (!graph && data) {
+            each(data, "");
+          }
+          if (!o.atom && !has & typeof soul == "string" && !o.limit && !o.more) {
+            root.$.get(soul)._.rad = now;
+          }
+        }
+        DBG && (DBG.sgp = +new Date());
+        if (console.STAT && (ST = +new Date() - S2) > 9) {
+          console.STAT(S2, ST, "got prep time");
+          console.STAT(S2, C2, "got prep #");
+        }
+        SPT += ST;
+        C2 = 0;
+        S2 = +new Date();
+        var faith = function() {
+        };
+        faith.faith = true;
+        faith.rad = get;
+        root.on("in", {
+          "@": id,
+          put: graph,
+          "%": info.more ? 1 : u2,
+          err: err ? err : u2,
+          _: faith,
+          DBG
+        });
+        console.STAT && (ST = +new Date() - S2) > 9 && console.STAT(S2, ST, "got emit", Object.keys(graph || {}).length);
+        graph = u2;
+      }, o, DBG && (DBG.r = DBG.r || {}));
+      DBG && (DBG.sgd = +new Date());
+      console.STAT && (ST = +new Date() - S2) > 9 && console.STAT(S2, ST, "get call");
+      function each(val, has2, a2, b2) {
+        C2++;
+        if (!val) {
+          return;
+        }
+        has2 = (key + has2).split(esc);
+        var soul2 = has2.slice(0, 1)[0];
+        has2 = has2.slice(-1)[0];
+        if (o.limit && o.limit <= o.count) {
+          return true;
+        }
+        var va2, ve, so = soul2, ha2 = has2;
+        if (typeof val != "string") {
+          va2 = val[":"];
+          ve = val[">"];
+          (graph = graph || {})[so] = Gun2.state.ify(graph[so], ha2, ve, va2, so);
+          o.count = (o.count || 0) + ((va2 || "").length || 9);
+          return;
+        }
+        o.count = (o.count || 0) + val.length;
+        var tmp2 = val.lastIndexOf(">");
+        var state = Radisk.decode(val.slice(tmp2 + 1), null, esc);
+        val = Radisk.decode(val.slice(0, tmp2), null, esc);
+        (graph = graph || {})[soul2] = Gun2.state.ify(graph[soul2], has2, state, val, soul2);
+      }
+    });
+    var val_is = Gun2.valid;
+    (opt.store || {}).stats = {
+      get: {
+        time: {},
+        count: 0
+      },
+      put: {
+        time: {},
+        count: 0
+      }
+    };
+    var statg = 0, statp = 0;
+  });
+
+  // client.js
+  var import_rindexed = __toModule(require_rindexed());
 
   // component.js
   var listeners = new WeakMap();
@@ -4519,9 +6068,30 @@
     }
   }
   var gun = (0, import_gun.default)({
-    peers: ["https://santicgunrelay.herokuapp.com/gun", "http://localhost:3000/gun"]
+    peers: ["http://localhost:3000/gun", "https://santicgunrelay.herokuapp.com/gun"]
   });
   window.gun = gun;
+  var terms = {};
+  var onInput = async ({
+    render: render2
+  }, e) => {
+    const query = e.target.value;
+    const queryTerms = {};
+    if (!query) {
+      view(Object.values(terms));
+    } else {
+      const results = await index.search(query, {
+        pluck: "text"
+      });
+      results.forEach((result) => gun.get(result).once((data) => {
+        queryTerms[result] = data;
+        view(Object.values(queryTerms));
+      }));
+    }
+    render2({
+      _inputVal: e.target.value
+    });
+  };
   var Searchbar = Row([Input({
     init: ({
       _inputVal
@@ -4529,29 +6099,15 @@
       value: _inputVal
     }),
     className: "p-1",
+    atts: {
+      autocomplete: "on",
+      inputmode: "search",
+      placeholder: "\u{1F50E}\uFE0E search"
+    },
     style: {
       flex: 1
     },
-    on_input: async ({
-      render: render2
-    }, e) => {
-      const query = e.target.value;
-      if (!query) {
-        view(Object.values(terms));
-      } else {
-        const queryTerms = {};
-        const results = await index.search(query, {
-          pluck: "text"
-        });
-        results.forEach((result) => gun.get(result).once((data) => {
-          queryTerms[result] = data;
-          view(Object.values(queryTerms));
-        }));
-      }
-      render2({
-        _inputVal: e.target.value
-      });
-    }
+    on_input: onInput
   }), Button({
     className: "p-1",
     text: "add term",
@@ -4561,8 +6117,7 @@
     }) => {
       gun.get("terms").get(_inputVal).put({
         text: _inputVal,
-        lang: "eng",
-        deleted: false
+        lang: "eng"
       });
       render2({
         _inputVal: ""
@@ -4591,8 +6146,7 @@
     }) => {
       gun.get("terms").get(_inputVal).put({
         text: _inputVal,
-        lang: "eng",
-        deleted: false
+        lang: "eng"
       });
       render2({
         _inputVal: ""
@@ -4602,14 +6156,13 @@
   var TermsList = (terms2 = []) => Column({
     className: "p-1",
     _inputVal: "",
-    style: {
-      flexDirection: "column-reverse"
-    },
-    children: terms2.filter((term) => !term.deleted).map((term) => Text({
+    children: terms2.map((term) => Text({
       text: term.text,
-      on_dblclick: () => gun.get("terms/" + term.text).put({
-        deleted: true
-      })
+      on_dblclick: () => {
+        gun.get("terms/" + term.text).put({
+          deleted: true
+        });
+      }
     }))
   });
   function view(terms2) {
@@ -4625,16 +6178,22 @@
       index: ["text"]
     }
   });
-  var terms = {};
-  var total = 0;
   gun.get("terms").map().on((term) => {
-    index.add({
-      id: term["_"]["#"],
-      text: term.text
-    });
-    terms[term["_"]["#"]] = term;
-    total++;
+    console.log("term", term);
+    if (term.deleted) {
+      index.remove(term["_"]["#"]);
+      delete terms[term["_"]["#"]];
+    } else {
+      index.add({
+        id: term["_"]["#"],
+        text: term.text
+      });
+      terms[term["_"]["#"]] = term;
+    }
     view(Object.values(terms));
   });
-  setTimeout(() => console.log("indexed " + total + " terms"), 2e3);
+  setTimeout(() => console.log("indexed " + Object.keys(terms).length + " terms"), 2e3);
+  gun.get("room-name<?10").set("carlos");
+  gun.get("room-name<?10").map().once(console.log);
 })();
+//!opt && console.log("WHAT IS T?", JSON.stringify(t).length);
