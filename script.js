@@ -4520,9 +4520,16 @@
     peers: ["https://santicgunrelay.herokuapp.com/gun", "http://localhost:3000/gun"]
   });
   window.gun = gun;
-  var Searchbar = Input({
-    className: "fullWidth p-1",
-    on_input: async (_, e) => {
+  var Searchbar = Row([Input({
+    init: ({
+      _inputVal
+    }) => ({
+      value: _inputVal
+    }),
+    className: "p-1",
+    on_input: async ({
+      render: render2
+    }, e) => {
       const query = e.target.value;
       if (!query) {
         view(Object.values(terms));
@@ -4537,8 +4544,28 @@
           view(Object.values(queryTerms));
         }));
       }
+      render2({
+        _inputVal: e.target.value
+      });
     }
-  });
+  }), Button({
+    className: "p-1",
+    text: "add term",
+    on_click: ({
+      _inputVal,
+      render: render2
+    }) => {
+      gun.get("terms").get(_inputVal).put({
+        text: _inputVal,
+        lang: "eng",
+        deleted: false
+      });
+      render2({
+        _inputVal: ""
+      });
+      view(Object.values(terms));
+    }
+  })]);
   var AddTerm = Row([Input({
     className: "p-1",
     init: ({
@@ -4579,7 +4606,7 @@
     }))
   });
   function view(terms2) {
-    return Column([Searchbar, TermsList(terms2), AddTerm]).render({
+    return Column([Searchbar, TermsList(terms2)]).render({
       el: document.querySelector("#root")
     });
   }
