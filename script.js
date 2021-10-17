@@ -34,7 +34,9 @@
       (function() {
         function USE(arg, req) {
           return req ? __require(arg) : arg.slice ? USE[R(arg)] : function(mod, path) {
-            arg(mod = { exports: {} });
+            arg(mod = {
+              exports: {}
+            });
             USE[R(path)] = mod.exports;
           };
           function R(p) {
@@ -61,7 +63,9 @@
               return false;
             }
             if (typeof o == "string") {
-              o = { "=": o };
+              o = {
+                "=": o
+              };
             }
             o = o || {};
             tmp = o["="] || o["*"] || o[">"] || o["<"];
@@ -181,14 +185,21 @@
         USE(function(module2) {
           module2.exports = function onto(tag, arg, as) {
             if (!tag) {
-              return { to: onto };
+              return {
+                to: onto
+              };
             }
-            var u, f = typeof arg == "function", tag = (this.tag || (this.tag = {}))[tag] || f && (this.tag[tag] = { tag, to: onto._ = { next: function(arg2) {
-              var tmp;
-              if (tmp = this.to) {
-                tmp.next(arg2);
+            var u, f = typeof arg == "function", tag = (this.tag || (this.tag = {}))[tag] || f && (this.tag[tag] = {
+              tag,
+              to: onto._ = {
+                next: function(arg2) {
+                  var tmp;
+                  if (tmp = this.to) {
+                    tmp.next(arg2);
+                  }
+                }
               }
-            } } });
+            });
             if (f) {
               var be = {
                 off: onto.off || (onto.off = function() {
@@ -286,8 +297,13 @@
         USE(function(module2) {
           USE("./shim");
           function Dup(opt) {
-            var dup = { s: {} }, s = dup.s;
-            opt = opt || { max: 999, age: 1e3 * 9 };
+            var dup = {
+              s: {}
+            }, s = dup.s;
+            opt = opt || {
+              max: 999,
+              age: 1e3 * 9
+            };
             dup.check = function(id) {
               if (!s[id]) {
                 return false;
@@ -351,7 +367,10 @@
             var to = this.on(id, cb, as);
             to.err = to.err || setTimeout(function() {
               to.off();
-              to.next({ err: "Error: No ACK yet.", lack: true });
+              to.next({
+                err: "Error: No ACK yet.",
+                lack: true
+              });
             }, lack);
             return id;
           };
@@ -363,12 +382,17 @@
         USE(function(module2) {
           function Gun4(o) {
             if (o instanceof Gun4) {
-              return (this._ = { $: this }).$;
+              return (this._ = {
+                $: this
+              }).$;
             }
             if (!(this instanceof Gun4)) {
               return new Gun4(o);
             }
-            return Gun4.create(this._ = { $: this, opt: o });
+            return Gun4.create(this._ = {
+              $: this,
+              opt: o
+            });
           }
           Gun4.is = function($) {
             return $ instanceof Gun4 || $ && $._ && $ === $._.$ || false;
@@ -548,12 +572,25 @@
                 }
               }
               ctx.stun++;
-              var aid = msg["#"] + ctx.all++, id = { toString: function() {
-                return aid;
-              }, _: ctx };
+              var aid = msg["#"] + ctx.all++, id = {
+                toString: function() {
+                  return aid;
+                },
+                _: ctx
+              };
               id.toJSON = id.toString;
               DBG && (DBG.ph = DBG.ph || +new Date());
-              root.on("put", { "#": id, "@": msg["@"], put: { "#": soul, ".": key, ":": val, ">": state }, _: ctx });
+              root.on("put", {
+                "#": id,
+                "@": msg["@"],
+                put: {
+                  "#": soul,
+                  ".": key,
+                  ":": val,
+                  ">": state
+                },
+                _: ctx
+              });
             }
             function map(msg) {
               var DBG;
@@ -627,7 +664,13 @@
               if (ctx.stun || ctx.acks !== ctx.all) {
                 return;
               }
-              ctx.root.on("in", { "@": ctx["#"], err: ctx.err, ok: ctx.err ? u : { "": 1 } });
+              ctx.root.on("in", {
+                "@": ctx["#"],
+                err: ctx.err,
+                ok: ctx.err ? u : {
+                  "": 1
+                }
+              });
             }
             var ERR = "Error: Invalid graph!";
             var cut = function(s) {
@@ -676,7 +719,15 @@
                 tmp = keys.length;
                 console.STAT && console.STAT(S, -(S - (S = +new Date())), "got copied some");
                 DBG && (DBG.ga = +new Date());
-                root.on("in", { "@": to, "#": id, put, "%": tmp ? id = text_rand(9) : u, $: root.$, _: faith, DBG });
+                root.on("in", {
+                  "@": to,
+                  "#": id,
+                  put,
+                  "%": tmp ? id = text_rand(9) : u,
+                  $: root.$,
+                  _: faith,
+                  DBG
+                });
                 console.STAT && console.STAT(S, +new Date() - S, "got in");
                 if (!tmp) {
                   return;
@@ -684,7 +735,9 @@
                 setTimeout.turn(go);
               }();
               if (!node) {
-                root.on("in", { "@": msg["#"] });
+                root.on("in", {
+                  "@": msg["#"]
+                });
               }
             }
             Gun4.on.get.ack = ack;
@@ -751,8 +804,10 @@
           } catch (e) {
           }
           module2.exports = Gun4;
-          (Gun4.window || {}).console = (Gun4.window || {}).console || { log: function() {
-          } };
+          (Gun4.window || {}).console = (Gun4.window || {}).console || {
+            log: function() {
+            }
+          };
           (C = console).only = function(i, s) {
             return C.only.i && i === C.only.i && C.only.i++ && (C.log.apply(C, arguments) || s);
           };
@@ -788,7 +843,9 @@
               return;
             }
             if (typeof n == "function") {
-              var yes, tmp = { back: at };
+              var yes, tmp = {
+                back: at
+              };
               while ((tmp = tmp.back) && u === (yes = n(tmp, opt))) {
               }
               return yes;
@@ -820,7 +877,10 @@
             }
             this.to.next(msg);
             if (at.err) {
-              at.on("in", { put: at.put = u, $: at.$ });
+              at.on("in", {
+                put: at.put = u,
+                $: at.$
+              });
               return;
             }
             if (get = msg.get) {
@@ -849,7 +909,15 @@
                 } else if (obj_has(back.put, get)) {
                   tmp = back.ask && back.ask[get];
                   (back.ask || (back.ask = {}))[get] = back.$.get(get)._;
-                  back.on("in", { get, put: { "#": back.soul, ".": get, ":": back.put[get], ">": state_is(root.graph[back.soul], get) } });
+                  back.on("in", {
+                    get,
+                    put: {
+                      "#": back.soul,
+                      ".": get,
+                      ":": back.put[get],
+                      ">": state_is(root.graph[back.soul], get)
+                    }
+                  });
                   if (tmp) {
                     return;
                   }
@@ -859,11 +927,19 @@
               }
               if (get["."]) {
                 if (at.get) {
-                  msg = { get: { ".": at.get }, $: at.$ };
+                  msg = {
+                    get: {
+                      ".": at.get
+                    },
+                    $: at.$
+                  };
                   (back.ask || (back.ask = {}))[at.get] = msg.$._;
                   return back.on("out", msg);
                 }
-                msg = { get: at.lex ? msg.get : {}, $: at.$ };
+                msg = {
+                  get: at.lex ? msg.get : {},
+                  $: at.$
+                };
                 return back.on("out", msg);
               }
               (at.ask || (at.ask = {}))[""] = at;
@@ -891,10 +967,28 @@
                   if (k == "_" || u === (state2 = state_is(tmp, k))) {
                     return;
                   }
-                  cat.on("in", { $: gun2, put: { "#": soul, ".": k, "=": tmp[k], ">": state2 }, VIA: msg });
+                  cat.on("in", {
+                    $: gun2,
+                    put: {
+                      "#": soul,
+                      ".": k,
+                      "=": tmp[k],
+                      ">": state2
+                    },
+                    VIA: msg
+                  });
                 });
               }
-              cat.on("in", { $: at.back.$, put: { "#": soul = at.back.soul, ".": key = at.has || at.get, "=": tmp, ">": state_is(at.back.put, key) }, via: msg });
+              cat.on("in", {
+                $: at.back.$,
+                put: {
+                  "#": soul = at.back.soul,
+                  ".": key = at.has || at.get,
+                  "=": tmp,
+                  ">": state_is(at.back.put, key)
+                },
+                via: msg
+              });
               return;
             }
             if ((msg.seen || "")[cat.id]) {
@@ -981,13 +1075,22 @@
             (sat.echo || (sat.echo = {}))[tat.id] = tat;
             var tmp = cat.ask || "";
             if (tmp[""] || cat.lex) {
-              sat.on("out", { get: { "#": link2 } });
+              sat.on("out", {
+                get: {
+                  "#": link2
+                }
+              });
             }
             setTimeout.each(Object.keys(tmp), function(get, sat2) {
               if (!get || !(sat2 = tmp[get])) {
                 return;
               }
-              sat2.on("out", { get: { "#": link2, ".": get } });
+              sat2.on("out", {
+                get: {
+                  "#": link2,
+                  ".": get
+                }
+              });
             }, 0, 99);
           }
           ;
@@ -1016,7 +1119,11 @@
                 if (link2) {
                   delete (root.$.get(link2).get(get)._.echo || "")[sat.id];
                 }
-                sat.on("in", { get, put: u, $: sat.$ });
+                sat.on("in", {
+                  get,
+                  put: u,
+                  $: sat.$
+                });
               }, 0, 99);
               return;
             }
@@ -1035,7 +1142,12 @@
               }
             }
             delete (tmp.echo || "")[cat.id];
-            unlink({ get: cat.get, put: u, $: msg.$, linked: msg.linked = msg.linked || tmp.link }, cat);
+            unlink({
+              get: cat.get,
+              put: u,
+              $: msg.$,
+              linked: msg.linked = msg.linked || tmp.link
+            }, cat);
           }
           ;
           Gun4.on.unlink = unlink;
@@ -1072,7 +1184,9 @@
             var gun2, tmp;
             if (typeof key === "string") {
               if (key.length == 0) {
-                (gun2 = this.chain())._.err = { err: Gun4.log("0 length key!", key) };
+                (gun2 = this.chain())._.err = {
+                  err: Gun4.log("0 length key!", key)
+                };
                 if (cb) {
                   cb.call(gun2, gun2._.err);
                 }
@@ -1185,7 +1299,9 @@
               any2.id = opt.run || ++root.once;
               tmp = root.pass;
               (root.pass = {})[id] = 1;
-              opt.out = opt.out || { get: {} };
+              opt.out = opt.out || {
+                get: {}
+              };
               cat.on("out", opt.out);
               root.pass = tmp;
               return gun2;
@@ -1197,7 +1313,9 @@
               gun2 = tmp(this, key);
             }
             if (!gun2) {
-              (gun2 = this.chain())._.err = { err: Gun4.log("Invalid get request!", key) };
+              (gun2 = this.chain())._.err = {
+                err: Gun4.log("Invalid get request!", key)
+              };
               if (cb) {
                 cb.call(gun2, gun2._.err);
               }
@@ -1243,7 +1361,13 @@
                 as2 = as2[1];
                 cb2 && cb2(id = at.link || at.soul || Gun4.valid(msg.put) || ((msg.put || {})._ || {})["#"], as2, msg, eve);
               }
-            }, { out: { get: { ".": true } } });
+            }, {
+              out: {
+                get: {
+                  ".": true
+                }
+              }
+            });
             return gun2;
           }
           function rid(at) {
@@ -1289,7 +1413,10 @@
               return get(as), gun2;
             }
             as.$ = root.$.get(as.soul);
-            as.todo = [{ it: as.data, ref: as.$ }];
+            as.todo = [{
+              it: as.data,
+              ref: as.$
+            }];
             as.turn = as.turn || turn;
             as.ran = as.ran || ran;
             (function walk() {
@@ -1305,9 +1432,11 @@
               k && (to.path || (to.path = [])).push(k);
               if (!(v = valid(d)) && !(g = Gun4.is(d))) {
                 if (!Object.plain(d)) {
-                  (as.ack || noop).call(as, as.out = { err: as.err = Gun4.log("Invalid data: " + (d && (tmp = d.constructor) && tmp.name || typeof d) + " at " + (as.via.back(function(at3) {
-                    at3.get && tmp.push(at3.get);
-                  }, tmp = []) || tmp.join(".")) + "." + (to.path || []).join(".")) });
+                  (as.ack || noop).call(as, as.out = {
+                    err: as.err = Gun4.log("Invalid data: " + (d && (tmp = d.constructor) && tmp.name || typeof d) + " at " + (as.via.back(function(at3) {
+                      at3.get && tmp.push(at3.get);
+                    }, tmp = []) || tmp.join(".")) + "." + (to.path || []).join("."))
+                  });
                   as.ran(as);
                   return;
                 }
@@ -1347,7 +1476,9 @@
                     soul = soul.reverse().join("/");
                   }
                   cat.link["#"] = soul;
-                  !g && (((as.graph || (as.graph = {}))[soul] = cat.node || (cat.node = { _: {} }))._["#"] = soul);
+                  !g && (((as.graph || (as.graph = {}))[soul] = cat.node || (cat.node = {
+                    _: {}
+                  }))._["#"] = soul);
                   delete as.wait[id];
                   cat.wait && setTimeout.each(cat.wait, function(cb2) {
                     cb2 && cb2();
@@ -1355,13 +1486,29 @@
                   as.ran(as);
                 };
                 var resolve = resolve2;
-                as.seen.push(cat = { it: d, link: {}, todo: g ? [] : Object.keys(d).sort().reverse(), path: (to.path || []).slice(), up: at2 });
+                as.seen.push(cat = {
+                  it: d,
+                  link: {},
+                  todo: g ? [] : Object.keys(d).sort().reverse(),
+                  path: (to.path || []).slice(),
+                  up: at2
+                });
                 at2.node = state_ify(at2.node, k, s, cat.link);
                 !g && cat.todo.length && to.push(cat);
                 var id = as.seen.length;
                 (as.wait || (as.wait = {}))[id] = "";
                 tmp = (cat.ref = g ? d : k ? at2.ref.get(k) : at2.ref)._;
-                (tmp = d && (d._ || "")["#"] || tmp.soul || tmp.link) ? resolve2({ soul: tmp }) : cat.ref.get(resolve2, { run: as.run, v2020: 1, out: { get: { ".": " " } } });
+                (tmp = d && (d._ || "")["#"] || tmp.soul || tmp.link) ? resolve2({
+                  soul: tmp
+                }) : cat.ref.get(resolve2, {
+                  run: as.run,
+                  v2020: 1,
+                  out: {
+                    get: {
+                      ".": " "
+                    }
+                  }
+                });
                 ;
               }
               if (!to.length) {
@@ -1376,7 +1523,9 @@
               return;
             }
             id = (id._ || "").id || id;
-            var run = as.root.stun || (as.root.stun = { on: Gun4.on }), test = {}, tmp;
+            var run = as.root.stun || (as.root.stun = {
+              on: Gun4.on
+            }), test = {}, tmp;
             as.stun || (as.stun = run.on("stun", function() {
             }));
             if (tmp = run.on("" + id)) {
@@ -1434,7 +1583,12 @@
                 }
               });
             }).hatch = tmp;
-            as.via._.on("out", { put: as.out = as.graph, opt: as.opt, "#": ask, _: tmp });
+            as.via._.on("out", {
+              put: as.out = as.graph,
+              opt: as.opt,
+              "#": ask,
+              _: tmp
+            });
           }
           ;
           ran.end = function(stun2, root) {
@@ -1497,7 +1651,9 @@
               return gun2;
             }
             var opt = arg;
-            (opt = opt === true ? { change: true } : opt || {}).not = 1;
+            (opt = opt === true ? {
+              change: true
+            } : opt || {}).not = 1;
             opt.on = 1;
             var wait = {};
             gun2.get(tag, opt);
@@ -1529,7 +1685,10 @@
               one2[id] = setTimeout(once, opt.wait || 99);
               function once() {
                 if (!at.has && !at.soul) {
-                  at = { put: data2, get: key };
+                  at = {
+                    put: data2,
+                    get: key
+                  };
                 }
                 if (u === (tmp = at.put)) {
                   tmp = ((msg.$$ || "")._ || "").put;
@@ -1553,7 +1712,9 @@
                 cb.call($, tmp, at.get);
               }
               ;
-            }, { on: 1 });
+            }, {
+              on: 1
+            });
             return gun2;
           };
           function none(gun2, opt, chain) {
@@ -1629,7 +1790,9 @@
           Gun4.chain.map = function(cb, opt, t) {
             var gun2 = this, cat = gun2._, lex, chain;
             if (Object.plain(cb)) {
-              lex = cb["."] ? cb : { ".": cb };
+              lex = cb["."] ? cb : {
+                ".": cb
+              };
               cb = u;
             }
             if (!cb) {
@@ -1659,7 +1822,10 @@
                 tmp[k] = msg.put[k];
               }, tmp);
               tmp["="] = next2;
-              chain._.on("in", { get: key, put: tmp });
+              chain._.on("in", {
+                get: key,
+                put: tmp
+              });
             });
             return chain;
           };
@@ -1675,7 +1841,10 @@
             Gun4.on.link(msg, cat);
           }
           var noop = function() {
-          }, event = { stun: noop, off: noop }, u;
+          }, event = {
+            stun: noop,
+            off: noop
+          }, u;
         })(USE, "./map");
         ;
         USE(function(module2) {
@@ -1701,9 +1870,13 @@
             gun2.put(function(go) {
               item.get(function(soul2, o, msg) {
                 if (!soul2) {
-                  return cb.call(gun2, { err: Gun4.log('Only a node can be linked! Not "' + msg.put + '"!') });
+                  return cb.call(gun2, {
+                    err: Gun4.log('Only a node can be linked! Not "' + msg.put + '"!')
+                  });
                 }
-                (tmp = {})[soul2] = { "#": soul2 };
+                (tmp = {})[soul2] = {
+                  "#": soul2
+                };
                 go(tmp);
               }, true);
             });
@@ -1746,7 +1919,10 @@
                 return;
               }
               if (opt.max <= raw.length) {
-                return mesh.say({ dam: "!", err: "Message too big!" }, peer);
+                return mesh.say({
+                  dam: "!",
+                  err: "Message too big!"
+                }, peer);
               }
               if (mesh === this) {
                 hear.d += raw.length || 0;
@@ -1757,7 +1933,10 @@
               if (tmp === "[") {
                 parse(raw, function(err, msg2) {
                   if (err || !msg2) {
-                    return mesh.say({ dam: "!", err: "DAM JSON parse error." }, peer);
+                    return mesh.say({
+                      dam: "!",
+                      err: "DAM JSON parse error."
+                    }, peer);
                   }
                   console.STAT && console.STAT(+new Date(), msg2.length, "# on hear batch");
                   var P = opt.puff;
@@ -1785,7 +1964,10 @@
                 }
                 parse(raw, function(err, msg2) {
                   if (err || !msg2) {
-                    return mesh.say({ dam: "!", err: "DAM JSON parse error." }, peer);
+                    return mesh.say({
+                      dam: "!",
+                      err: "DAM JSON parse error."
+                    }, peer);
                   }
                   hear.one(msg2, peer, S);
                 });
@@ -1795,7 +1977,9 @@
             hear.one = function(msg, peer, S) {
               var id, hash, tmp, ash, DBG;
               if (msg.DBG) {
-                msg.DBG = DBG = { DBG: msg.DBG };
+                msg.DBG = DBG = {
+                  DBG: msg.DBG
+                };
               }
               DBG && (DBG.h = S);
               DBG && (DBG.hp = +new Date());
@@ -1872,7 +2056,10 @@
                 if (!(v instanceof Object)) {
                   return v;
                 }
-                Object.keys(v).sort().forEach(sorta, { to: tmp = {}, on: v });
+                Object.keys(v).sort().forEach(sorta, {
+                  to: tmp = {},
+                  on: v
+                });
                 return tmp;
               }
               function sorta(k) {
@@ -2099,7 +2286,10 @@
                 opt.peers[peer.url || peer.id] = peer;
               } else {
                 tmp = peer.id = peer.id || String.random(9);
-                mesh.say({ dam: "?", pid: root.opt.pid }, opt.peers[tmp] = peer);
+                mesh.say({
+                  dam: "?",
+                  pid: root.opt.pid
+                }, opt.peers[tmp] = peer);
                 delete dup.s[peer.last];
               }
               peer.met = peer.met || +new Date();
@@ -2130,7 +2320,11 @@
                   return;
                 }
               }
-              mesh.say({ dam: "?", pid: opt.pid, "@": msg["#"] }, peer);
+              mesh.say({
+                dam: "?",
+                pid: opt.pid,
+                "@": msg["#"]
+              }, peer);
               delete dup.s[peer.last];
             };
             root.on("create", function(root2) {
@@ -2176,7 +2370,12 @@
                 tmp = {};
                 tmp[soul] = root.graph[soul];
                 tmp = String.hash(tmp);
-                mesh.say({ "##": tmp, get: { "#": soul } }, peer);
+                mesh.say({
+                  "##": tmp,
+                  get: {
+                    "#": soul
+                  }
+                }, peer);
               });
             });
             return mesh;
@@ -2237,7 +2436,9 @@
               }
             }
             setTimeout(function() {
-              !opt.super && root.on("out", { dam: "hi" });
+              !opt.super && root.on("out", {
+                dam: "hi"
+              });
             }, 1);
             var wait = 2 * 999;
             function reconnect(peer) {
@@ -2271,13 +2472,17 @@
           }
           if (!store) {
             Gun.log("Warning: No localStorage exists to persist data to!");
-            store = { setItem: function(k, v) {
-              this[k] = v;
-            }, removeItem: function(k) {
-              delete this[k];
-            }, getItem: function(k) {
-              return this[k];
-            } };
+            store = {
+              setItem: function(k, v) {
+                this[k] = v;
+              },
+              removeItem: function(k) {
+                delete this[k];
+              },
+              getItem: function(k) {
+                return this[k];
+              }
+            };
           }
           Gun.on("create", function lg(root) {
             this.to.next(root);
@@ -2324,13 +2529,21 @@
                 store.setItem(opt.prefix, JSON.stringify(disk));
               } catch (e) {
                 Gun.log((err = e || "localStorage failure") + " Consider using GUN's IndexedDB plugin for RAD for more storage space, https://gun.eco/docs/RAD#install");
-                root.on("localStorage:error", { err, get: opt.prefix, put: disk });
+                root.on("localStorage:error", {
+                  err,
+                  get: opt.prefix,
+                  put: disk
+                });
               }
               if (!err && !Object.empty(opt.peers)) {
                 return;
               }
               setTimeout.each(ack, function(id) {
-                root.on("in", { "@": id, err, ok: 0 });
+                root.on("in", {
+                  "@": id,
+                  err,
+                  ok: 0
+                });
               });
             }
           });
@@ -2345,22 +2558,30 @@
           console.log("Warning! Deprecated internal utility will break in next version:", n);
         };
         var Type = Gun;
-        Type.fn = Type.fn || { is: function(fn2) {
-          DEP("fn");
-          return !!fn2 && typeof fn2 == "function";
-        } };
-        Type.bi = Type.bi || { is: function(b) {
-          DEP("bi");
-          return b instanceof Boolean || typeof b == "boolean";
-        } };
-        Type.num = Type.num || { is: function(n) {
-          DEP("num");
-          return !list_is(n) && (n - parseFloat(n) + 1 >= 0 || n === Infinity || n === -Infinity);
-        } };
-        Type.text = Type.text || { is: function(t) {
-          DEP("text");
-          return typeof t == "string";
-        } };
+        Type.fn = Type.fn || {
+          is: function(fn2) {
+            DEP("fn");
+            return !!fn2 && typeof fn2 == "function";
+          }
+        };
+        Type.bi = Type.bi || {
+          is: function(b) {
+            DEP("bi");
+            return b instanceof Boolean || typeof b == "boolean";
+          }
+        };
+        Type.num = Type.num || {
+          is: function(n) {
+            DEP("num");
+            return !list_is(n) && (n - parseFloat(n) + 1 >= 0 || n === Infinity || n === -Infinity);
+          }
+        };
+        Type.text = Type.text || {
+          is: function(t) {
+            DEP("text");
+            return typeof t == "string";
+          }
+        };
         Type.text.ify = Type.text.ify || function(t) {
           DEP("text.ify");
           if (Type.text.is(t)) {
@@ -2389,7 +2610,9 @@
             return false;
           }
           if (typeof o == "string") {
-            o = { "=": o };
+            o = {
+              "=": o
+            };
           }
           o = o || {};
           tmp = o["="] || o["*"] || o[">"] || o["<"];
@@ -2433,10 +2656,12 @@
           }
           return c;
         };
-        Type.list = Type.list || { is: function(l) {
-          DEP("list");
-          return l instanceof Array;
-        } };
+        Type.list = Type.list || {
+          is: function(l) {
+            DEP("list");
+            return l instanceof Array;
+          }
+        };
         Type.list.slit = Type.list.slit || Array.prototype.slice;
         Type.list.sort = Type.list.sort || function(k) {
           DEP("list.sort");
@@ -2460,10 +2685,12 @@
           return obj_map(l, c, _);
         };
         Type.list.index = 1;
-        Type.obj = Type.boj || { is: function(o) {
-          DEP("obj");
-          return o ? o instanceof Object && o.constructor === Object || Object.prototype.toString.call(o).match(/^\[object (\w+)\]$/)[1] === "Object" : false;
-        } };
+        Type.obj = Type.boj || {
+          is: function(o) {
+            DEP("obj");
+            return o ? o instanceof Object && o.constructor === Object || Object.prototype.toString.call(o).match(/^\[object (\w+)\]$/)[1] === "Object" : false;
+          }
+        };
         Type.obj.put = Type.obj.put || function(o, k, v) {
           DEP("obj.put");
           return (o || {})[k] = v, o;
@@ -2532,7 +2759,9 @@
             if (!o) {
               return true;
             }
-            return obj_map(o, empty, { n }) ? false : true;
+            return obj_map(o, empty, {
+              n
+            }) ? false : true;
           };
         })();
         ;
@@ -2621,7 +2850,9 @@
           }
           return Val.link.is(v) || false;
         };
-        Val.link = Val.rel = { _: "#" };
+        Val.link = Val.rel = {
+          _: "#"
+        };
         ;
         (function() {
           Val.link.is = function(v) {
@@ -2658,14 +2889,18 @@
         var text_is = Type.text.is;
         var obj = Type.obj, obj_is = obj.is, obj_put = obj.put, obj_map = obj.map;
         Type.val = Type.val || Val;
-        var Node = { _: "_" };
+        var Node = {
+          _: "_"
+        };
         Node.soul = function(n, o) {
           DEP("node.soul");
           return n && n._ && n._[o || soul_];
         };
         Node.soul.ify = function(n, o) {
           DEP("node.soul.ify");
-          o = typeof o === "string" ? { soul: o } : o || {};
+          o = typeof o === "string" ? {
+            soul: o
+          } : o || {};
           n = n || {};
           n._ = n._ || {};
           n._[soul_] = o.soul || n._[soul_] || text_random();
@@ -2681,7 +2916,12 @@
               return false;
             }
             if (s = Node.soul(n)) {
-              return !obj_map(n, map, { as, cb, s, n });
+              return !obj_map(n, map, {
+                as,
+                cb,
+                s,
+                n
+              });
             }
             return false;
           };
@@ -2704,15 +2944,22 @@
             if (!o) {
               o = {};
             } else if (typeof o === "string") {
-              o = { soul: o };
+              o = {
+                soul: o
+              };
             } else if (typeof o == "function") {
-              o = { map: o };
+              o = {
+                map: o
+              };
             }
             if (o.map) {
               o.node = o.map.call(as, obj2, u, o.node || {});
             }
             if (o.node = Node.soul.ify(o.node || {}, o)) {
-              obj_map(obj2, map, { o, as });
+              obj_map(obj2, map, {
+                o,
+                as
+              });
             }
             return o.node;
           };
@@ -2759,21 +3006,30 @@
             if (o && !cb) {
               s = num_is(s) ? s : State();
               o[N_] = o[N_] || {};
-              obj_map(o, map, { o, s });
+              obj_map(o, map, {
+                o,
+                s
+              });
               return o;
             }
             as = as || obj_is(s) ? s : u2;
             s = num_is(s) ? s : State();
             return function(v, k, o2, opt) {
               if (!cb) {
-                map.call({ o: o2, s }, v, k);
+                map.call({
+                  o: o2,
+                  s
+                }, v, k);
                 return v;
               }
               cb.call(as || this || {}, v, k, o2, opt);
               if (obj_has(o2, k) && u2 === o2[k]) {
                 return;
               }
-              map.call({ o: o2, s }, v, k);
+              map.call({
+                o: o2,
+                s
+              }, v, k);
             };
           };
           function map(v, k) {
@@ -2795,7 +3051,11 @@
             if (!g || !obj_is(g) || obj_empty(g)) {
               return false;
             }
-            return !obj_map(g, map, { cb, fn: fn2, as });
+            return !obj_map(g, map, {
+              cb,
+              fn: fn2,
+              as
+            });
           };
           function map(n, s) {
             if (!n || s !== Node.soul(n) || !Node.is(n, this.fn, this.as)) {
@@ -2818,11 +3078,16 @@
         (function() {
           Graph.ify = function(obj2, env, as) {
             DEP("graph.ify");
-            var at = { path: [], obj: obj2 };
+            var at = {
+              path: [],
+              obj: obj2
+            };
             if (!env) {
               env = {};
             } else if (typeof env === "string") {
-              env = { soul: env };
+              env = {
+                soul: env
+              };
             } else if (typeof env == "function") {
               env.map = env;
             }
@@ -2891,7 +3156,10 @@
             if (is === true) {
               return v;
             }
-            tmp = node(env, { obj: v, path: at.path.concat(k) });
+            tmp = node(env, {
+              obj: v,
+              path: at.path.concat(k)
+            });
             if (!tmp.node) {
               return;
             }
@@ -2953,8 +3221,14 @@
               return;
             }
             var obj2 = {};
-            opt = opt || { seen: {} };
-            obj_map(graph[root], map, { obj: obj2, graph, opt });
+            opt = opt || {
+              seen: {}
+            };
+            obj_map(graph[root], map, {
+              obj: obj2,
+              graph,
+              opt
+            });
             return obj2;
           };
           function map(v, k) {
@@ -3003,14 +3277,17 @@
     opt.ids = opt.ids || {};
     opt.any = opt.any || cb;
     opt.meta = opt.meta || false;
-    opt.ev = opt.ev || { off: function() {
-      Gun2.obj.map(opt.ev.s, function(e) {
-        if (e) {
-          e.off();
-        }
-      });
-      opt.ev.s = {};
-    }, s: {} };
+    opt.ev = opt.ev || {
+      off: function() {
+        Gun2.obj.map(opt.ev.s, function(e) {
+          if (e) {
+            e.off();
+          }
+        });
+        opt.ev.s = {};
+      },
+      s: {}
+    };
     return this.on(function(data, key, ctx, ev) {
       if (opt.meta !== true) {
         delete ((data = Gun2.obj.copy(data)) || {})._;
@@ -3059,7 +3336,10 @@
   // component.js
   var listeners = new WeakMap();
   function setListeners(props) {
-    listeners.get(props.el)?.forEach(({ trigger, listener }) => {
+    listeners.get(props.el)?.forEach(({
+      trigger,
+      listener
+    }) => {
       props.el.removeEventListener(trigger, listener);
       listeners.get(props.el).delete(listener);
     });
@@ -3068,46 +3348,73 @@
       const listener = (event) => action.call(props, props, event);
       props.el.addEventListener(trigger, listener);
       listeners.set(props.el, listeners.get(props.el) ?? new Map());
-      listeners.get(props.el).set(action, { trigger, listener });
+      listeners.get(props.el).set(action, {
+        trigger,
+        listener
+      });
     });
   }
-  function render(passedProps = {}, prevProps = {}) {
-    const props = {
-      ...passedProps,
-      ...passedProps.init?.({ ...passedProps }, prevProps) ?? {}
-    };
-    props.render = (passedProps2 = {}) => {
-      const inheritedProps = passedProps2.parent ? Object.fromEntries(Object.entries(passedProps2.parent).filter(([key]) => key.startsWith("_"))) : {};
-      const newProps = { ...props, ...inheritedProps, ...passedProps2 };
-      if (!passedProps2.parent && props.parent?.children?.[props.key]) {
-        const inheritedPropsUpdated = Object.fromEntries(Object.entries(passedProps2).filter(([key]) => key.startsWith("_")));
+  function assignRender(props) {
+    props.render = props.render ?? ((passedProps = {}) => {
+      const inheritedProps = passedProps.parent ? Object.fromEntries(Object.entries(passedProps.parent).filter(([key]) => key.startsWith("_"))) : {};
+      const newProps = {
+        ...props,
+        ...inheritedProps,
+        ...passedProps
+      };
+      if (!passedProps.parent && props.parent?.children?.[props.key]) {
+        const inheritedPropsUpdated = Object.fromEntries(Object.entries(passedProps).filter(([key]) => key.startsWith("_")));
         return props.parent.render({
           ...inheritedPropsUpdated,
           children: {
             ...props.parent.children,
             [props.key]: {
               ...props,
-              render: (passedProps3 = {}) => render({ ...newProps, ...passedProps3 }, props)
+              render: (passedProps2 = {}) => render({
+                ...newProps,
+                ...passedProps2
+              }, props)
             }
           }
         }).children[props.key];
       }
       return render(newProps, props);
-    };
-    props.tag = props.tag ?? (props.text ? "span" : "div");
+    });
+  }
+  function assignElement(props) {
     if (!props.el) {
-      if (props.parent?.el && props.parent.el.childNodes[props.index]?.tagName?.toLowerCase() === props.tag) {
+      const tag = props.tag ?? (props.text ? "span" : "div");
+      if (props.parent?.el && props.parent.el.childNodes[props.index]?.tagName?.toLowerCase() === tag) {
         props.el = props.parent.el.childNodes[props.index];
       } else {
-        props.el = document.createElement(props.tag);
+        props.el = document.createElement(tag);
       }
     }
-    const { el, text, children, style, onChange, atts, value, parent } = props;
+  }
+  function render(passedProps = {}, prevProps = {}) {
+    const props = passedProps.init?.({
+      ...passedProps
+    }, prevProps) ?? {
+      ...passedProps
+    };
+    assignRender(props);
+    assignElement(props);
+    const {
+      el,
+      text,
+      children,
+      style,
+      onChange,
+      atts,
+      value,
+      parent
+    } = props;
     if (children) {
-      props.children = Object.fromEntries(Object.values(children).map((it, index2) => [
-        index2,
-        it.render({ parent: props, key: it.key ?? index2, index: index2 })
-      ]));
+      props.children = Object.fromEntries(Object.values(children).map((it, index2) => [index2, it.render({
+        parent: props,
+        key: it.key ?? index2,
+        index: index2
+      })]));
       if (el) {
         for (let childEl of el.childNodes) {
           if (!Object.values(props.children).some((ch) => ch.el === childEl)) {
@@ -3137,89 +3444,125 @@
     return props;
   }
   var Component = (initial) => {
-    const props = typeof initial === "function" ? { init: initial } : initial;
+    const props = typeof initial === "function" ? {
+      init: initial
+    } : initial;
     return {
-      render: (passedProps = {}) => render({ ...props, ...passedProps }, props),
-      reset: (passedProps = {}) => Component({ ...props, ...passedProps }),
+      render: (passedProps = {}) => render({
+        ...props,
+        ...passedProps
+      }, props),
+      reset: (passedProps = {}) => Component({
+        ...props,
+        ...passedProps
+      }),
       ...props
     };
   };
 
   // ui.js
   var Row = (args) => {
-    const props = Array.isArray(args) ? { children: args } : args;
-    return Component({ style: { display: "flex" }, ...props });
+    const props = Array.isArray(args) ? {
+      children: args
+    } : args;
+    return Component({
+      style: {
+        display: "flex"
+      },
+      ...props
+    });
   };
   var Column = (args) => {
-    const props = Array.isArray(args) ? { children: args } : args;
+    const props = Array.isArray(args) ? {
+      children: args
+    } : args;
     return Component({
-      style: { display: "flex", flexDirection: "column" },
+      style: {
+        display: "flex",
+        flexDirection: "column"
+      },
       ...props
     });
   };
   var Text = (args) => {
-    const props = typeof args === "string" || typeof args === "number" ? { text: String(args) } : args;
+    const props = typeof args === "string" || typeof args === "number" ? {
+      text: String(args)
+    } : args;
     return Component(props);
   };
   var Input = (args) => {
-    const props = typeof args === "string" || typeof args === "number" ? { value: String(args) } : args;
+    const props = typeof args === "string" || typeof args === "number" ? {
+      value: String(args)
+    } : args;
     return Component({
       tag: "input",
-      atts: { type: "text" },
+      atts: {
+        type: "text"
+      },
       ...props
     });
   };
   var Button = (args) => {
-    const props = typeof args === "string" || typeof args === "number" ? { text: String(args) } : args;
-    return Component({ tag: "button", ...props });
+    const props = typeof args === "string" || typeof args === "number" ? {
+      text: String(args)
+    } : args;
+    return Component({
+      tag: "button",
+      ...props
+    });
   };
 
   // client.js
   var gun = (0, import_gun.default)({
-    peers: [
-      "https://gunstate.herokuapp.com",
-      "http://localhost:3000/gun",
-      "https://santistebanc.github.io/gunstate"
-    ]
+    peers: ["https://santicgunrelay.herokuapp.com/", "http://localhost:3000/gun"]
   });
   window.gun = gun;
-  gun.get("views").get("termsList").put({ row: { 0: gun.get("terms") } });
   var index = new FlexSearch.Worker("performance");
   gun.get("terms").map().once((term) => {
     console.log("indexing ", term["_"]["#"]);
     index.add(term["_"]["#"], term.text);
   });
-  var view = (terms = {}) => {
-    Column({
-      children: [
-        Row([
-          Text("search:"),
-          Input({
-            on_input: async (_, e) => console.log(e.target.value, await index.search(e.target.value))
-          })
-        ]),
-        Column({
-          _inputVal: "",
-          children: Object.values(terms).filter((term) => !term.deleted).map((term) => Text({
-            text: term.text,
-            on_dblclick: () => gun.get("terms/" + term.text).put({ deleted: true })
-          }))
-        }),
-        Input({
-          init: ({ _inputVal }) => ({ value: _inputVal }),
-          on_input: ({ render: render2 }, e) => render2({ _inputVal: e.target.value })
-        }),
-        Button({
-          text: "add term",
-          on_click: ({ _inputVal, render: render2 }) => {
-            gun.get("terms").get(_inputVal).put({ text: _inputVal, lang: "eng", deleted: false });
-            render2({ _inputVal: "" });
-          }
-        })
-      ]
-    }).render({
-      el: document.querySelector("#root")
-    });
-  };
-  gun.get("terms").open((terms) => view(terms));
+  var Searchbar = Row([Text("search:"), Input({
+    on_input: async (_, e) => console.log(e.target.value, await index.search(e.target.value))
+  })]);
+  var AddTerm = [Input({
+    init: ({
+      _inputVal
+    }) => ({
+      value: _inputVal
+    }),
+    on_input: ({
+      render: render2
+    }, e) => render2({
+      _inputVal: e.target.value
+    })
+  }), Button({
+    text: "add term",
+    on_click: ({
+      _inputVal,
+      render: render2
+    }) => {
+      gun.get("terms").get(_inputVal).put({
+        text: _inputVal,
+        lang: "eng",
+        deleted: false
+      });
+      render2({
+        _inputVal: ""
+      });
+    }
+  })];
+  var TermsList = (terms = []) => Column({
+    _inputVal: "",
+    children: terms.filter((term) => !term.deleted).map((term) => Text({
+      text: term.text,
+      on_dblclick: () => gun.get("terms/" + term.text).put({
+        deleted: true
+      })
+    }))
+  });
+  var view = (terms) => Column([Searchbar, TermsList(terms), ...AddTerm]).render({
+    el: document.querySelector("#root")
+  });
+  gun.get("terms").open((terms) => view(Object.values(terms)).render());
 })();
