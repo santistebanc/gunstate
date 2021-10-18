@@ -5895,7 +5895,7 @@
     });
   }
   function assignRender(props) {
-    props.render = props.render ?? ((passedProps = {}) => {
+    props.render = (passedProps = {}) => {
       const inheritedProps = passedProps.parent ? Object.fromEntries(Object.entries(passedProps.parent).filter(([key]) => key.startsWith("_"))) : {};
       const newProps = {
         ...props,
@@ -5919,7 +5919,7 @@
         }).children[props.key];
       }
       return render(newProps, props);
-    });
+    };
   }
   function assignElement(props) {
     if (!props.el) {
@@ -6060,10 +6060,12 @@
   };
 
   // client.js
-  if ("serviceWorker" in navigator) {
-    window.addEventListener("load", function() {
-      navigator.serviceWorker.register("/gunstate/serviceWorker.js").then((res) => console.info("service worker registered")).catch((err) => console.error("service worker not registered", err));
-    });
+  if (false) {
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function() {
+        navigator.serviceWorker.register("/gunstate/serviceWorker.js").then((res) => console.info("service worker registered")).catch((err) => console.error("service worker not registered", err));
+      });
+    }
   }
   var gun = (0, import_gun.default)({
     peers: ["http://localhost:3000/gun", "https://santicgunrelay.herokuapp.com/gun"]
@@ -6117,36 +6119,8 @@
         text: _inputVal,
         lang: "eng",
         deleted: false
-      });
-      render2({
-        _inputVal: ""
-      });
-      view(Object.values(terms));
-    }
-  })]);
-  var AddTerm = Row([Input({
-    className: "p-1",
-    init: ({
-      _inputVal
-    }) => ({
-      value: _inputVal
-    }),
-    on_input: ({
-      render: render2
-    }, e) => render2({
-      _inputVal: e.target.value
-    })
-  }), Button({
-    className: "p-1",
-    text: "add term",
-    on_click: ({
-      _inputVal,
-      render: render2
-    }) => {
-      gun.get("terms").get(_inputVal).put({
-        text: _inputVal,
-        lang: "eng",
-        deleted: false
+      }, (a2, b2, c2) => {
+        console.log("????????????????????????????????", a2, b2, c2);
       });
       render2({
         _inputVal: ""
@@ -6161,7 +6135,7 @@
       tag: "li",
       text: term.text,
       on_dblclick: () => {
-        gun.get("terms/" + term.text).put({
+        gun.get("terms").get(term.text).put({
           deleted: true
         });
       }
