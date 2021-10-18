@@ -6062,7 +6062,7 @@
   // client.js
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", function() {
-      navigator.serviceWorker.register("/serviceWorker.js").then((res) => console.log("service worker registered")).catch((err) => console.log("service worker not registered", err));
+      navigator.serviceWorker.register("/serviceWorker.js").then((res) => console.error("service worker registered")).catch((err) => console.error("service worker not registered", err));
     });
   }
   var gun = (0, import_gun.default)({
@@ -6179,7 +6179,6 @@
     }
   });
   gun.get("terms").map().on((term) => {
-    console.log("term", term);
     if (term.deleted) {
       index.remove(term["_"]["#"]);
       delete terms[term["_"]["#"]];
@@ -6193,7 +6192,5 @@
     view(Object.values(terms).reverse());
   });
   setTimeout(() => console.log("indexed " + Object.keys(terms).length + " terms"), 2e3);
-  gun.get("room-name<?10").set("carlos");
-  gun.get("room-name<?10").map().once(console.log);
 })();
 //!opt && console.log("WHAT IS T?", JSON.stringify(t).length);
