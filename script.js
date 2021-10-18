@@ -6073,10 +6073,10 @@
     let scheduled;
     let isThrottled = false;
     return (...args) => {
+      scheduled = {
+        args
+      };
       if (isThrottled) {
-        scheduled = {
-          args
-        };
         return;
       }
       isThrottled = true;
@@ -6099,7 +6099,8 @@
     }
   }
   var gun = (0, import_gun.default)({
-    peers: ["http://localhost:3000/gun", "https://santicgunrelay.herokuapp.com/gun"]
+    peers: ["http://localhost:3000/gun", "https://santicgunrelay.herokuapp.com/gun"],
+    localStorage: false
   });
   window.gun = gun;
   var terms = {};
@@ -6121,7 +6122,7 @@
         pluck: "text"
       });
       results.forEach((result) => gun.get(result).once((data) => {
-        queryTerms[result] = data;
+        queryTerms[result.text] = data;
         view(Object.values(queryTerms));
       }));
     }
