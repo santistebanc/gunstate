@@ -4,6 +4,7 @@
   "description": "",
   "main": "server.js",
   "type": "module",
+  "homepage": "https://santistebanc.github.io/gunstate",
   "scripts": {
     "start": "npm build && node server.js",
     "dev": "concurrently --kill-others \"npm run build:dev\" \"node server.js\"",

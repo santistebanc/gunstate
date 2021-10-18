@@ -80,10 +80,10 @@ async function saveTranslation(original, target, bidirectional) {
     .put(target);
 }
 
-const term1 = saveTerm({ text: "hello", lang: "eng" });
-const term2 = saveTerm({ text: "hola", lang: "esp" });
-const term3 = saveTerm({ text: "how are you?", lang: "eng" });
-const term4 = saveTerm({ text: "wie gehts?", lang: "deu" });
+const term1 = saveTerm({ text: "hello", lang: "eng", deleted: false });
+const term2 = saveTerm({ text: "hola", lang: "esp", deleted: false });
+const term3 = saveTerm({ text: "how are you?", lang: "eng", deleted: false });
+const term4 = saveTerm({ text: "wie gehts?", lang: "deu", deleted: false });
 
 saveTranslation(term1, term2, true);
 saveTranslation(term3, term4, true);

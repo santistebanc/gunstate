@@ -1,5 +1,5 @@
 const staticLangBase = "lang-base-site-v1";
-const assets = ["/", "/index.html", "/style.css", "/script.js"];
+const assets = [];
 
 self.addEventListener("install", (installEvent) => {
   installEvent.waitUntil(

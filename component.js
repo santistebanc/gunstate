@@ -20,35 +20,33 @@ export function setListeners(props) {
 }
 
 function assignRender(props) {
-  props.render =
-    props.render ??
-    ((passedProps = {}) => {
-      const inheritedProps = passedProps.parent
-        ? Object.fromEntries(
-            Object.entries(passedProps.parent).filter(([key]) =>
-              key.startsWith("_")
-            )
+  props.render = (passedProps = {}) => {
+    const inheritedProps = passedProps.parent
+      ? Object.fromEntries(
+          Object.entries(passedProps.parent).filter(([key]) =>
+            key.startsWith("_")
           )
-        : {};
-      const newProps = { ...props, ...inheritedProps, ...passedProps };
-      if (!passedProps.parent && props.parent?.children?.[props.key]) {
-        const inheritedPropsUpdated = Object.fromEntries(
-          Object.entries(passedProps).filter(([key]) => key.startsWith("_"))
-        );
-        return props.parent.render({
-          ...inheritedPropsUpdated,
-          children: {
-            ...props.parent.children,
-            [props.key]: {
-              ...props,
-              render: (passedProps = {}) =>
-                render({ ...newProps, ...passedProps }, props),
-            },
+        )
+      : {};
+    const newProps = { ...props, ...inheritedProps, ...passedProps };
+    if (!passedProps.parent && props.parent?.children?.[props.key]) {
+      const inheritedPropsUpdated = Object.fromEntries(
+        Object.entries(passedProps).filter(([key]) => key.startsWith("_"))
+      );
+      return props.parent.render({
+        ...inheritedPropsUpdated,
+        children: {
+          ...props.parent.children,
+          [props.key]: {
+            ...props,
+            render: (passedProps = {}) =>
+              render({ ...newProps, ...passedProps }, props),
           },
-        }).children[props.key];
-      }
-      return render(newProps, props);
-    });
+        },
+      }).children[props.key];
+    }
+    return render(newProps, props);
+  };
 }
 
 function assignElement(props) {
@@ -119,7 +117,7 @@ export function render(passedProps = {}, prevProps = {}) {
 
     setListeners(props);
 
-    if (parent?.el?.parentElement && !parent?.el.contains(el)) {
+    if (parent?.el && !parent?.el.contains(el)) {
       parent.el.appendChild(el);
     }
   }
