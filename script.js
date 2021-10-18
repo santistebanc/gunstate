@@ -5978,7 +5978,7 @@
       if (style)
         Object.entries(style).forEach(([key, val]) => el.style[key] = val);
       setListeners(props);
-      if (parent?.el?.parentElement && !parent?.el.contains(el)) {
+      if (parent?.el && !parent?.el.contains(el)) {
         parent.el.appendChild(el);
       }
     }
@@ -6059,6 +6059,37 @@
     });
   };
 
+  // utils.js
+  function debounce(func, timeout = 300) {
+    let timer;
+    return (...args) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        func.apply(this, args);
+      }, timeout);
+    };
+  }
+  function throttle_schedule(func, timeout = 100) {
+    let scheduled;
+    let isThrottled = false;
+    return (...args) => {
+      if (isThrottled) {
+        scheduled = {
+          args
+        };
+        return;
+      }
+      isThrottled = true;
+      setTimeout(function() {
+        if (scheduled)
+          func.apply(this, scheduled.args);
+        scheduled = null;
+        isThrottled = false;
+      }, timeout);
+      func.apply(this, args);
+    };
+  }
+
   // client.js
   if (false) {
     if ("serviceWorker" in navigator) {
@@ -6072,6 +6103,12 @@
   });
   window.gun = gun;
   var terms = {};
+  var view = throttle_schedule((terms2) => {
+    Main(terms2).render({
+      el: document.querySelector("#root")
+    });
+  }, 300);
+  view();
   var onInput = async ({
     render: render2
   }, e) => {
@@ -6092,57 +6129,60 @@
       _inputVal: e.target.value
     });
   };
-  var Searchbar = Row([Input({
-    init: ({
-      _inputVal
-    }) => ({
-      value: _inputVal
-    }),
-    className: "p-1",
-    atts: {
-      autocomplete: "on",
-      inputmode: "search",
-      placeholder: "\u{1F50E}\uFE0E search"
-    },
-    style: {
-      flex: 1
-    },
-    on_input: onInput
-  }), Button({
-    className: "p-1",
-    text: "add term",
-    on_click: ({
-      _inputVal,
-      render: render2
-    }) => {
-      gun.get("terms").get(_inputVal).put({
-        text: _inputVal,
-        lang: "eng",
-        deleted: false
-      });
-      render2({
-        _inputVal: ""
-      });
-    }
-  })]);
-  var TermsList = (terms2 = []) => Column({
-    tag: "ul",
-    className: "p-1",
-    _inputVal: "",
-    children: terms2.map((term) => Text({
-      tag: "li",
-      text: term.text,
-      on_dblclick: () => {
-        gun.get("terms").get(term.text).put({
-          deleted: true
+  function Searchbar() {
+    return Row([Input({
+      init: ({
+        _inputVal
+      }) => ({
+        value: _inputVal
+      }),
+      className: "p-1",
+      atts: {
+        autocomplete: "on",
+        inputmode: "search",
+        placeholder: "\u{1F50E}\uFE0E search"
+      },
+      style: {
+        flex: 1
+      },
+      on_input: onInput
+    }), Button({
+      className: "p-1",
+      text: "add term",
+      on_click: ({
+        _inputVal,
+        render: render2
+      }) => {
+        gun.get("terms").get(_inputVal).put({
+          text: _inputVal,
+          lang: "eng",
+          deleted: false
+        });
+        render2({
+          _inputVal: ""
         });
       }
-    }))
-  });
-  function view(terms2) {
-    return Column([Searchbar, TermsList(terms2)]).render({
-      el: document.querySelector("#root")
+    })]);
+  }
+  function TermsList(terms2 = []) {
+    return Column({
+      tag: "ul",
+      className: "p-1",
+      _inputVal: "",
+      children: terms2.map((term) => Text({
+        tag: "li",
+        text: term.text,
+        on_dblclick: () => {
+          term.deleted = true;
+          gun.get("terms").get(term.text).put({
+            deleted: true
+          });
+        }
+      }))
     });
+  }
+  function Main(terms2) {
+    return Column([Searchbar(terms2), TermsList(terms2)]);
   }
   var index = new import_flexsearch.Document({
     tokenize: "full",
@@ -6152,19 +6192,22 @@
       index: ["text"]
     }
   });
-  gun.get("terms").map().on((term) => {
-    if (term.deleted) {
+  var logIndexCount = debounce(() => console.log("indexed " + Object.keys(terms).length + " terms"));
+  gun.get("terms").map().on((term, a2, b2, c2) => {
+    if (a2 === "novel")
+      console.log("received: ", term, a2, b2, c2);
+    if (term.deleted || terms[term.text] && terms[term.text].deleted) {
       index.remove(term["_"]["#"]);
-      delete terms[term["_"]["#"]];
+      delete terms[term.text];
     } else {
       index.add({
         id: term["_"]["#"],
         text: term.text
       });
-      terms[term["_"]["#"]] = term;
+      terms[term.text] = term;
+      logIndexCount();
     }
     view(Object.values(terms).reverse());
   });
-  setTimeout(() => console.log("indexed " + Object.keys(terms).length + " terms"), 2e3);
 })();
 //!opt && console.log("WHAT IS T?", JSON.stringify(t).length);
