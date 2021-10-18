@@ -6154,9 +6154,11 @@
     }
   })]);
   var TermsList = (terms2 = []) => Column({
+    tag: "ul",
     className: "p-1",
     _inputVal: "",
     children: terms2.map((term) => Text({
+      tag: "li",
       text: term.text,
       on_dblclick: () => {
         gun.get("terms/" + term.text).put({
