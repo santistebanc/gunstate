@@ -6115,7 +6115,8 @@
     }) => {
       gun.get("terms").get(_inputVal).put({
         text: _inputVal,
-        lang: "eng"
+        lang: "eng",
+        deleted: false
       });
       render2({
         _inputVal: ""
@@ -6144,7 +6145,8 @@
     }) => {
       gun.get("terms").get(_inputVal).put({
         text: _inputVal,
-        lang: "eng"
+        lang: "eng",
+        deleted: false
       });
       render2({
         _inputVal: ""
