@@ -6062,7 +6062,7 @@
   // client.js
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", function() {
-      navigator.serviceWorker.register("/serviceWorker.js").then((res) => console.error("service worker registered")).catch((err) => console.error("service worker not registered", err));
+      navigator.serviceWorker.register("/serviceWorker.js").then((res) => console.info("service worker registered")).catch((err) => console.error("service worker not registered", err));
     });
   }
   var gun = (0, import_gun.default)({
