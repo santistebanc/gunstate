@@ -6194,8 +6194,6 @@
   });
   var logIndexCount = debounce(() => console.log("indexed " + Object.keys(terms).length + " terms"));
   gun.get("terms").map().on((term, a2, b2, c2) => {
-    if (a2 === "novel")
-      console.log("received: ", term, a2, b2, c2);
     if (term.deleted || terms[term.text] && terms[term.text].deleted) {
       index.remove(term["_"]["#"]);
       delete terms[term.text];
