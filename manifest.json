@@ -2,7 +2,7 @@
   "name": "Lang_base",
   "short_name": "lang_base",
   "description": "Decentralized sentence based language learning",
-  "start_url": "/gunstate",
+  "start_url": "https://santistebanc.github.io/gunstate/",
   "display": "standalone",
   "background_color": "#fdfdfd",
   "theme_color": "#db4938",
